@@ -1,8 +1,9 @@
-<img src="http://sven-seyfert.de/media/logo_circle.png" width="80" />
+<p align="center">
+    <img src="http://sven-seyfert.de/media/logo_circle.png" width="80" />
+    <h3 align="center">Welcome to <code>AutoIt-Au3RenameEx</code> !</h3>
+</p>
 
 # Au3RenameEx
-
-Welcome to `Au3RenameEx`!
 
 [Description](#description) | [Features](#features) | [Getting started](#getting-started) | [Configuration](#configuration) | [Keyboard Shortcuts](#keyboard-shortcuts) | [Style Guide](#style-guide) | [Contributing](#contributing)
 
