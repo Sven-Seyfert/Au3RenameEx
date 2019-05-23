@@ -1,3 +1,5 @@
+#####
+
 <p align="center">
     <img src="http://sven-seyfert.de/media/logo_circle.png" width="80" />
     <h2 align="center">Welcome to <code>Au3RenameEx</code> !</h2>
@@ -35,6 +37,6 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 - Check out the code, leave feedback and feature requests now on [GitHub/Sven-Seyfert](https://github.com/Sven-Seyfert/AutoIt-Au3RenameEx).
 - Please fork the repository and contribute using pull requests.
 
-#
+##
 
-[To the top](#au3renameex)
+[To the top](#)
