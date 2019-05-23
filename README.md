@@ -35,6 +35,6 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 - Check out the code, leave feedback and feature requests now on [GitHub/Sven-Seyfert](https://github.com/Sven-Seyfert/AutoIt-Au3RenameEx).
 - Please fork the repository and contribute using pull requests.
 
----
+#
 
 [To the top](#au3renameex)
