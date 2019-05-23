@@ -1,4 +1,4 @@
-<img src="http://sven-seyfert.de/media/logo_circle.png" width="60" />
+<img src="http://sven-seyfert.de/media/logo_circle.png" width="80" />
 
 # Au3RenameEx
 
