@@ -1,7 +1,6 @@
 <p align="center">
     <img src="http://sven-seyfert.de/media/logo_circle.png" width="80" />
     <h2 align="center">Welcome to <code>Au3RenameEx</code> !</h2>
-    <hr />
 </p>
 
 [Description](#description) | [Features](#features) | [Getting started](#getting-started) | [Configuration](#configuration) | [Keyboard Shortcuts](#keyboard-shortcuts) | [Style Guide](#style-guide) | [Contributing](#contributing)
