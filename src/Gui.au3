@@ -20,17 +20,17 @@ Global $cBtnClose               = GUICtrlCreateButton( '', $iWGui * 0.985 - ( $i
 
 ; numeration section
 Global $cBtnRdoNumeration       = GUICtrlCreateButton( '', $iWGui * 0.02, $iWGui * 0.05, $iButtons, $iButtons, $vImageStyle )
-Global $cLblNumeration          = GUICtrlCreateLabel( 'Nummerierung', $iWGui * 0.045, $iWGui * 0.0565, 150 )
+Global $cLblNumeration          = GUICtrlCreateLabel( _getResxValue( 'LblNumeration' ), $iWGui * 0.045, $iWGui * 0.0565, 150 )
                                   GUICtrlSetColor( $cLblNumeration, $vColorSecondary )
                                   GUICtrlSetFont( $cLblNumeration, 11, 600 )
 
-Global $cLblNumerationStart     = GUICtrlCreateLabel( 'Start', $iWGui * 0.045, $iWGui * 0.0775 )
+Global $cLblNumerationStart     = GUICtrlCreateLabel( _getResxValue( 'LblNumerationStart' ), $iWGui * 0.045, $iWGui * 0.0775 )
                                   GUICtrlSetColor( $cLblNumerationStart, $vColorSecondary )
 Global $cNumerationStart        = GUICtrlCreateInput( 1, $iWGui * 0.1, $iWGui * 0.075, 100 )
                                   GUICtrlCreateUpdown( $cNumerationStart )
                                   GUICtrlSetLimit( -1, 5000, 1 )
 
-Global $cLblNumerationDigits    = GUICtrlCreateLabel( 'Stellen', $iWGui * 0.2, $iWGui * 0.0775 )
+Global $cLblNumerationDigits    = GUICtrlCreateLabel( _getResxValue( 'LblNumerationDigits' ), $iWGui * 0.2, $iWGui * 0.0775 )
                                   GUICtrlSetColor( $cLblNumerationDigits, $vColorSecondary )
 Global $cNumerationDigits       = GUICtrlCreateInput( 1, $iWGui * 0.255, $iWGui * 0.075, 100 )
                                   GUICtrlCreateUpdown( $cNumerationDigits )
@@ -38,34 +38,34 @@ Global $cNumerationDigits       = GUICtrlCreateInput( 1, $iWGui * 0.255, $iWGui 
 
 ; search and replace section
 Global $cBtnRdoSearchAndReplace = GUICtrlCreateButton( '', $iWGui * 0.02, $iWGui * 0.11, $iButtons, $iButtons, $vImageStyle )
-Global $cLblSearchAndReplace    = GUICtrlCreateLabel( 'Zeichen ersetzen', $iWGui * 0.045, $iWGui * 0.1165, 150 )
+Global $cLblSearchAndReplace    = GUICtrlCreateLabel( _getResxValue( 'LblSearchAndReplace' ), $iWGui * 0.045, $iWGui * 0.1165, 150 )
                                   GUICtrlSetColor( $cLblSearchAndReplace, $vColorSecondary )
                                   GUICtrlSetFont( $cLblSearchAndReplace, 11, 600 )
 
-Global $cLblSearch              = GUICtrlCreateLabel( 'Suche', $iWGui * 0.045, $iWGui * 0.1375 )
+Global $cLblSearch              = GUICtrlCreateLabel( _getResxValue( 'LblSearch' ), $iWGui * 0.045, $iWGui * 0.1375 )
                                   GUICtrlSetColor( $cLblSearch, $vColorSecondary )
 Global $cSearch                 = GUICtrlCreateInput( '', $iWGui * 0.1, $iWGui * 0.135, 100 )
 
-Global $cLblReplace             = GUICtrlCreateLabel( 'Ersetze', $iWGui * 0.2, $iWGui * 0.1375 )
+Global $cLblReplace             = GUICtrlCreateLabel( _getResxValue( 'LblReplace' ), $iWGui * 0.2, $iWGui * 0.1375 )
                                   GUICtrlSetColor( $cLblReplace, $vColorSecondary )
 Global $cReplace                = GUICtrlCreateInput( '', $iWGui * 0.255, $iWGui * 0.135, 100 )
 
 Global $cBtnCbxSearchAndReplace = GUICtrlCreateButton( '', $iWGui * 0.097, $iWGui * 0.155, $iButtons / 1.6, $iButtons / 1.6, $vImageStyle )
-Global $cLblCaseSensitive       = GUICtrlCreateLabel( 'Groß- und Kleinschreibung beachten', $iWGui * 0.113, $iWGui * 0.158 )
+Global $cLblCaseSensitive       = GUICtrlCreateLabel( _getResxValue( 'LblCaseSensitive' ), $iWGui * 0.113, $iWGui * 0.158 )
                                   GUICtrlSetColor( $cLblCaseSensitive, $vColorSecondary )
                                   GUICtrlSetFont( $cLblCaseSensitive, 8.5 )
 
 ; paste characters
 Global $cBtnRdoPasteCharacters  = GUICtrlCreateButton( '', $iWGui * 0.02, $iWGui * 0.17, $iButtons, $iButtons, $vImageStyle )
-Global $cLblPasteCharacters     = GUICtrlCreateLabel( 'Zeichen einfügen', $iWGui * 0.045, $iWGui * 0.1765, 150 )
+Global $cLblPasteCharacters     = GUICtrlCreateLabel( _getResxValue( 'LblPasteCharacters' ), $iWGui * 0.045, $iWGui * 0.1765, 150 )
                                   GUICtrlSetColor( $cLblPasteCharacters, $vColorSecondary )
                                   GUICtrlSetFont( $cLblPasteCharacters, 11, 600 )
 
-Global $cLblText                = GUICtrlCreateLabel( 'Text', $iWGui * 0.045, $iWGui * 0.1975 )
+Global $cLblText                = GUICtrlCreateLabel( _getResxValue( 'LblText' ), $iWGui * 0.045, $iWGui * 0.1975 )
                                   GUICtrlSetColor( $cLblText, $vColorSecondary )
 Global $cText                   = GUICtrlCreateInput( '', $iWGui * 0.1, $iWGui * 0.195, 100 )
 
-Global $cLblPosition            = GUICtrlCreateLabel( 'Position', $iWGui * 0.2, $iWGui * 0.1975 )
+Global $cLblPosition            = GUICtrlCreateLabel( _getResxValue( 'LblPosition' ), $iWGui * 0.2, $iWGui * 0.1975 )
                                   GUICtrlSetColor( $cLblPosition, $vColorSecondary )
 Global $cPosition               = GUICtrlCreateInput( 0, $iWGui * 0.255, $iWGui * 0.195, 100 )
                                   GUICtrlCreateUpdown( $cPosition )
@@ -73,17 +73,17 @@ Global $cPosition               = GUICtrlCreateInput( 0, $iWGui * 0.255, $iWGui 
 
 ; move character
 Global $cBtnRdoMoveCharacter    = GUICtrlCreateButton( '', $iWGui * 0.02, $iWGui * 0.23, $iButtons, $iButtons, $vImageStyle )
-Global $cLblMoveCharacter       = GUICtrlCreateLabel( 'Zeichen bewegen', $iWGui * 0.045, $iWGui * 0.2365, 150 )
+Global $cLblMoveCharacter       = GUICtrlCreateLabel( _getResxValue( 'LblMoveCharacter' ), $iWGui * 0.045, $iWGui * 0.2365, 150 )
                                   GUICtrlSetColor( $cLblMoveCharacter, $vColorSecondary )
                                   GUICtrlSetFont( $cLblMoveCharacter, 11, 600 )
 
-Global $cLblFromPos             = GUICtrlCreateLabel( 'Von Pos.', $iWGui * 0.045, $iWGui * 0.2575 )
+Global $cLblFromPos             = GUICtrlCreateLabel( _getResxValue( 'LblFromPos' ), $iWGui * 0.045, $iWGui * 0.2575 )
                                   GUICtrlSetColor( $cLblFromPos, $vColorSecondary )
 Global $cFromPos                = GUICtrlCreateInput( 1, $iWGui * 0.1, $iWGui * 0.255, 100 )
                                   GUICtrlCreateUpdown( $cFromPos )
                                   GUICtrlSetLimit( -1, 500, 1 )
 
-Global $cLblToPos               = GUICtrlCreateLabel( 'Zu Pos.', $iWGui * 0.2, $iWGui * 0.2575 )
+Global $cLblToPos               = GUICtrlCreateLabel( _getResxValue( 'LblToPos' ), $iWGui * 0.2, $iWGui * 0.2575 )
                                   GUICtrlSetColor( $cLblToPos, $vColorSecondary )
 Global $cToPos                  = GUICtrlCreateInput( 2, $iWGui * 0.255, $iWGui * 0.255, 100 )
                                   GUICtrlCreateUpdown( $cToPos )
@@ -91,17 +91,17 @@ Global $cToPos                  = GUICtrlCreateInput( 2, $iWGui * 0.255, $iWGui 
 
 ; delete characters
 Global $cBtnRdoDeleteCharacters = GUICtrlCreateButton( '', $iWGui * 0.02, $iWGui * 0.29, $iButtons, $iButtons, $vImageStyle )
-Global $cLblDeleteCharacters    = GUICtrlCreateLabel( 'Zeichen löschen', $iWGui * 0.045, $iWGui * 0.2965, 150 )
+Global $cLblDeleteCharacters    = GUICtrlCreateLabel( _getResxValue( 'LblDeleteCharacters' ), $iWGui * 0.045, $iWGui * 0.2965, 150 )
                                   GUICtrlSetColor( $cLblDeleteCharacters, $vColorSecondary )
                                   GUICtrlSetFont( $cLblDeleteCharacters, 11, 600 )
 
-Global $cLblAmount              = GUICtrlCreateLabel( 'Anzahl', $iWGui * 0.045, $iWGui * 0.3175 )
+Global $cLblAmount              = GUICtrlCreateLabel( _getResxValue( 'LblAmount' ), $iWGui * 0.045, $iWGui * 0.3175 )
                                   GUICtrlSetColor( $cLblAmount, $vColorSecondary )
 Global $cAmount                 = GUICtrlCreateInput( 1, $iWGui * 0.1, $iWGui * 0.315, 100 )
                                   GUICtrlCreateUpdown( $cAmount )
                                   GUICtrlSetLimit( -1, 500, 1 )
 
-Global $cLblAtPosition          = GUICtrlCreateLabel( 'Position', $iWGui * 0.2, $iWGui * 0.3175 )
+Global $cLblAtPosition          = GUICtrlCreateLabel( _getResxValue( 'LblAtPosition' ), $iWGui * 0.2, $iWGui * 0.3175 )
                                   GUICtrlSetColor( $cLblAtPosition, $vColorSecondary )
 Global $cAtPosition             = GUICtrlCreateInput( 1, $iWGui * 0.255, $iWGui * 0.315, 100 )
                                   GUICtrlCreateUpdown( $cAtPosition )
@@ -113,14 +113,14 @@ Global $hListView               = GUICtrlCreateListView( '', $iWGui * 0.36, $iWG
                                   _GUICtrlListView_AddColumn( $hListView, $sListViewColumnText, $iWGui * 0.8 )
 
 ; tooltip
-GUICtrlSetTip( $cBtnChooseFolder,            'Öffnen [Strg+O]' )
-GUICtrlSetTip( $cBtnUndo,                    'Rückgängig [Strg+Z]' )
-GUICtrlSetTip( $cBtnRedo,                    'Wiederholen [Strg+Y]' )
-GUICtrlSetTip( $cBtnPreview,                 'Vorschau [Strg+P]' )
-GUICtrlSetTip( $cBtnReset,                   'Vorschau zurücksetzen [Strg+R]' )
-GUICtrlSetTip( $cBtnRename,                  'Umbenennen [Strg+S]' )
-GUICtrlSetTip( $cBtnMinimize,                'Minimieren' )
-GUICtrlSetTip( $cBtnClose,                   'Beenden' )
+GUICtrlSetTip( $cBtnChooseFolder,            _getResxValue( 'BtnChooseFolder' ) )
+GUICtrlSetTip( $cBtnUndo,                    _getResxValue( 'BtnUndo' ) )
+GUICtrlSetTip( $cBtnRedo,                    _getResxValue( 'BtnRedo' ) )
+GUICtrlSetTip( $cBtnPreview,                 _getResxValue( 'BtnPreview' ) )
+GUICtrlSetTip( $cBtnReset,                   _getResxValue( 'BtnReset' ) )
+GUICtrlSetTip( $cBtnRename,                  _getResxValue( 'BtnRename' ) )
+GUICtrlSetTip( $cBtnMinimize,                _getResxValue( 'BtnMinimize' ) )
+GUICtrlSetTip( $cBtnClose,                   _getResxValue( 'BtnClose' ) )
 
 ; cursor
 GUICtrlSetCursor( $cLblProgram,              9 )

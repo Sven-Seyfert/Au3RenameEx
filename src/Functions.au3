@@ -44,10 +44,10 @@ Func _setLastUsedPath()
 EndFunc
 
 Func _getChosenFolderPath( $sPath )
-    $sPathChosenFolder = FileSelectFolder( 'Ordner auswählen ...', $sPath )
+    $sPathChosenFolder = FileSelectFolder( _getResxValue( 'PathChosenFolder' ), $sPath )
 
     If $sPathChosenFolder == '' Then
-        _myMsgBox( 'Hinweis', 'Es wurde kein Ordner ausgewählt.' )
+        _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxWarningNoFolder' ) )
         _defaultState()
         Return False
     EndIf
@@ -145,7 +145,7 @@ Func _getFolderContentAsFileList( $sPath, $sFileExtensionFilter = '*' )
     Local $aList = _FileListToArray( $sPath, $sFileExtensionFilter, 1, False )
 
     If Not IsArray( $aList ) Then
-        _myMsgBox( 'Hinweis', 'Es wurde kein Ordner ausgewählt.' )
+        _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxWarningNoFolder' ) )
         Return False
     EndIf
 
@@ -450,11 +450,11 @@ Func _previewFiles()
             Case $bSectionNumeration
                 Local $iReturn   = _doNumeration( $aFileList )
                 If $iReturn     == -1 Then
-                    _myMsgBox( 'Hinweis', 'Nur Zahlen sind erlaubt.' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxOnlyNumbers' ) )
                 ElseIf $iReturn == -2 Then
-                    _myMsgBox( 'Hinweis', 'Die Zahl für "Start" darf nur zwischen 1 und 5000 liegen.' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForStart' ) )
                 ElseIf $iReturn == -3 Then
-                    _myMsgBox( 'Hinweis', 'Die Zahl für "Stellen" darf nur zwischen 1 und 4 liegen.' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForDigits' ) )
                 Else
                     _ArrayInsert( $aEdit, 0, UBound( $aEdit ) )
                     _showPreview()
@@ -463,9 +463,9 @@ Func _previewFiles()
             Case $bSectionSearchAndReplace
                 Local $iReturn   = _doSearchAndReplace( $aFileList )
                 If $iReturn     == -1 Then
-                    _myMsgBox( 'Hinweis', 'Es muss zumindest ein Zeichen bei "Suche" eingegeben werden.' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxAtLeastOneCharaterForSearch' ) )
                 ElseIf $iReturn == -2 Then
-                    _myMsgBox( 'Hinweis', 'Folgende Zeichen sind bei "Ersetze" nicht erlaubt: \ / : * ? " < > |' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNotAllowedCharaters' ) )
                 Else
                     _showPreview()
                 EndIf
@@ -473,11 +473,11 @@ Func _previewFiles()
             Case $bSectionPasteCharacters
                 Local $iReturn   = _doPasteCharacters( $aFileList )
                 If $iReturn     == -1 Then
-                    _myMsgBox( 'Hinweis', 'Nur Zahlen für "Position" sind erlaubt.' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxOnlyNumbersForPosition' ) )
                 ElseIf $iReturn == -2 Then
-                    _myMsgBox( 'Hinweis', 'Folgende Zeichen sind bei "Text" nicht erlaubt: \ / : * ? " < > |' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNotAllowedCharatersText' ) )
                 ElseIf $iReturn == -3 Then
-                    _myMsgBox( 'Hinweis', 'Die Zahl für "Position" darf nur zwischen 0 und 500 liegen.' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForPosition' ) )
                 Else
                     _showPreview()
                 EndIf
@@ -485,11 +485,11 @@ Func _previewFiles()
             Case $bSectionMoveCharacter
                 Local $iReturn   = _doMoveCharacter( $aFileList )
                 If $iReturn     == -1 Then
-                    _myMsgBox( 'Hinweis', 'Nur Zahlen sind erlaubt.' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxOnlyNumbers' ) )
                 ElseIf $iReturn == -2 Then
-                    _myMsgBox( 'Hinweis', 'Die Zahl für "Zu Pos." darf nur zwischen 1 und 500 liegen.' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberToPosition' ) )
                 ElseIf $iReturn == -3 Then
-                    _myMsgBox( 'Hinweis', 'Die Zahl für "Von Pos." darf nur zwischen 0 und 500 liegen.' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberFromPosition' ) )
                 Else
                     _showPreview()
                 EndIf
@@ -497,11 +497,11 @@ Func _previewFiles()
             Case $bSectionDeleteCharacters
                 Local $iReturn   = _doDeleteCharacters( $aFileList )
                 If $iReturn     == -1 Then
-                    _myMsgBox( 'Hinweis', 'Nur Zahlen sind erlaubt.' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxOnlyNumbers' ) )
                 ElseIf $iReturn == -2 Then
-                    _myMsgBox( 'Hinweis', 'Die Zahl für "Anzahl" darf nur zwischen 1 und 500 liegen.' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForAmount' ) )
                 ElseIf $iReturn == -3 Then
-                    _myMsgBox( 'Hinweis', 'Die Zahl für "Position" darf nur zwischen 1 und 500 liegen.' )
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForPositionOne' ) )
                 Else
                     _showPreview()
                 EndIf

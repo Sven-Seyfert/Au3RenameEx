@@ -17,6 +17,7 @@
 #include <GuiListView.au3>
 #include <StaticConstants.au3>
 #include <WindowsConstants.au3>
+#include "Language.au3"
 #include "..\utilities\GuiCtrlOnHover.au3"
 
 
@@ -43,7 +44,7 @@ Global $vColorTitleBkg                   = 0x21252B
 Global $vColorTitleFont                  = 0x35635B
 Global $vListViewStyle                   = $LVS_SHOWSELALWAYS + $LVS_REPORT + $LVS_NOSORTHEADER
 Global $vListViewExStyle                 = $LVS_EX_GRIDLINES + $LVS_EX_FULLROWSELECT
-Global $sListViewColumnText              = 'Dateien'
+Global $sListViewColumnText              = _getResxValue( 'ListViewColumnText' )
 
 Global $sPathLastUsed, $sPathChosenFolder, $aFileList, $iControlId, $aEdit
 
@@ -70,7 +71,7 @@ _writeIni( 'UndoStep', 0 )
 While 1
     Switch GUIGetMsg()
         Case -3, $cBtnClose
-            If _myMsgBox( 'Frage', 'Soll das Programm wirklich beendet werden?', 'YesNo' ) Then _disposeAndExit()
+            If _myMsgBox( _getResxValue( 'MsgBoxQuestion' ), _getResxValue( 'MsgBoxQuestionCloseProgram' ), 'YesNo' ) Then _disposeAndExit()
 
         Case $cBtnMinimize
             WinSetState( $hMainGui, '', @SW_MINIMIZE )
