@@ -5,7 +5,7 @@
     <h2 align="center">Welcome to <code>Au3RenameEx</code> !</h2>
 </p>
 
-[Description](#description) | [Features](#features) | [Getting started](#getting-started) | [Configuration](#configuration) | [Keyboard Shortcuts](#keyboard-shortcuts) | [Style Guide](#style-guide) | [Contributing](#contributing)
+[Description](#description) | [Features](#features) | [Getting started](#getting-started) | [Configuration](#configuration) | [Keyboard Shortcuts](#keyboard-shortcuts) | [Tested](#tested) | [Style Guide](#style-guide) | [Contributing](#contributing)
 
 ## Description
 
@@ -26,6 +26,10 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 ... to be defined ...
 
 ## Keyboard Shortcuts
+
+... to be defined ...
+
+## Tested
 
 ... to be defined ...
 
