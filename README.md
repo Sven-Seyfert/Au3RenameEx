@@ -21,7 +21,10 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 
 ## Features
 
-... to be defined ...
+- Multilingualism is possible.
+- Already available languages are english (eng) and german (deu).
+
+... more to be defined ...
 
 ## Getting started
 
