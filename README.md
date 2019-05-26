@@ -5,6 +5,15 @@
     <h2 align="center">Welcome to <code>Au3RenameEx</code> !</h2>
 </p>
 
+![license](https://img.shields.io/badge/license-MIT-green.svg?logo=github)
+![repo size](https://img.shields.io/github/repo-size/Sven-Seyfert/AutoIt-Au3RenameEx.svg?logo=github)
+![last commit](https://img.shields.io/github/last-commit/Sven-Seyfert/AutoIt-Au3RenameEx.svg?logo=github)
+![contributors](https://img.shields.io/github/contributors/Sven-Seyfert/AutoIt-Au3RenameEx.svg?logo=github)
+![os](https://img.shields.io/badge/os-windows-blueviolet.svg?logo=windows)
+![autoit](https://img.shields.io/badge/autoit-rockz-9cf.svg?logo=visual-studio-code)
+
+##
+
 [Description](#description) | [Features](#features) | [Getting started](#getting-started) | [Configuration](#configuration) | [Keyboard Shortcuts](#keyboard-shortcuts) | [Tested](#tested) | [Style Guide](#style-guide) | [Contributing](#contributing)
 
 ## Description
