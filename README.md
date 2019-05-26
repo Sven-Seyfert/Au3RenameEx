@@ -12,8 +12,6 @@
 ![os](https://img.shields.io/badge/os-windows-blueviolet.svg?logo=windows)
 ![autoit](https://img.shields.io/badge/autoit-rockz-9cf.svg?logo=visual-studio-code)
 
-##
-
 [Description](#description) | [Features](#features) | [Getting started](#getting-started) | [Configuration](#configuration) | [Keyboard Shortcuts](#keyboard-shortcuts) | [Tested](#tested) | [Style Guide](#style-guide) | [Contributing](#contributing)
 
 ## Description
