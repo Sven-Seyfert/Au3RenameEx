@@ -41,7 +41,7 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 
 ## Style Guide
 
-... to be defined ...
+For my AutoIt projects and programs I use a self defined StyleGuide which represents how I write nice readable code that should be understandable by others quickly. Therefore please have a look on my [AutoIt-Au3StyleGuide](https://github.com/Sven-Seyfert/AutoIt-Au3StyleGuide/blob/master/README.md) repository if you're interested.
 
 ## Contributing
 
