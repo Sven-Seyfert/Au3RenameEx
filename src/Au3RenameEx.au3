@@ -2,7 +2,7 @@
 #AutoIt3Wrapper_AU3Check_Stop_OnWarning=y
 #AutoIt3Wrapper_Icon=..\media\favicon.ico
 #AutoIt3Wrapper_Res_Description=Au3RenameEx (2019-05-29)
-#AutoIt3Wrapper_Res_Fileversion=0.7
+#AutoIt3Wrapper_Res_Fileversion=0.8
 #AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_UseX64=y
 
@@ -32,12 +32,14 @@ If $aInst[0][0] > 1 Then Exit
 
 ; declaration ------------------------------------------------------------------
 Global $sProgramTitle           = 'Au3RenameEx'
-Global $iButtons                = 32
-Global $iGutter                 = $iButtons * 0.66
-Global $vImageStyle             = 0x2000
 Global $sSectionName            = 'SAVE'
-Global $aFileList, $aEdit
 Global $iControlId
+Global $aFileList, $aEdit
+
+Global $aConst[$iEnumVariables]
+       $aConst[$eButtons]       = 32
+       $aConst[$eGutter]        = $aConst[$eButtons] * 0.66
+       $aConst[$eImageStyle]    = 0x2000
 
 Global $aGui[$iEnumVariables]
        $aGui[$eWidth]           = 1300
@@ -129,10 +131,10 @@ While 1
         Case $cBtnCbxSearchAndReplace
             If $bIsBtnCbxSearchAndReplaceEnabled Then
                 If Not $bIsBtnCbxSearchAndReplaceSet Then
-                    _loadGuiIcon( $cBtnCbxSearchAndReplace, 'checkboxChecked', $iButtons / 1.6, $iButtons / 1.6 )
+                    _loadGuiIcon( $cBtnCbxSearchAndReplace, 'checkboxChecked', $aConst[$eButtons] / 1.6, $aConst[$eButtons] / 1.6 )
                     $bIsBtnCbxSearchAndReplaceSet = True
                 Else
-                    _loadGuiIcon( $cBtnCbxSearchAndReplace, 'checkboxUnchecked', $iButtons / 1.6, $iButtons / 1.6 )
+                    _loadGuiIcon( $cBtnCbxSearchAndReplace, 'checkboxUnchecked', $aConst[$eButtons] / 1.6, $aConst[$eButtons] / 1.6 )
                     $bIsBtnCbxSearchAndReplaceSet = False
                 EndIf
             EndIf
