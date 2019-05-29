@@ -2,7 +2,7 @@
 #AutoIt3Wrapper_AU3Check_Stop_OnWarning=y
 #AutoIt3Wrapper_Icon=..\media\favicon.ico
 #AutoIt3Wrapper_Res_Description=Au3RenameEx (2019-05-29)
-#AutoIt3Wrapper_Res_Fileversion=0.6
+#AutoIt3Wrapper_Res_Fileversion=0.7
 #AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_UseX64=y
 
@@ -18,6 +18,7 @@
 #include <StaticConstants.au3>
 #include <WindowsConstants.au3>
 #include "Language.au3"
+#include "Enum.au3"
 #include "..\utilities\GuiCtrlOnHover.au3"
 
 
@@ -35,36 +36,32 @@ Global $iButtons                = 32
 Global $iGutter                 = $iButtons * 0.66
 Global $vImageStyle             = 0x2000
 Global $sSectionName            = 'SAVE'
-Global $aFileList, $iControlId, $aEdit
+Global $aFileList, $aEdit
+Global $iControlId
 
-Global Enum $eWidth, $eHeight, $eXPosition, $eYPosition
-Global $aGui[4]
+Global $aGui[$iEnumVariables]
        $aGui[$eWidth]           = 1300
        $aGui[$eHeight]          = 650
        $aGui[$eXPosition]       = Default
        $aGui[$eYPosition]       = Default
 
-Global Enum $ePrimary, $eSecondary, $eTitleBkg, $eTitleFont
-Global $aColor[4]
+Global $aColor[$iEnumVariables]
        $aColor[$ePrimary]       = 0x282C34
        $aColor[$eSecondary]     = 0xC3C3C3
        $aColor[$eTitleBkg]      = 0x21252B
        $aColor[$eTitleFont]     = 0x35635B
 
-Global Enum $eStyle, $eExStyle, $eColumnText
-Global $aListView[3]
+Global $aListView[$iEnumVariables]
        $aListView[$eStyle]      = $LVS_SHOWSELALWAYS + $LVS_REPORT + $LVS_NOSORTHEADER
        $aListView[$eExStyle]    = $LVS_EX_GRIDLINES + $LVS_EX_FULLROWSELECT
        $aListView[$eColumnText] = _getResxValue( 'ListViewColumnText' )
 
-Global Enum $eLastUsed, $eChosenFolder, $eImages
-Global $aPath[3]
+Global $aPath[$iEnumVariables]
        $aPath[$eImages]         = _PathFull( @ScriptDir & '..\..\images\' )
        $aPath[$eLastUsed]       = ''
        $aPath[$eChosenFolder]   = ''
 
-Global Enum $eConfig, $eSaveForUndo
-Global $aFile[2]
+Global $aFile[$iEnumVariables]
        $aFile[$eConfig]         = @TempDir & '\' & $sProgramTitle & '\' & $sProgramTitle & '_Config.ini'
        $aFile[$eSaveForUndo]    = @TempDir & '\' & $sProgramTitle & '\' & $sProgramTitle & '_SaveForUndo_.txt'
 
