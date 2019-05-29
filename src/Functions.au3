@@ -23,36 +23,36 @@ Func _writeFile( $sFile, $sText )
 EndFunc
 
 Func _readIni( $sKey )
-    Return IniRead( $sFileConfig, $sSectionName, $sKey, '' )
+    Return IniRead( $aFile[$eConfig], $sSectionName, $sKey, '' )
 EndFunc
 
 Func _writeIni( $sKey, $sValue )
-    IniWrite( $sFileConfig, $sSectionName, $sKey, $sValue )
+    IniWrite( $aFile[$eConfig], $sSectionName, $sKey, $sValue )
 EndFunc
 
 Func _createIniConfigFile()
-    _writeFile( $sFileConfig, '[' & $sSectionName & ']' )
+    _writeFile( $aFile[$eConfig], '[' & $sSectionName & ']' )
 EndFunc
 
 Func _renameFilenameWithNumber( $iNumber )
-    Return StringReplace( $sFileSaveForUndo, '_.txt', '_' & $iNumber & '.txt' )
+    Return StringReplace( $aFile[$eSaveForUndo], '_.txt', '_' & $iNumber & '.txt' )
 EndFunc
 
 Func _setLastUsedPath()
-    $sPathLastUsed     = _readIni( 'LastUsedPath' )
-    If $sPathLastUsed == '' Then $sPathLastUsed = ''
+    $aPath[$eLastUsed]     = _readIni( 'LastUsedPath' )
+    If $aPath[$eLastUsed] == '' Then $aPath[$eLastUsed] = ''
 EndFunc
 
 Func _getChosenFolderPath( $sPath )
-    $sPathChosenFolder = FileSelectFolder( _getResxValue( 'PathChosenFolder' ), $sPath )
+    $aPath[$eChosenFolder] = FileSelectFolder( _getResxValue( 'PathChosenFolder' ), $sPath )
 
-    If $sPathChosenFolder == '' Then
+    If $aPath[$eChosenFolder] == '' Then
         _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxWarningNoFolder' ) )
         _defaultState()
         Return False
     EndIf
 
-    Return $sPathChosenFolder
+    Return $aPath[$eChosenFolder]
 EndFunc
 
 Func _uncheckAllRadioButtons()
@@ -130,7 +130,7 @@ Func _defaultState()
     _disableAllInputs()
 
     _GUICtrlListView_DeleteAllItems( $hListView )
-    _GUICtrlListView_SetColumn( $hListView, 0, $sListViewColumnText )
+    _GUICtrlListView_SetColumn( $hListView, 0, $aListView[$eColumnText] )
 
     _setBooleansToFalse()
 
@@ -162,7 +162,7 @@ Func _saveFileList( $aList )
 EndFunc
 
 Func _fillListView( $aList )
-    _GUICtrlListView_SetColumn( $hListView, 0, $sPathChosenFolder )
+    _GUICtrlListView_SetColumn( $hListView, 0, $aPath[$eChosenFolder] )
     _GUICtrlListView_DeleteAllItems( $hListView )
 
     For $i = 1 To $aList[0] Step 1
@@ -278,7 +278,7 @@ EndFunc
 
 Func _renameFilesPhysically( $aOldList, $aNewList )
     For $i = 1 To $aOldList[0] Step 1
-        FileMove( $sPathLastUsed & '\' & $aOldList[$i], $sPathLastUsed & '\' & $aNewList[$i] )
+        FileMove( $aPath[$eLastUsed] & '\' & $aOldList[$i], $aPath[$eLastUsed] & '\' & $aNewList[$i], 1 )
     Next
 
     $aFileList = $aNewList
@@ -389,12 +389,12 @@ EndFunc
 
 Func _openFolder()
     _setLastUsedPath()
-    $sPathChosenFolder = _getChosenFolderPath( $sPathLastUsed )
-    If $sPathChosenFolder <> False Then
+    $aPath[$eChosenFolder] = _getChosenFolderPath( $aPath[$eLastUsed] )
+    If $aPath[$eChosenFolder] <> False Then
 
-        _writeIni( 'LastUsedPath', $sPathChosenFolder )
+        _writeIni( 'LastUsedPath', $aPath[$eChosenFolder] )
 
-        $aFileList = _getFolderContentAsFileList( $sPathChosenFolder )
+        $aFileList = _getFolderContentAsFileList( $aPath[$eChosenFolder] )
         If $aFileList <> False Then
             _saveFileList( $aFileList )
             _fillListView( $aFileList )

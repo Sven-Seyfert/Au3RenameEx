@@ -6,7 +6,7 @@ EndFunc
 
 Func _loadGuiIcon( $cBtn, $sBitmapName, $iWidth = $iButtons, $iHeight = $iButtons )
     Local $hImg = _GUIImageList_Create( $iWidth, $iHeight, 5, 3 )
-    _GUIImageList_AddBitmap( $hImg, $sPathImages & $sBitmapName & '.bmp' )
+    _GUIImageList_AddBitmap( $hImg, $aPath[$eImages] & $sBitmapName & '.bmp' )
     _GUICtrlButton_SetImageList( $cBtn, $hImg, 4 )
 EndFunc
 
@@ -70,37 +70,37 @@ Func _myMsgBox( $sTitle, $sMessage, $sMode = 'Ok' )
     Local $iXMsgBox        = Default
     Local $iYMsgBox        = Default
     Local $iBorderSize     = 2
-    Local $vBorderColor    = $vColorTitleFont
-    Local $vBorderColor    = $vColorTitleBkg
+    Local $vBorderColor    = $aColor[$eTitleFont]
+    Local $vBorderColor    = $aColor[$eTitleBkg]
 
     Local $hSubGui         = GUICreate( '', $iWMsgBox, $iHMsgBox, $iXMsgBox, $iYMsgBox, $WS_POPUP + $WS_EX_TOPMOST )
-                             GUISetBkColor( $vColorPrimary, $hSubGui )
+                             GUISetBkColor( $aColor[$ePrimary], $hSubGui )
                              GUISetFont( 11, 600 )
 
     Local $cLblTitle       = GUICtrlCreateLabel( $sTitle, 0, 0, $iWMsgBox - $iButtons - $iBorderSize, 35, $SS_CENTER + $SS_CENTERIMAGE, $GUI_WS_EX_PARENTDRAG )
-                             GUICtrlSetBkColor( $cLblTitle, $vColorTitleBkg )
-                             GUICtrlSetColor( $cLblTitle, $vColorTitleFont )
+                             GUICtrlSetBkColor( $cLblTitle, $aColor[$eTitleBkg] )
+                             GUICtrlSetColor( $cLblTitle, $aColor[$eTitleFont] )
 
     Local $cBtnCloseMsgBox = GUICtrlCreateButton( '', $iWMsgBox - $iButtons - $iBorderSize, $iBorderSize, $iButtons, $iButtons, $vImageStyle )
     Local $cLblMessage     = GUICtrlCreateLabel( $sMessage, 50, 65, $iWMsgBox - 85, $iHMsgBox - ( 65 * 2 ), $SS_CENTER + $SS_CENTERIMAGE )
-                             GUICtrlSetColor( $cLblMessage, $vColorSecondary )
+                             GUICtrlSetColor( $cLblMessage, $aColor[$eSecondary] )
                              GUICtrlSetFont( $cLblMessage, 11, 600 )
 
     Local $cLblYes         = GUICtrlCreateLabel( _getResxValue( 'LblYes' ), $iWMsgBox - 50 - 85 - 115, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE )
-                             GUICtrlSetBkColor( $cLblYes, $vColorTitleFont )
-                             GUICtrlSetColor( $cLblYes, $vColorSecondary )
+                             GUICtrlSetBkColor( $cLblYes, $aColor[$eTitleFont] )
+                             GUICtrlSetColor( $cLblYes, $aColor[$eSecondary] )
                              GUICtrlSetFont( $cLblYes, 11, 600 )
                              GUICtrlSetCursor( $cLblYes, 0 )
 
     Local $cLblNo          = GUICtrlCreateLabel( _getResxValue( 'LblNo' ), $iWMsgBox - 50 - 85, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE )
-                             GUICtrlSetBkColor( $cLblNo, $vColorTitleFont )
-                             GUICtrlSetColor( $cLblNo, $vColorSecondary )
+                             GUICtrlSetBkColor( $cLblNo, $aColor[$eTitleFont] )
+                             GUICtrlSetColor( $cLblNo, $aColor[$eSecondary] )
                              GUICtrlSetFont( $cLblNo, 11, 600 )
                              GUICtrlSetCursor( $cLblNo, 0 )
 
     Local $cLblOk          = GUICtrlCreateLabel( _getResxValue( 'LblOk' ), $iWMsgBox - 50 - 85, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE )
-                             GUICtrlSetBkColor( $cLblOk, $vColorTitleFont )
-                             GUICtrlSetColor( $cLblOk, $vColorSecondary )
+                             GUICtrlSetBkColor( $cLblOk, $aColor[$eTitleFont] )
+                             GUICtrlSetColor( $cLblOk, $aColor[$eSecondary] )
                              GUICtrlSetFont( $cLblOk, 11, 600 )
                              GUICtrlSetCursor( $cLblOk, 0 )
 

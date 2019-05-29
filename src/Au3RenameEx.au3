@@ -1,8 +1,8 @@
 ; compiler information for AutoIt
 #AutoIt3Wrapper_AU3Check_Stop_OnWarning=y
 #AutoIt3Wrapper_Icon=..\media\favicon.ico
-#AutoIt3Wrapper_Res_Description=Au3RenameEx (2019-05-23)
-#AutoIt3Wrapper_Res_Fileversion=0.5
+#AutoIt3Wrapper_Res_Description=Au3RenameEx (2019-05-29)
+#AutoIt3Wrapper_Res_Fileversion=0.6
 #AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_UseX64=y
 
@@ -30,28 +30,43 @@ If $aInst[0][0] > 1 Then Exit
 
 
 ; declaration ------------------------------------------------------------------
-Global $sProgramTitle                    = 'Au3RenameEx'
-Global $iWGui                            = 1300
-Global $iHGui                            = 650
-Global $iXGui                            = Default
-Global $iYGui                            = Default
-Global $iButtons                         = 32
-Global $iGutter                          = $iButtons * 0.66
-Global $vImageStyle                      = 0x2000
-Global $vColorPrimary                    = 0x282C34
-Global $vColorSecondary                  = 0xC3C3C3
-Global $vColorTitleBkg                   = 0x21252B
-Global $vColorTitleFont                  = 0x35635B
-Global $vListViewStyle                   = $LVS_SHOWSELALWAYS + $LVS_REPORT + $LVS_NOSORTHEADER
-Global $vListViewExStyle                 = $LVS_EX_GRIDLINES + $LVS_EX_FULLROWSELECT
-Global $sListViewColumnText              = _getResxValue( 'ListViewColumnText' )
+Global $sProgramTitle           = 'Au3RenameEx'
+Global $iButtons                = 32
+Global $iGutter                 = $iButtons * 0.66
+Global $vImageStyle             = 0x2000
+Global $sSectionName            = 'SAVE'
+Global $aFileList, $iControlId, $aEdit
 
-Global $sPathLastUsed, $sPathChosenFolder, $aFileList, $iControlId, $aEdit
+Global Enum $eWidth, $eHeight, $eXPosition, $eYPosition
+Global $aGui[4]
+       $aGui[$eWidth]           = 1300
+       $aGui[$eHeight]          = 650
+       $aGui[$eXPosition]       = Default
+       $aGui[$eYPosition]       = Default
 
-Global $sFileConfig                      = @TempDir & '\' & $sProgramTitle & '\' & $sProgramTitle & '_Config.ini'
-Global $sFileSaveForUndo                 = @TempDir & '\' & $sProgramTitle & '\' & $sProgramTitle & '_SaveForUndo_.txt'
-Global $sPathImages                      = _PathFull( @ScriptDir & '..\..\images\' )
-Global $sSectionName                     = 'SAVE'
+Global Enum $ePrimary, $eSecondary, $eTitleBkg, $eTitleFont
+Global $aColor[4]
+       $aColor[$ePrimary]       = 0x282C34
+       $aColor[$eSecondary]     = 0xC3C3C3
+       $aColor[$eTitleBkg]      = 0x21252B
+       $aColor[$eTitleFont]     = 0x35635B
+
+Global Enum $eStyle, $eExStyle, $eColumnText
+Global $aListView[3]
+       $aListView[$eStyle]      = $LVS_SHOWSELALWAYS + $LVS_REPORT + $LVS_NOSORTHEADER
+       $aListView[$eExStyle]    = $LVS_EX_GRIDLINES + $LVS_EX_FULLROWSELECT
+       $aListView[$eColumnText] = _getResxValue( 'ListViewColumnText' )
+
+Global Enum $eLastUsed, $eChosenFolder, $eImages
+Global $aPath[3]
+       $aPath[$eImages]         = _PathFull( @ScriptDir & '..\..\images\' )
+       $aPath[$eLastUsed]       = ''
+       $aPath[$eChosenFolder]   = ''
+
+Global Enum $eConfig, $eSaveForUndo
+Global $aFile[2]
+       $aFile[$eConfig]         = @TempDir & '\' & $sProgramTitle & '\' & $sProgramTitle & '_Config.ini'
+       $aFile[$eSaveForUndo]    = @TempDir & '\' & $sProgramTitle & '\' & $sProgramTitle & '_SaveForUndo_.txt'
 
 
 
@@ -65,7 +80,7 @@ Global $sSectionName                     = 'SAVE'
 
 
 ; processing -------------------------------------------------------------------
-If Not FileExists( $sFileConfig ) Then _createIniConfigFile()
+If Not FileExists( $aFile[$eConfig] ) Then _createIniConfigFile()
 _writeIni( 'UndoStep', 0 )
 
 While 1
