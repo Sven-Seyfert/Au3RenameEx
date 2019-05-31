@@ -47,7 +47,25 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 
 ## Tested
 
-... to be defined ...
+> Windows 10 as SUT (system under test)
+
+| Marco          | Value           |
+| :------------- | :-------------- |
+| @AutoItExe     | autoit3_x64.exe |
+| @AutoItVersion | 3.3.14.2        |
+| @CPUArch       | X64             |
+| @OSArch        | X64             |
+| @OSVersion     | WIN_10          |
+
+> Windows 7 as SUT (system under test)
+
+| Marco          | Value           |
+| :------------- | :-------------- |
+| @AutoItExe     | ... to be defined ... |
+| @AutoItVersion | ... to be defined ... |
+| @CPUArch       | ... to be defined ... |
+| @OSArch        | ... to be defined ... |
+| @OSVersion     | ... to be defined ... |
 
 ## Style Guide
 
