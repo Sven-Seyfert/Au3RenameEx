@@ -36,7 +36,14 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 
 ## Keyboard Shortcuts
 
-... to be defined ...
+| Action        | Shortcut |
+| ------------- | -------- |
+| Open          | [Ctrl+O] |
+| Undo          | [Ctrl+Z] |
+| Redo          | [Ctrl+Y] |
+| Preview       | [Ctrl+P] |
+| Reset preview | [Ctrl+R] |
+| Rename        | [Ctrl+S] |
 
 ## Tested
 
