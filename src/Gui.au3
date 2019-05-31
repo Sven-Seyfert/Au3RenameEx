@@ -9,17 +9,17 @@ Global $cLblProgram             = GUICtrlCreateLabel( $sProgramTitle, $aGui[$eWi
                                   GUICtrlSetFont( $cLblProgram, 11, 600 )
 
 ; buttons
-Global $cBtnChooseFolder        = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.005, $aGui[$eWidth] * 0.005, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
-Global $cBtnUndo                = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.015 + ( $aConst[$eGutter] * 1 ), $aGui[$eWidth] * 0.005, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
-Global $cBtnRedo                = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.025 + ( $aConst[$eGutter] * 2 ), $aGui[$eWidth] * 0.005, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
-Global $cBtnPreview             = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.035 + ( $aConst[$eGutter] * 3 ), $aGui[$eWidth] * 0.005, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
-Global $cBtnReset               = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.045 + ( $aConst[$eGutter] * 4 ), $aGui[$eWidth] * 0.005, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
-Global $cBtnRename              = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.055 + ( $aConst[$eGutter] * 5 ), $aGui[$eWidth] * 0.005, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
-Global $cBtnMinimize            = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.975 - ( $aConst[$eGutter] * 2 ), $aGui[$eWidth] * 0.005, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
-Global $cBtnClose               = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.985 - ( $aConst[$eGutter] * 1 ), $aGui[$eWidth] * 0.005, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
+Global $cBtnChooseFolder        = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.005, $aGui[$eWidth] * 0.005, $iButtons, $iButtons, $vImageStyle )
+Global $cBtnUndo                = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.015 + ( $iGutter * 1 ), $aGui[$eWidth] * 0.005, $iButtons, $iButtons, $vImageStyle )
+Global $cBtnRedo                = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.025 + ( $iGutter * 2 ), $aGui[$eWidth] * 0.005, $iButtons, $iButtons, $vImageStyle )
+Global $cBtnPreview             = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.035 + ( $iGutter * 3 ), $aGui[$eWidth] * 0.005, $iButtons, $iButtons, $vImageStyle )
+Global $cBtnReset               = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.045 + ( $iGutter * 4 ), $aGui[$eWidth] * 0.005, $iButtons, $iButtons, $vImageStyle )
+Global $cBtnRename              = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.055 + ( $iGutter * 5 ), $aGui[$eWidth] * 0.005, $iButtons, $iButtons, $vImageStyle )
+Global $cBtnMinimize            = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.975 - ( $iGutter * 2 ), $aGui[$eWidth] * 0.005, $iButtons, $iButtons, $vImageStyle )
+Global $cBtnClose               = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.985 - ( $iGutter * 1 ), $aGui[$eWidth] * 0.005, $iButtons, $iButtons, $vImageStyle )
 
 ; numeration section
-Global $cBtnRdoNumeration       = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.05, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
+Global $cBtnRdoNumeration       = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.05, $iButtons, $iButtons, $vImageStyle )
 Global $cLblNumeration          = GUICtrlCreateLabel( _getResxValue( 'LblNumeration' ), $aGui[$eWidth] * 0.045, $aGui[$eWidth] * 0.0565, 150 )
                                   GUICtrlSetColor( $cLblNumeration, $aColor[$eSecondary] )
                                   GUICtrlSetFont( $cLblNumeration, 11, 600 )
@@ -37,7 +37,7 @@ Global $cNumerationDigits       = GUICtrlCreateInput( 1, $aGui[$eWidth] * 0.255,
                                   GUICtrlSetLimit( -1, 4, 1 )
 
 ; search and replace section
-Global $cBtnRdoSearchAndReplace = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.11, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
+Global $cBtnRdoSearchAndReplace = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.11, $iButtons, $iButtons, $vImageStyle )
 Global $cLblSearchAndReplace    = GUICtrlCreateLabel( _getResxValue( 'LblSearchAndReplace' ), $aGui[$eWidth] * 0.045, $aGui[$eWidth] * 0.1165, 150 )
                                   GUICtrlSetColor( $cLblSearchAndReplace, $aColor[$eSecondary] )
                                   GUICtrlSetFont( $cLblSearchAndReplace, 11, 600 )
@@ -50,13 +50,13 @@ Global $cLblReplace             = GUICtrlCreateLabel( _getResxValue( 'LblReplace
                                   GUICtrlSetColor( $cLblReplace, $aColor[$eSecondary] )
 Global $cReplace                = GUICtrlCreateInput( '', $aGui[$eWidth] * 0.255, $aGui[$eWidth] * 0.135, 100 )
 
-Global $cBtnCbxSearchAndReplace = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.097, $aGui[$eWidth] * 0.155, $aConst[$eButtons] / 1.6, $aConst[$eButtons] / 1.6, $aConst[$eImageStyle] )
+Global $cBtnCbxSearchAndReplace = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.097, $aGui[$eWidth] * 0.155, $iButtons / 1.6, $iButtons / 1.6, $vImageStyle )
 Global $cLblCaseSensitive       = GUICtrlCreateLabel( _getResxValue( 'LblCaseSensitive' ), $aGui[$eWidth] * 0.113, $aGui[$eWidth] * 0.158 )
                                   GUICtrlSetColor( $cLblCaseSensitive, $aColor[$eSecondary] )
                                   GUICtrlSetFont( $cLblCaseSensitive, 8.5 )
 
 ; paste characters
-Global $cBtnRdoPasteCharacters  = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.17, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
+Global $cBtnRdoPasteCharacters  = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.17, $iButtons, $iButtons, $vImageStyle )
 Global $cLblPasteCharacters     = GUICtrlCreateLabel( _getResxValue( 'LblPasteCharacters' ), $aGui[$eWidth] * 0.045, $aGui[$eWidth] * 0.1765, 150 )
                                   GUICtrlSetColor( $cLblPasteCharacters, $aColor[$eSecondary] )
                                   GUICtrlSetFont( $cLblPasteCharacters, 11, 600 )
@@ -72,7 +72,7 @@ Global $cPosition               = GUICtrlCreateInput( 0, $aGui[$eWidth] * 0.255,
                                   GUICtrlSetLimit( -1, 500, 0 )
 
 ; move character
-Global $cBtnRdoMoveCharacter    = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.23, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
+Global $cBtnRdoMoveCharacter    = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.23, $iButtons, $iButtons, $vImageStyle )
 Global $cLblMoveCharacter       = GUICtrlCreateLabel( _getResxValue( 'LblMoveCharacter' ), $aGui[$eWidth] * 0.045, $aGui[$eWidth] * 0.2365, 150 )
                                   GUICtrlSetColor( $cLblMoveCharacter, $aColor[$eSecondary] )
                                   GUICtrlSetFont( $cLblMoveCharacter, 11, 600 )
@@ -90,7 +90,7 @@ Global $cToPos                  = GUICtrlCreateInput( 2, $aGui[$eWidth] * 0.255,
                                   GUICtrlSetLimit( -1, 500, 0 )
 
 ; delete characters
-Global $cBtnRdoDeleteCharacters = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.29, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
+Global $cBtnRdoDeleteCharacters = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.29, $iButtons, $iButtons, $vImageStyle )
 Global $cLblDeleteCharacters    = GUICtrlCreateLabel( _getResxValue( 'LblDeleteCharacters' ), $aGui[$eWidth] * 0.045, $aGui[$eWidth] * 0.2965, 150 )
                                   GUICtrlSetColor( $cLblDeleteCharacters, $aColor[$eSecondary] )
                                   GUICtrlSetFont( $cLblDeleteCharacters, 11, 600 )
@@ -150,7 +150,7 @@ _loadGuiIcon( $cBtnMinimize,                 'minimize' )
 _loadGuiIcon( $cBtnClose,                    'close' )
 _loadGuiIcon( $cBtnRdoNumeration,            'radioButtonUnchecked' )
 _loadGuiIcon( $cBtnRdoSearchAndReplace,      'radioButtonUnchecked' )
-_loadGuiIcon( $cBtnCbxSearchAndReplace,      'checkboxUnchecked', $aConst[$eButtons] / 1.6, $aConst[$eButtons] / 1.6 )
+_loadGuiIcon( $cBtnCbxSearchAndReplace,      'checkboxUnchecked', $iButtons / 1.6, $iButtons / 1.6 )
 _loadGuiIcon( $cBtnRdoPasteCharacters,       'radioButtonUnchecked' )
 _loadGuiIcon( $cBtnRdoMoveCharacter,         'radioButtonUnchecked' )
 _loadGuiIcon( $cBtnRdoDeleteCharacters,      'radioButtonUnchecked' )

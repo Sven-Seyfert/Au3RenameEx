@@ -68,7 +68,7 @@ Func _uncheckAllRadioButtons()
     _loadGuiIcon( $cBtnRdoPasteCharacters,  'radioButtonUnchecked' )
     _loadGuiIcon( $cBtnRdoMoveCharacter,    'radioButtonUnchecked' )
     _loadGuiIcon( $cBtnRdoDeleteCharacters, 'radioButtonUnchecked' )
-    _loadGuiIcon( $cBtnCbxSearchAndReplace, 'checkboxUnchecked', $aConst[$eButtons] / 1.6, $aConst[$eButtons] / 1.6 )
+    _loadGuiIcon( $cBtnCbxSearchAndReplace, 'checkboxUnchecked', $iButtons / 1.6, $iButtons / 1.6 )
 EndFunc
 
 Func _disableAllInputs()

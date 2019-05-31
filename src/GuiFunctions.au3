@@ -4,7 +4,7 @@ Func _isFocusOnGui( $hGuiOrTitle )
     Return False
 EndFunc
 
-Func _loadGuiIcon( $cBtn, $sBitmapName, $iWidth = $aConst[$eButtons], $iHeight = $aConst[$eButtons] )
+Func _loadGuiIcon( $cBtn, $sBitmapName, $iWidth = $iButtons, $iHeight = $iButtons )
     Local $hImg = _GUIImageList_Create( $iWidth, $iHeight, 5, 3 )
     _GUIImageList_AddBitmap( $hImg, $aPath[$eImages] & $sBitmapName & '.bmp' )
     _GUICtrlButton_SetImageList( $cBtn, $hImg, 4 )
@@ -77,11 +77,11 @@ Func _myMsgBox( $sTitle, $sMessage, $sMode = 'Ok' )
                              GUISetBkColor( $aColor[$ePrimary], $hSubGui )
                              GUISetFont( 11, 600 )
 
-    Local $cLblTitle       = GUICtrlCreateLabel( $sTitle, 0, 0, $iWMsgBox - $aConst[$eButtons] - $iBorderSize, 35, $SS_CENTER + $SS_CENTERIMAGE, $GUI_WS_EX_PARENTDRAG )
+    Local $cLblTitle       = GUICtrlCreateLabel( $sTitle, 0, 0, $iWMsgBox - $iButtons - $iBorderSize, 35, $SS_CENTER + $SS_CENTERIMAGE, $GUI_WS_EX_PARENTDRAG )
                              GUICtrlSetBkColor( $cLblTitle, $aColor[$eTitleBkg] )
                              GUICtrlSetColor( $cLblTitle, $aColor[$eTitleFont] )
 
-    Local $cBtnCloseMsgBox = GUICtrlCreateButton( '', $iWMsgBox - $aConst[$eButtons] - $iBorderSize, $iBorderSize, $aConst[$eButtons], $aConst[$eButtons], $aConst[$eImageStyle] )
+    Local $cBtnCloseMsgBox = GUICtrlCreateButton( '', $iWMsgBox - $iButtons - $iBorderSize, $iBorderSize, $iButtons, $iButtons, $vImageStyle )
     Local $cLblMessage     = GUICtrlCreateLabel( $sMessage, 50, 65, $iWMsgBox - 85, $iHMsgBox - ( 65 * 2 ), $SS_CENTER + $SS_CENTERIMAGE )
                              GUICtrlSetColor( $cLblMessage, $aColor[$eSecondary] )
                              GUICtrlSetFont( $cLblMessage, 11, 600 )
