@@ -37,13 +37,13 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 ## Keyboard Shortcuts
 
 | Action        | Shortcut |
-| ------------- | -------- |
-| Open          | [Ctrl+O] |
-| Undo          | [Ctrl+Z] |
-| Redo          | [Ctrl+Y] |
-| Preview       | [Ctrl+P] |
-| Reset preview | [Ctrl+R] |
-| Rename        | [Ctrl+S] |
+| :------------ | :------- |
+| Open Folder   | `Ctrl+O` |
+| Undo          | `Ctrl+Z` |
+| Redo          | `Ctrl+Y` |
+| Preview       | `Ctrl+P` |
+| Reset preview | `Ctrl+R` |
+| Rename/Save   | `Ctrl+S` |
 
 ## Tested
 
