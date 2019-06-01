@@ -49,13 +49,13 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 
 > SUT (system(s) under test)
 
-| Property       | Win 10          | Win 7                 |
-| :------------- | :-------------- | :-------------------- |
-| @AutoItExe     | autoit3_x64.exe | ... to be defined ... |
-| @AutoItVersion | 3.3.14.2        | ... to be defined ... |
-| @CPUArch       | X64             | ... to be defined ... |
-| @OSArch        | X64             | ... to be defined ... |
-| @OSVersion     | WIN_10          | ... to be defined ... |
+| Property       | Win 10          | Win 7       |
+| :------------- | :-------------- | :---------- |
+| @AutoItExe     | autoit3_x64.exe | autoit3.exe |
+| @AutoItVersion | 3.3.14.2        | 3.3.14.2    |
+| @CPUArch       | X64             | X64         |
+| @OSArch        | X64             | X64         |
+| @OSVersion     | WIN_10          | WIN_7       |
 
 ## Style Guide
 
