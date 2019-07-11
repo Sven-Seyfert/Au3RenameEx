@@ -19,11 +19,14 @@ Global $bIsBtnCbxSearchAndReplaceSet
 Global $bIsBtnRdoPasteCharactersEnabled
 Global $bIsBtnRdoMoveCharacterEnabled
 Global $bIsBtnRdoDeleteCharactersEnabled
+Global $bIsBtnRdoRegExReplaceEnabled
+
 Global $bSectionNumeration
 Global $bSectionSearchAndReplace
 Global $bSectionPasteCharacters
 Global $bSectionMoveCharacter
 Global $bSectionDeleteCharacters
+Global $bSectionRegExReplace
 
 Func _setBooleansToFalse()
     $bIsBtnUndoEnabled                = False
@@ -34,13 +37,16 @@ Func _setBooleansToFalse()
     $bIsBtnRdoNumerationEnabled       = False
     $bIsBtnRdoSearchAndReplaceEnabled = False
     $bIsBtnCbxSearchAndReplaceEnabled = False
+    $bIsBtnCbxSearchAndReplaceSet     = False
     $bIsBtnRdoPasteCharactersEnabled  = False
     $bIsBtnRdoMoveCharacterEnabled    = False
     $bIsBtnRdoDeleteCharactersEnabled = False
-    $bIsBtnCbxSearchAndReplaceSet     = False
+    $bIsBtnRdoRegExReplaceEnabled     = False
+
     $bSectionNumeration               = False
     $bSectionSearchAndReplace         = False
     $bSectionPasteCharacters          = False
     $bSectionMoveCharacter            = False
     $bSectionDeleteCharacters         = False
+    $bSectionRegExReplace             = False
 EndFunc

@@ -61,6 +61,7 @@ Func _uncheckAllRadioButtons()
     $bSectionPasteCharacters          = False
     $bSectionMoveCharacter            = False
     $bSectionDeleteCharacters         = False
+    $bSectionRegExReplace             = False
     $bIsBtnCbxSearchAndReplaceEnabled = False
 
     _loadGuiIcon( $cBtnRdoNumeration,       'radioButtonUnchecked' )
@@ -68,6 +69,7 @@ Func _uncheckAllRadioButtons()
     _loadGuiIcon( $cBtnRdoPasteCharacters,  'radioButtonUnchecked' )
     _loadGuiIcon( $cBtnRdoMoveCharacter,    'radioButtonUnchecked' )
     _loadGuiIcon( $cBtnRdoDeleteCharacters, 'radioButtonUnchecked' )
+    _loadGuiIcon( $cBtnRdoRegExReplace,     'radioButtonUnchecked' )
     _loadGuiIcon( $cBtnCbxSearchAndReplace, 'checkboxUnchecked', $iButtons / 1.6, $iButtons / 1.6 )
 EndFunc
 
@@ -82,6 +84,8 @@ Func _disableAllInputs()
     _disable( $cToPos )
     _disable( $cAmount )
     _disable( $cAtPosition )
+    _disable( $cPattern )
+    _disable( $cReplaceRegEx )
 EndFunc
 
 Func _enableNumeration()
@@ -123,6 +127,14 @@ Func _enableDeleteCharacters()
 
     _enable( $cAmount )
     _enable( $cAtPosition )
+EndFunc
+
+Func _enableRegExReplace()
+    $bSectionRegExReplace = True
+    $bIsBtnPreviewEnabled = True
+
+    _enable( $cPattern )
+    _enable( $cReplaceRegEx )
 EndFunc
 
 Func _defaultState()
@@ -223,6 +235,13 @@ Func _areInputsValidDeleteCharacters( $iAmount, $iAtPosition )
 
     If $iAtPosition < 1   Then Return -3
     If $iAtPosition > 500 Then Return -3
+
+    Return 0
+EndFunc
+
+Func _areInputsValidRegExReplace( $sPattern, $sReplaceRegEx )
+    If $sPattern == '' Then Return -1
+    If _existsSpecialCharacters( $sReplaceRegEx ) Then Return -2
 
     Return 0
 EndFunc
@@ -387,6 +406,22 @@ Func _doDeleteCharacters( $aList )
     Return True
 EndFunc
 
+Func _doRegExReplace( $aList )
+    Local $sPattern      = _readInput( $cPattern )
+    Local $sReplaceRegEx = _readInput( $cReplaceRegEx )
+
+    Local $iReturn       = _areInputsValidRegExReplace( $sPattern, $sReplaceRegEx )
+    If $iReturn         == -1 Then Return -1
+    If $iReturn         == -2 Then Return -2
+
+    For $i = 1 To $aList[0] Step 1
+        $aList[$i] = StringRegExpReplace( $aList[$i], $sPattern, $sReplaceRegEx )
+    Next
+
+    $aEdit = $aList
+    Return True
+EndFunc
+
 Func _openFolder()
     _setLastUsedPath()
     $aPath[$eChosenFolder] = _getChosenFolderPath( $aPath[$eLastUsed] )
@@ -404,6 +439,7 @@ Func _openFolder()
             $bIsBtnRdoPasteCharactersEnabled  = True
             $bIsBtnRdoMoveCharacterEnabled    = True
             $bIsBtnRdoDeleteCharactersEnabled = True
+            $bIsBtnRdoRegExReplaceEnabled     = True
         EndIf
     EndIf
 EndFunc
@@ -502,6 +538,16 @@ Func _previewFiles()
                     _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForAmount' ) )
                 ElseIf $iReturn == -3 Then
                     _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForPositionOne' ) )
+                Else
+                    _showPreview()
+                EndIf
+
+            Case $bSectionRegExReplace
+                Local $iReturn   = _doRegExReplace( $aFileList )
+                If $iReturn     == -1 Then
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxAtLeastOneCharaterForRegExPattern' ) )
+                ElseIf $iReturn == -2 Then
+                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNotAllowedCharaters' ) )
                 Else
                     _showPreview()
                 EndIf

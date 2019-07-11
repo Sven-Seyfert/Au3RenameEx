@@ -55,7 +55,7 @@ Global $cLblCaseSensitive       = GUICtrlCreateLabel( _getResxValue( 'LblCaseSen
                                   GUICtrlSetColor( $cLblCaseSensitive, $aColor[$eSecondary] )
                                   GUICtrlSetFont( $cLblCaseSensitive, 8.5 )
 
-; paste characters
+; paste characters section
 Global $cBtnRdoPasteCharacters  = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.17, $iButtons, $iButtons, $vImageStyle )
 Global $cLblPasteCharacters     = GUICtrlCreateLabel( _getResxValue( 'LblPasteCharacters' ), $aGui[$eWidth] * 0.045, $aGui[$eWidth] * 0.1765, 150 )
                                   GUICtrlSetColor( $cLblPasteCharacters, $aColor[$eSecondary] )
@@ -71,7 +71,7 @@ Global $cPosition               = GUICtrlCreateInput( 0, $aGui[$eWidth] * 0.255,
                                   GUICtrlCreateUpdown( $cPosition )
                                   GUICtrlSetLimit( -1, 500, 0 )
 
-; move character
+; move character section
 Global $cBtnRdoMoveCharacter    = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.23, $iButtons, $iButtons, $vImageStyle )
 Global $cLblMoveCharacter       = GUICtrlCreateLabel( _getResxValue( 'LblMoveCharacter' ), $aGui[$eWidth] * 0.045, $aGui[$eWidth] * 0.2365, 150 )
                                   GUICtrlSetColor( $cLblMoveCharacter, $aColor[$eSecondary] )
@@ -89,7 +89,7 @@ Global $cToPos                  = GUICtrlCreateInput( 2, $aGui[$eWidth] * 0.255,
                                   GUICtrlCreateUpdown( $cToPos )
                                   GUICtrlSetLimit( -1, 500, 0 )
 
-; delete characters
+; delete characters section
 Global $cBtnRdoDeleteCharacters = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.29, $iButtons, $iButtons, $vImageStyle )
 Global $cLblDeleteCharacters    = GUICtrlCreateLabel( _getResxValue( 'LblDeleteCharacters' ), $aGui[$eWidth] * 0.045, $aGui[$eWidth] * 0.2965, 150 )
                                   GUICtrlSetColor( $cLblDeleteCharacters, $aColor[$eSecondary] )
@@ -106,6 +106,20 @@ Global $cLblAtPosition          = GUICtrlCreateLabel( _getResxValue( 'LblAtPosit
 Global $cAtPosition             = GUICtrlCreateInput( 1, $aGui[$eWidth] * 0.255, $aGui[$eWidth] * 0.315, 100 )
                                   GUICtrlCreateUpdown( $cAtPosition )
                                   GUICtrlSetLimit( -1, 500, 1 )
+
+; regex replace section
+Global $cBtnRdoRegExReplace     = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.35, $iButtons, $iButtons, $vImageStyle )
+Global $cLblRegExReplace        = GUICtrlCreateLabel( _getResxValue( 'LblRegExReplace' ), $aGui[$eWidth] * 0.045, $aGui[$eWidth] * 0.3565, 150 )
+                                  GUICtrlSetColor( $cLblRegExReplace, $aColor[$eSecondary] )
+                                  GUICtrlSetFont( $cLblRegExReplace, 11, 600 )
+
+Global $cLblPattern             = GUICtrlCreateLabel( _getResxValue( 'LblPattern' ), $aGui[$eWidth] * 0.045, $aGui[$eWidth] * 0.3775 )
+                                  GUICtrlSetColor( $cLblPattern, $aColor[$eSecondary] )
+Global $cPattern                = GUICtrlCreateInput( '', $aGui[$eWidth] * 0.1, $aGui[$eWidth] * 0.375, 100 )
+
+Global $cLblReplaceRegEx        = GUICtrlCreateLabel( _getResxValue( 'LblReplaceRegEx' ), $aGui[$eWidth] * 0.2, $aGui[$eWidth] * 0.3775 )
+                                  GUICtrlSetColor( $cLblReplaceRegEx, $aColor[$eSecondary] )
+Global $cReplaceRegEx           = GUICtrlCreateInput( '', $aGui[$eWidth] * 0.255, $aGui[$eWidth] * 0.375, 100 )
 
 ; listview
 Global $hListView               = GUICtrlCreateListView( '', $aGui[$eWidth] * 0.36, $aGui[$eWidth] * 0.057, $aGui[$eWidth] * 0.61, $aGui[$eHeight] * 0.83, $aListView[$eStyle], $aListView[$eExStyle] )
@@ -138,6 +152,7 @@ GUICtrlSetCursor( $cBtnCbxSearchAndReplace,  0 )
 GUICtrlSetCursor( $cBtnRdoPasteCharacters,   0 )
 GUICtrlSetCursor( $cBtnRdoMoveCharacter,     0 )
 GUICtrlSetCursor( $cBtnRdoDeleteCharacters,  0 )
+GUICtrlSetCursor( $cBtnRdoRegExReplace,      0 )
 
 ; button image
 _loadGuiIcon( $cBtnChooseFolder,             'open' )
@@ -154,6 +169,7 @@ _loadGuiIcon( $cBtnCbxSearchAndReplace,      'checkboxUnchecked', $iButtons / 1.
 _loadGuiIcon( $cBtnRdoPasteCharacters,       'radioButtonUnchecked' )
 _loadGuiIcon( $cBtnRdoMoveCharacter,         'radioButtonUnchecked' )
 _loadGuiIcon( $cBtnRdoDeleteCharacters,      'radioButtonUnchecked' )
+_loadGuiIcon( $cBtnRdoRegExReplace,          'radioButtonUnchecked' )
 
 ; register hover action
 _onHoverRegister( $cBtnChooseFolder,         '_mouseover', '_mouseleave' )

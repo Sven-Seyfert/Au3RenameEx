@@ -1,8 +1,8 @@
 ; compiler information for AutoIt
 #AutoIt3Wrapper_AU3Check_Stop_OnWarning=y
 #AutoIt3Wrapper_Icon=..\media\favicon.ico
-#AutoIt3Wrapper_Res_Description=Au3RenameEx (2019-05-31)
-#AutoIt3Wrapper_Res_Fileversion=0.9
+#AutoIt3Wrapper_Res_Description=Au3RenameEx (2019-06-11)
+#AutoIt3Wrapper_Res_Fileversion=0.10
 #AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_UseX64=y
 
@@ -129,6 +129,16 @@ While 1
                 _enableDeleteCharacters()
                 _loadGuiIcon( $cBtnPreview,             'preview' )
                 _loadGuiIcon( $cBtnRdoDeleteCharacters, 'radioButtonChecked' )
+            EndIf
+
+        Case $cBtnRdoRegExReplace
+            If $bIsBtnRdoRegExReplaceEnabled Then
+                _uncheckAllRadioButtons()
+                _disableAllInputs()
+                _resetPreview()
+                _enableRegExReplace()
+                _loadGuiIcon( $cBtnPreview,         'preview' )
+                _loadGuiIcon( $cBtnRdoRegExReplace, 'radioButtonChecked' )
             EndIf
     EndSwitch
 WEnd
