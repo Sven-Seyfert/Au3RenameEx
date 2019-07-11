@@ -47,15 +47,15 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 
 ## Tested
 
-> SUT (system(s) under test)
+> SUT (system under test)
 
-| Property       | Win 10          | Win 7       |
-| :------------- | :-------------- | :---------- |
-| @AutoItExe     | autoit3_x64.exe | autoit3.exe |
-| @AutoItVersion | 3.3.14.2        | 3.3.14.2    |
-| @CPUArch       | X64             | X64         |
-| @OSArch        | X64             | X64         |
-| @OSVersion     | WIN_10          | WIN_7       |
+| Property       | Win 7       | Win 10          | Win 10 Tablet |
+| :------------- | :---------- | :-------------- | :------------ |
+| @AutoItExe     | autoit3.exe | autoit3_x64.exe | autoit3.exe   |
+| @AutoItVersion | 3.3.14.2    | 3.3.14.2        | 3.3.14.5      |
+| @CPUArch       | X64         | X64             | X64           |
+| @OSArch        | X64         | X64             | X86           |
+| @OSVersion     | WIN_7       | WIN_10          | Win_10        |
 
 ## Style Guide
 
