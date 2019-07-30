@@ -38,11 +38,6 @@ Func _renameFilenameWithNumber( $iNumber )
     Return StringReplace( $aFile[$eSaveForUndo], '_.txt', '_' & $iNumber & '.txt' )
 EndFunc
 
-Func _setLastUsedPath()
-    $aPath[$eLastUsed]     = _readIni( 'LastUsedPath' )
-    If $aPath[$eLastUsed] == '' Then $aPath[$eLastUsed] = ''
-EndFunc
-
 Func _getChosenFolderPath( $sPath )
     $aPath[$eChosenFolder] = FileSelectFolder( _getResxValue( 'PathChosenFolder' ), $sPath )
 
@@ -297,7 +292,9 @@ EndFunc
 
 Func _renameFilesPhysically( $aOldList, $aNewList )
     For $i = 1 To $aOldList[0] Step 1
-        FileMove( $aPath[$eLastUsed] & '\' & $aOldList[$i], $aPath[$eLastUsed] & '\' & $aNewList[$i], 1 )
+        Local $sFromFile = $aPath[$eChosenFolder] & '\' & $aOldList[$i]
+        Local $sToFile   = $aPath[$eChosenFolder] & '\' & $aNewList[$i]
+        FileMove( $sFromFile, $sToFile, 1 )
     Next
 
     $aFileList = $aNewList
@@ -423,10 +420,10 @@ Func _doRegExReplace( $aList )
 EndFunc
 
 Func _openFolder()
-    _setLastUsedPath()
+    $aPath[$eLastUsed]     = _readIni( 'LastUsedPath' )
     $aPath[$eChosenFolder] = _getChosenFolderPath( $aPath[$eLastUsed] )
-    If $aPath[$eChosenFolder] <> False Then
 
+    If $aPath[$eChosenFolder] <> False Then
         _writeIni( 'LastUsedPath', $aPath[$eChosenFolder] )
 
         $aFileList = _getFolderContentAsFileList( $aPath[$eChosenFolder] )
