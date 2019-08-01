@@ -23,14 +23,8 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**SUT (system under test), please complete the following information:**
- - AutoItExe
- - AutoItVersion
- - CPUArch
- - OSArch
- - OSVersion
-
-Just use the following function and copy the console result here.
+**SUT (system under test)**
+Please execute the following function and copy the console result here.
 
 ``` au3
 Func _getSystemInfos()
