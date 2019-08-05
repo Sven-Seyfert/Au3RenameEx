@@ -40,7 +40,7 @@ Starting the EXE `src\Au3RenameEx.exe` which is compiled with `#AutoIt3Wrapper_U
 
 #### Variant 2 - Compile it on your own
 
-Open file `src\Au3RenameEx.au3`, adjust the *#AutoIt3Wrapper compliler information* if you want to (for example `#AutoIt3Wrapper_UseX64=y`) and run the program or compile the program.
+Open file `src\Au3RenameEx.au3`, adjust the *#AutoIt3Wrapper compiler information* if you want to (for example `#AutoIt3Wrapper_UseX64=y`) and run the program or compile the program.
 
 ## Configuration
 
