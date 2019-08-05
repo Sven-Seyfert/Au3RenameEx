@@ -44,9 +44,9 @@ Open file `src\Au3RenameEx.au3`, adjust the *#AutoIt3Wrapper compiler informatio
 
 ## Configuration
 
-- You can adjust the language of the program by file `config\language.ini`. Just edit the key `ChosenLanguage = 'eng'` to maybe 'deu'.
+- You can adjust the language of the program by file `config\language.ini`. Just edit the key `ChosenLanguage = 'en'` to maybe 'de'.
 - If you need an other language please add a new INI section in this file.
-    - For example spanish section `[esp]` with all the key-value structure.
+    - For example spanish (español) section `[es]` with all the key-value structure.
     - I appreciate when you share your language by pull request, thanks.
 
 ## Keyboard Shortcuts
