@@ -2,7 +2,7 @@ Global $sFileConfigLanguage = '..\config\language.ini'
 
 _setUnicodeFile( $sFileConfigLanguage )
 
-Global $sChosenLanguage = IniRead( $sFileConfigLanguage, 'language', 'ChosenLanguage', 'eng' )
+Global $sChosenLanguage = IniRead( $sFileConfigLanguage, 'language', 'ChosenLanguage', 'en' )
 Global $aLanguageValues = IniReadSection( $sFileConfigLanguage, $sChosenLanguage )
 
 Func _setUnicodeFile( $sFile )

@@ -22,7 +22,7 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 ## Features
 
 - Multilingualism is possible.
-    - Already available languages are *eng* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/gb.svg" alt="eng" width="18px"/> and *deu* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/de.svg" alt="deu" width="18px"/>
+    - Already available languages are *en* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/gb.svg" alt="en" width="18px"/> and *de* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/de.svg" alt="de" width="18px"/>
     - Easy extendable through file `config\language.ini`
 
 ... more to be defined ...
