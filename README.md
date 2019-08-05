@@ -22,17 +22,31 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 ## Features
 
 - Multilingualism is possible.
-- Already available languages are english (eng) and german (deu).
+    - Already available languages are *eng* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/gb.svg" alt="eng" width="18px"/> and *deu* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/de.svg" alt="deu" width="18px"/>
+    - Easy extendable through file `config\language.ini`
 
 ... more to be defined ...
 
 ## Getting started
 
-... to be defined ...
+### Preconditions
+
+Please ensure you have access to your default TEMP directory, because two files will be saved there. Adjustable in `Declaration.au3` file.
+
+### Variant 1 - Run the EXE
+
+Starting the EXE (Au3RenameEx.exe) which is compiled with `#AutoIt3Wrapper_UseX64=y` and `#AutoIt3Wrapper_UseUpx=n` (so the default system is a x64).
+
+### Variant 2 - Compile it on your own
+
+Open file **Au3RenameEx.au3**, adjust the *#AutoIt3Wrapper compliler information* if you want to (for example `#AutoIt3Wrapper_UseX64=y`) and run the program or compile the program.
 
 ## Configuration
 
-... to be defined ...
+- You can adjust the language of the program by file `config\language.ini`. Just edit the key `ChosenLanguage = 'eng'` to maybe 'deu'.
+- If you need an other language please add a new INI section in this file.
+    - For example spanish section `[esp]` with all the key-value structure.
+    - I appreciate when you share your language by pull request, thanks.
 
 ## Keyboard Shortcuts
 
