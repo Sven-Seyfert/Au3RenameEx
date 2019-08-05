@@ -12,7 +12,7 @@
 ![os](https://img.shields.io/badge/os-windows-blueviolet.svg?logo=windows)
 ![autoit](https://img.shields.io/badge/autoit-rockz-9cf.svg?logo=visual-studio-code)
 
-[Description](#description) | [Features](#features) | [Getting started](#getting-started) | [Configuration](#configuration) | [Keyboard Shortcuts](#keyboard-shortcuts) | [Tested](#tested) | [Style Guide](#style-guide) | [Contributing](#contributing)
+[Description](#description) | [Features](#features) | [Getting started](#getting-started) | [Configuration](#configuration) | [Keyboard Shortcuts](#keyboard-shortcuts) | [Tested](#tested) | [Contributing](#contributing) | [Style Guide](#style-guide)
 
 ## Description
 
@@ -29,17 +29,18 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 
 ## Getting started
 
-### Preconditions
+#### Preconditions
 
-Please ensure you have access to your default TEMP directory, because two files will be saved there. Adjustable in `Declaration.au3` file.
+Please ensure you have access to your default TEMP directory, because two files will be saved there.
+Adjustable in `src\Declaration.au3` file.
 
-### Variant 1 - Run the EXE
+#### Variant 1 - Run the EXE
 
-Starting the EXE (Au3RenameEx.exe) which is compiled with `#AutoIt3Wrapper_UseX64=y` and `#AutoIt3Wrapper_UseUpx=n` (so the default system is a x64).
+Starting the EXE `src\Au3RenameEx.exe` which is compiled with `#AutoIt3Wrapper_UseX64=y` and `#AutoIt3Wrapper_UseUpx=n` (the default expected system is x64).
 
-### Variant 2 - Compile it on your own
+#### Variant 2 - Compile it on your own
 
-Open file **Au3RenameEx.au3**, adjust the *#AutoIt3Wrapper compliler information* if you want to (for example `#AutoIt3Wrapper_UseX64=y`) and run the program or compile the program.
+Open file `src\Au3RenameEx.au3`, adjust the *#AutoIt3Wrapper compliler information* if you want to (for example `#AutoIt3Wrapper_UseX64=y`) and run the program or compile the program.
 
 ## Configuration
 
@@ -71,13 +72,13 @@ Open file **Au3RenameEx.au3**, adjust the *#AutoIt3Wrapper compliler information
 | @OSArch        | X64         | X64             | X86           |
 | @OSVersion     | WIN_7       | WIN_10          | Win_10        |
 
-## Style Guide
-
-For my AutoIt projects and programs I use a self defined StyleGuide which represents how I write nice readable code that should be understandable by others quickly. Therefore please have a look on my [AutoIt-Au3StyleGuide](https://github.com/Sven-Seyfert/AutoIt-Au3StyleGuide/blob/master/README.md) repository if you're interested.
-
 ## Contributing
 
 Just look at [CONTRIBUTING](https://github.com/Sven-Seyfert/AutoIt-Au3RenameEx/blob/master/docs/CONTRIBUTING.md), thank you!
+
+## Style Guide
+
+For my AutoIt projects and programs I use a self defined StyleGuide which represents how I write nice readable code that should be understandable by others quickly. Therefore please have a look on my [AutoIt-Au3StyleGuide](https://github.com/Sven-Seyfert/AutoIt-Au3StyleGuide/blob/master/README.md) repository if you're interested.
 
 ##
 
