@@ -26,29 +26,37 @@ Common use cases are music files, audio books, ebooks or other types of collecti
     - Already available languages are *en* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/gb.svg" alt="en" width="18px"/> and *de* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/de.svg" alt="de" width="18px"/>
     - Easy extendable through file `config\language.ini`
 
-- Numeration of files with several digit size
-![numeration](screenshots/numeration.gif)
+- Numeration with several digit size
 
-- Replace characters of files
-![replaceCharacter](screenshots/replaceCharacter.gif)
+    ![numeration](screenshots/numeration.gif)
+
+- Replace characters (with case sensitive option)
+
+    ![replaceCharacter](screenshots/replaceCharacter.gif)
 
 - Paste characters to position
-![pasteCharacter](screenshots/pasteCharacter.gif)
+
+    ![pasteCharacter](screenshots/pasteCharacter.gif)
 
 - Move character to position
-![moveCharacter](screenshots/moveCharacter.gif)
+
+    ![moveCharacter](screenshots/moveCharacter.gif)
 
 - Delete characters
-![deleteCharacter](screenshots/deleteCharacter.gif)
+
+    ![deleteCharacter](screenshots/deleteCharacter.gif)
 
 - Replace by RegEx pattern (most powerful)
-![regexReplace](screenshots/regexReplace.gif)
+
+    ![regexReplace](screenshots/regexReplace.gif)
 
 - Undo and Redo your changes
-![undoRedo](screenshots/undoRedo.gif)
 
-- several input handling
-![inputHandling](screenshots/inputHandling.gif)
+    ![undoRedo](screenshots/undoRedo.gif)
+
+- Input exception handling prevents false renaming
+
+    ![inputHandling](screenshots/inputHandling.gif)
 
 ## Getting started
 
