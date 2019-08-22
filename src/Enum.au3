@@ -1,12 +1,11 @@
-Global $iEnumVariables = 16
+Global $iEnumVariables = 15
 Global Enum _
-    $eChosenFolder, _
-    $eColumnText, _
+    $eColumnOneText, _
+    $eColumnTwoText, _
     $eConfig, _
     $eExStyle, _
     $eHeight, _
     $eImages, _
-    $eLastUsed, _
     $ePrimary, _
     $eSaveForUndo, _
     $eSecondary, _

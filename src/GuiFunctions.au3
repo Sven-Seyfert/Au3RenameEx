@@ -64,7 +64,65 @@ Func _enable( $iControlId )
     GUICtrlSetState( $iControlId, $GUI_ENABLE )
 EndFunc
 
-Func _myMsgBox( $sTitle, $sMessage, $sMode = 'Ok' )
+Func _myDragAndDropBoxGui( $sTitle )
+    Local $iWDragAndDropBox        = 300
+    Local $iHDragAndDropBox        = 200
+    Local $iXDragAndDropBox        = Default
+    Local $iYDragAndDropBox        = Default
+    Local $iBorderSize             = 2
+    Local $vBorderColor            = $aColor[$eTitleFont]
+    Local $vBorderColor            = $aColor[$eTitleBkg]
+
+    Local $hSubGuiDragAndDrop      = GUICreate( '', $iWDragAndDropBox, $iHDragAndDropBox, $iXDragAndDropBox, $iYDragAndDropBox, $WS_POPUP + $WS_EX_TOPMOST, $WS_EX_ACCEPTFILES )
+                                     GUISetBkColor( $aColor[$ePrimary], $hSubGuiDragAndDrop )
+                                     GUISetFont( 11, 600 )
+
+    Local $cLblTitle               = GUICtrlCreateLabel( $sTitle, 0, 0, $iWDragAndDropBox - $iButtons - $iBorderSize, 35, $SS_CENTER + $SS_CENTERIMAGE, $GUI_WS_EX_PARENTDRAG )
+                                     GUICtrlSetBkColor( $cLblTitle, $aColor[$eTitleBkg] )
+                                     GUICtrlSetColor( $cLblTitle, $aColor[$eTitleFont] )
+
+    Local $cBtnCloseDragAndDropBox = GUICtrlCreateButton( '', $iWDragAndDropBox - $iButtons - $iBorderSize, $iBorderSize, $iButtons, $iButtons, $vImageStyle )
+    Local $cEditBox                = GUICtrlCreateEdit( $sDropText, 50, 65, $iWDragAndDropBox - 95, $iHDragAndDropBox - ( 50 * 2 ), $ES_WANTRETURN + $ES_READONLY, $WS_EX_TRANSPARENT )
+                                     GUICtrlSetBkColor( $cEditBox, $aColor[$eTitleFont] )
+                                     GUICtrlSetColor( $cEditBox, $aColor[$eSecondary] )
+                                     GUICtrlSetFont( $cEditBox, 20, 400, Default, 'Consolas' )
+                                     GUICtrlSetState( $cEditBox, $GUI_DROPACCEPTED )
+
+                                     GUICtrlCreateLabel( '', 0, 0, $iWDragAndDropBox, $iBorderSize )                                ; border top
+                                     GUICtrlSetBkColor( -1, $vBorderColor )
+                                     GUICtrlCreateLabel( '', 0, 0, $iBorderSize, $iHDragAndDropBox )                                ; border right
+                                     GUICtrlSetBkColor( -1, $vBorderColor )
+                                     GUICtrlCreateLabel( '', 0, $iHDragAndDropBox - $iBorderSize, $iWDragAndDropBox, $iBorderSize ) ; border bottom
+                                     GUICtrlSetBkColor( -1, $vBorderColor )
+                                     GUICtrlCreateLabel( '', $iWDragAndDropBox - $iBorderSize, 0, $iBorderSize, $iHDragAndDropBox ) ; border left
+                                     GUICtrlSetBkColor( -1, $vBorderColor )
+
+    GUICtrlSetCursor( $cBtnCloseDragAndDropBox, 0 )
+    _loadGuiIcon( $cBtnCloseDragAndDropBox, 'close_dialog' )
+
+    GUISetState( @SW_HIDE, $hMainGui )
+    GUISetState( @SW_SHOW, $hSubGuiDragAndDrop )
+    WinSetOnTop( $hSubGuiDragAndDrop, '', 1 )
+
+    While 1
+        Local $sEditBoxContent = StringReplace( GUICtrlRead( $cEditBox ), $sDropText, '' )
+        If $sEditBoxContent <> '' Then
+            $sFolderList = $sEditBoxContent
+            GUIDelete( $hSubGuiDragAndDrop )
+            GUISetState( @SW_SHOW, $hMainGui )
+            Return
+        EndIf
+
+        Switch GUIGetMsg()
+            Case -3, $cBtnCloseDragAndDropBox
+                GUIDelete( $hSubGuiDragAndDrop )
+                GUISetState( @SW_SHOW, $hMainGui )
+                Return
+        EndSwitch
+    WEnd
+EndFunc
+
+Func _myMsgBoxGui( $sTitle, $sMessage, $sMode = 'Ok' )
     Local $iWMsgBox        = 700
     Local $iHMsgBox        = 200
     Local $iXMsgBox        = Default
@@ -73,8 +131,8 @@ Func _myMsgBox( $sTitle, $sMessage, $sMode = 'Ok' )
     Local $vBorderColor    = $aColor[$eTitleFont]
     Local $vBorderColor    = $aColor[$eTitleBkg]
 
-    Local $hSubGui         = GUICreate( '', $iWMsgBox, $iHMsgBox, $iXMsgBox, $iYMsgBox, $WS_POPUP + $WS_EX_TOPMOST )
-                             GUISetBkColor( $aColor[$ePrimary], $hSubGui )
+    Local $hSubGuiMsgBox   = GUICreate( '', $iWMsgBox, $iHMsgBox, $iXMsgBox, $iYMsgBox, $WS_POPUP + $WS_EX_TOPMOST )
+                             GUISetBkColor( $aColor[$ePrimary], $hSubGuiMsgBox )
                              GUISetFont( 11, 600 )
 
     Local $cLblTitle       = GUICtrlCreateLabel( $sTitle, 0, 0, $iWMsgBox - $iButtons - $iBorderSize, 35, $SS_CENTER + $SS_CENTERIMAGE, $GUI_WS_EX_PARENTDRAG )
@@ -82,7 +140,7 @@ Func _myMsgBox( $sTitle, $sMessage, $sMode = 'Ok' )
                              GUICtrlSetColor( $cLblTitle, $aColor[$eTitleFont] )
 
     Local $cBtnCloseMsgBox = GUICtrlCreateButton( '', $iWMsgBox - $iButtons - $iBorderSize, $iBorderSize, $iButtons, $iButtons, $vImageStyle )
-    Local $cLblMessage     = GUICtrlCreateLabel( $sMessage, 50, 65, $iWMsgBox - 85, $iHMsgBox - ( 65 * 2 ), $SS_CENTER + $SS_CENTERIMAGE )
+    Local $cLblMessage     = GUICtrlCreateLabel( $sMessage, 50, 65, $iWMsgBox - 95, $iHMsgBox - ( 65 * 2 ), $SS_CENTER + $SS_CENTERIMAGE )
                              GUICtrlSetColor( $cLblMessage, $aColor[$eSecondary] )
                              GUICtrlSetFont( $cLblMessage, 11, 600 )
 
@@ -121,24 +179,24 @@ Func _myMsgBox( $sTitle, $sMessage, $sMode = 'Ok' )
     EndIf
 
     GUICtrlSetCursor( $cBtnCloseMsgBox, 0 )
-    _loadGuiIcon( $cBtnCloseMsgBox, 'close_msgbox' )
+    _loadGuiIcon( $cBtnCloseMsgBox, 'close_dialog' )
 
-    GUISetState( @SW_SHOW, $hSubGui )
-    WinSetOnTop( $hSubGui, '', 1 )
+    GUISetState( @SW_SHOW, $hSubGuiMsgBox )
+    WinSetOnTop( $hSubGuiMsgBox, '', 1 )
 
     While 1
         Switch GUIGetMsg()
             Case -3, $cBtnCloseMsgBox
-                GUIDelete( $hSubGui )
+                GUIDelete( $hSubGuiMsgBox )
                 Return False
             Case $cLblYes
-                GUIDelete( $hSubGui )
+                GUIDelete( $hSubGuiMsgBox )
                 Return True
             Case $cLblNo
-                GUIDelete( $hSubGui )
+                GUIDelete( $hSubGuiMsgBox )
                 Return False
             Case $cLblOk
-                GUIDelete( $hSubGui )
+                GUIDelete( $hSubGuiMsgBox )
                 Return True
         EndSwitch
     WEnd

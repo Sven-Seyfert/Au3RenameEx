@@ -1,8 +1,8 @@
 ; compiler information for AutoIt
 #AutoIt3Wrapper_AU3Check_Stop_OnWarning=y
 #AutoIt3Wrapper_Icon=..\media\favicon.ico
-#AutoIt3Wrapper_Res_Description=Au3RenameEx (2019-08-05)
-#AutoIt3Wrapper_Res_Fileversion=0.12
+#AutoIt3Wrapper_Res_Description=Au3RenameEx (2019-08-21)
+#AutoIt3Wrapper_Res_Fileversion=0.13
 #AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_UseX64=y
 
@@ -17,12 +17,14 @@ If $aInst[0][0] > 1 Then Exit
 
 ; includes ---------------------------------------------------------------------
 #include-once
+#include <EditConstants.au3>
 #include <File.au3>
 #include <GuiButton.au3>
 #include <GuiConstantsEx.au3>
 #include <GuiImageList.au3>
 #include <GuiListView.au3>
 #include <StaticConstants.au3>
+#include <String.au3>
 #include <WindowsConstants.au3>
 
 
@@ -47,12 +49,13 @@ _writeIni( 'UndoStep', 0 )
 While 1
     Switch GUIGetMsg()
         Case -3, $cBtnClose
-            If _myMsgBox( _getResxValue( 'MsgBoxQuestion' ), _getResxValue( 'MsgBoxQuestionCloseProgram' ), 'YesNo' ) Then _disposeAndExit()
+            If _myMsgBoxGui( _getResxValue( 'MsgBoxQuestion' ), _getResxValue( 'MsgBoxQuestionCloseProgram' ), 'YesNo' ) Then _disposeAndExit()
 
         Case $cBtnMinimize
             WinSetState( $hMainGui, '', @SW_MINIMIZE )
 
         Case $cBtnChooseFolder
+            _myDragAndDropBoxGui( _getResxValue( 'DragAndDropText' ) )
             _openFolder()
 
         Case $cBtnUndo

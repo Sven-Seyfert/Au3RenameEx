@@ -26,6 +26,8 @@ Common use cases are music files, audio books, ebooks or other types of collecti
     - Already available languages are *en* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/gb.svg" alt="en" width="18px"/> and *de* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/de.svg" alt="de" width="18px"/>
     - Easy extendable through file `config\language.ini`
 
+- Simultaneously renaming of files in multiple folders are possible.
+
 - Numeration with several digit size
 
     ![numeration](screenshots/numeration.gif)

@@ -1,7 +1,7 @@
 Func _disposeAndExit()
     OnAutoItExitUnRegister( '_disposeAndExit' )
 
-    For $i = 0 To 30 Step 1
+    For $i = 0 To 50 Step 1
         FileDelete( _renameFilenameWithNumber( $i ) )
     Next
 
@@ -38,16 +38,17 @@ Func _renameFilenameWithNumber( $iNumber )
     Return StringReplace( $aFile[$eSaveForUndo], '_.txt', '_' & $iNumber & '.txt' )
 EndFunc
 
-Func _getChosenFolderPath( $sPath )
-    $aPath[$eChosenFolder] = FileSelectFolder( _getResxValue( 'PathChosenFolder' ), $sPath )
-
-    If $aPath[$eChosenFolder] == '' Then
-        _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxWarningNoFolder' ) )
+Func _getChosenFolderPath()
+    If $sFolderList == '' Then
+        _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxWarningNoFolder' ) )
         _defaultState()
         Return False
     EndIf
 
-    Return $aPath[$eChosenFolder]
+    Local $aFolderList = StringSplit( $sFolderList, @LF, 1 )
+    _ArraySort( $aFolderList )
+
+    Return $aFolderList
 EndFunc
 
 Func _uncheckAllRadioButtons()
@@ -137,7 +138,7 @@ Func _defaultState()
     _disableAllInputs()
 
     _GUICtrlListView_DeleteAllItems( $hListView )
-    _GUICtrlListView_SetColumn( $hListView, 0, $aListView[$eColumnText] )
+    _GUICtrlListView_SetColumn( $hListView, 0, $aListView[$eColumnOneText] )
 
     _setBooleansToFalse()
 
@@ -149,31 +150,38 @@ Func _defaultState()
 EndFunc
 
 Func _getFolderContentAsFileList( $sPath, $sFileExtensionFilter = '*' )
-    Local $aList = _FileListToArray( $sPath, $sFileExtensionFilter, 1, False )
-
+    Local $aList = _FileListToArray( StringReplace( $sPath, @CR, '' ), $sFileExtensionFilter, 1, True )
     If Not IsArray( $aList ) Then
-        _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxWarningNoFolder' ) )
+        Local $sFolder  = StringRegExpReplace( $sPath, '.+\\', '' )
+        Local $sMessage = StringTrimRight( _getResxValue( 'MsgBoxWarningNoFolderContent' ), 1 ) & ' "' & $sFolder & '".'
+        _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), $sMessage )
         Return False
     EndIf
 
+    _ArrayDelete( $aList, 0 )
     Return $aList
 EndFunc
 
 Func _saveFileList( $aList )
-    _ArrayDelete( $aList, 0 )
-
     Local $sList     = _ArrayToString( $aList, @CRLF )
     Local $iUndoStep = _readIni( 'UndoStep' )
 
     _writeFile( _renameFilenameWithNumber( $iUndoStep ), $sList )
 EndFunc
 
-Func _fillListView( $aList )
-    _GUICtrlListView_SetColumn( $hListView, 0, $aPath[$eChosenFolder] )
-    _GUICtrlListView_DeleteAllItems( $hListView )
+Func _getJustFileName( $sFilePath )
+    Return StringRegExpReplace( $sFilePath, '(.+?)\\', '', 0 )
+EndFunc
 
-    For $i = 1 To $aList[0] Step 1
-        _GUICtrlListView_AddItem( $hListView, $aList[$i] )
+Func _getJustPathOfFile( $sFilePath )
+    Return StringTrimRight( $sFilePath, StringLen( _getJustFileName( $sFilePath ) ) )
+EndFunc
+
+Func _fillListView( $aList )
+    _GUICtrlListView_DeleteAllItems( $hListView )
+    For $i = 0 To UBound( $aList ) - 1 Step 1
+        _GUICtrlListView_AddItem( $hListView, _getJustFileName( $aList[$i]) )
+        _GUICtrlListView_AddSubItem( $hListView, $i, _getJustPathOfFile( $aList[$i]), 1 )
     Next
 EndFunc
 
@@ -284,6 +292,8 @@ Func _loadFromFileContent( $iNumber )
     Local $sList = _getFileContent( _renameFilenameWithNumber( $iNumber ) )
     Local $aList = StringSplit( $sList, @CRLF, 1 )
 
+    _ArrayDelete( $aList, 0 )
+
     _saveFileList( $aList )
     _fillListView( $aList )
 
@@ -291,9 +301,9 @@ Func _loadFromFileContent( $iNumber )
 EndFunc
 
 Func _renameFilesPhysically( $aOldList, $aNewList )
-    For $i = 1 To $aOldList[0] Step 1
-        Local $sFromFile = $aPath[$eChosenFolder] & '\' & $aOldList[$i]
-        Local $sToFile   = $aPath[$eChosenFolder] & '\' & $aNewList[$i]
+    For $i = 0 To UBound( $aOldList ) - 1 Step 1
+        Local $sFromFile = $aOldList[$i]
+        Local $sToFile   = $aNewList[$i]
         FileMove( $sFromFile, $sToFile, 1 )
     Next
 
@@ -319,10 +329,10 @@ Func _doNumeration( $aList )
     If $iReturn   == -2 Then Return -2
     If $iReturn   == -3 Then Return -3
 
-    _ArrayDelete( $aList, 0 )
-
     For $i = 0 To UBound( $aList ) - 1 Step 1
-        $aList[$i] = _setZeroPrefix( $iStart + $i, $iDigits ) & $iStart + $i & ' ' & $aList[$i]
+        Local $sPath = _getJustPathOfFile( $aList[$i] )
+        Local $sFile = _getJustFileName( $aList[$i] )
+        $aList[$i]   = $sPath & _setZeroPrefix( $iStart + $i, $iDigits ) & $iStart + $i & ' ' & $sFile
     Next
 
     $aEdit = $aList
@@ -337,9 +347,11 @@ Func _doSearchAndReplace( $aList )
     If $iReturn    == -1 Then Return -1
     If $iReturn    == -2 Then Return -2
 
-    For $i = 1 To $aList[0] Step 1
-        If Not $bIsBtnCbxSearchAndReplaceSet Then $aList[$i] = StringReplace( $aList[$i], $sSearch, $sReplace )
-        If $bIsBtnCbxSearchAndReplaceSet     Then $aList[$i] = StringReplace( $aList[$i], $sSearch, $sReplace, 0, 1 )
+    For $i = 0 To UBound( $aList ) - 1 Step 1
+        Local $sPath = _getJustPathOfFile( $aList[$i] )
+        Local $sFile = _getJustFileName( $aList[$i] )
+        If Not $bIsBtnCbxSearchAndReplaceSet Then $aList[$i] = $sPath & StringReplace( $sFile, $sSearch, $sReplace )
+        If $bIsBtnCbxSearchAndReplaceSet     Then $aList[$i] = $sPath & StringReplace( $sFile, $sSearch, $sReplace, 0, 1 )
     Next
 
     $aEdit = $aList
@@ -355,10 +367,12 @@ Func _doPasteCharacters( $aList )
     If $iReturn     == -2 Then Return -2
     If $iReturn     == -3 Then Return -3
 
-    For $i = 1 To $aList[0] Step 1
-        Local $sPrefix = StringMid( $aList[$i], 1, $iPosition )
-        Local $sSuffix = StringTrimLeft( $aList[$i], $iPosition )
-        $aList[$i] = $sPrefix & $sText & $sSuffix
+    For $i = 0 To UBound( $aList ) - 1 Step 1
+        Local $sPath   = _getJustPathOfFile( $aList[$i] )
+        Local $sFile   = _getJustFileName( $aList[$i] )
+        Local $sPrefix = StringMid( $sFile, 1, $iPosition )
+        Local $sSuffix = StringTrimLeft( $sFile, $iPosition )
+        $aList[$i] = $sPath & $sPrefix & $sText & $sSuffix
     Next
 
     $aEdit = $aList
@@ -374,8 +388,10 @@ Func _doMoveCharacter( $aList )
     If $iReturn    == -2 Then Return -2
     If $iReturn    == -3 Then Return -3
 
-    For $i = 1 To $aList[0] Step 1
-        $aList[$i] = _moveCharInString( $aList[$i], $iFromPos, $iToPos )
+    For $i = 0 To UBound( $aList ) - 1 Step 1
+        Local $sPath = _getJustPathOfFile( $aList[$i] )
+        Local $sFile = _getJustFileName( $aList[$i] )
+        $aList[$i]   = $sPath & _moveCharInString( $sFile, $iFromPos, $iToPos )
     Next
 
     $aEdit = $aList
@@ -391,12 +407,14 @@ Func _doDeleteCharacters( $aList )
     If $iReturn       == -2 Then Return -2
     If $iReturn       == -3 Then Return -3
 
-    For $i = 1 To $aList[0] Step 1
-        Local $aCharacterList = StringSplit( $aList[$i], '', 0 )
+    For $i = 0 To UBound( $aList ) - 1 Step 1
+        Local $sPath          = _getJustPathOfFile( $aList[$i] )
+        Local $sFile          = _getJustFileName( $aList[$i] )
+        Local $aCharacterList = StringSplit( $sFile, '', 0 )
         For $j = 1 To $iAmount Step 1
             _ArrayDelete( $aCharacterList, $iAtPosition )
         Next
-        $aList[$i] = _ArrayToString( $aCharacterList, '', 1 )
+        $aList[$i] = $sPath & _ArrayToString( $aCharacterList, '', 1 )
     Next
 
     $aEdit = $aList
@@ -411,8 +429,10 @@ Func _doRegExReplace( $aList )
     If $iReturn         == -1 Then Return -1
     If $iReturn         == -2 Then Return -2
 
-    For $i = 1 To $aList[0] Step 1
-        $aList[$i] = StringRegExpReplace( $aList[$i], $sPattern, $sReplaceRegEx )
+    For $i = 0 To UBound( $aList ) - 1 Step 1
+        Local $sPath = _getJustPathOfFile( $aList[$i] )
+        Local $sFile = _getJustFileName( $aList[$i] )
+        $aList[$i]   = $sPath & StringRegExpReplace( $sFile, $sPattern, $sReplaceRegEx )
     Next
 
     $aEdit = $aList
@@ -420,13 +440,17 @@ Func _doRegExReplace( $aList )
 EndFunc
 
 Func _openFolder()
-    $aPath[$eLastUsed]     = _readIni( 'LastUsedPath' )
-    $aPath[$eChosenFolder] = _getChosenFolderPath( $aPath[$eLastUsed] )
+    Local $aFolderList = _getChosenFolderPath()
+    If $aFolderList <> False Then
+        For $i = 1 To $aFolderList[0] Step 1
+            If $i == 1 Then
+                $aFileList = _getFolderContentAsFileList( $aFolderList[$i] )
+            Else
+                Local $aList = _getFolderContentAsFileList( $aFolderList[$i] )
+                _ArrayConcatenate( $aFileList, $aList )
+            EndIf
+        Next
 
-    If $aPath[$eChosenFolder] <> False Then
-        _writeIni( 'LastUsedPath', $aPath[$eChosenFolder] )
-
-        $aFileList = _getFolderContentAsFileList( $aPath[$eChosenFolder] )
         If $aFileList <> False Then
             _saveFileList( $aFileList )
             _fillListView( $aFileList )
@@ -483,22 +507,21 @@ Func _previewFiles()
             Case $bSectionNumeration
                 Local $iReturn   = _doNumeration( $aFileList )
                 If $iReturn     == -1 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxOnlyNumbers' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxOnlyNumbers' ) )
                 ElseIf $iReturn == -2 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForStart' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForStart' ) )
                 ElseIf $iReturn == -3 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForDigits' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForDigits' ) )
                 Else
-                    _ArrayInsert( $aEdit, 0, UBound( $aEdit ) )
                     _showPreview()
                 EndIf
 
             Case $bSectionSearchAndReplace
                 Local $iReturn   = _doSearchAndReplace( $aFileList )
                 If $iReturn     == -1 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxAtLeastOneCharaterForSearch' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxAtLeastOneCharaterForSearch' ) )
                 ElseIf $iReturn == -2 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNotAllowedCharaters' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNotAllowedCharaters' ) )
                 Else
                     _showPreview()
                 EndIf
@@ -506,11 +529,11 @@ Func _previewFiles()
             Case $bSectionPasteCharacters
                 Local $iReturn   = _doPasteCharacters( $aFileList )
                 If $iReturn     == -1 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxOnlyNumbersForPosition' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxOnlyNumbersForPosition' ) )
                 ElseIf $iReturn == -2 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNotAllowedCharatersText' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNotAllowedCharatersText' ) )
                 ElseIf $iReturn == -3 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForPosition' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForPosition' ) )
                 Else
                     _showPreview()
                 EndIf
@@ -518,11 +541,11 @@ Func _previewFiles()
             Case $bSectionMoveCharacter
                 Local $iReturn   = _doMoveCharacter( $aFileList )
                 If $iReturn     == -1 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxOnlyNumbers' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxOnlyNumbers' ) )
                 ElseIf $iReturn == -2 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberToPosition' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberToPosition' ) )
                 ElseIf $iReturn == -3 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberFromPosition' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberFromPosition' ) )
                 Else
                     _showPreview()
                 EndIf
@@ -530,11 +553,11 @@ Func _previewFiles()
             Case $bSectionDeleteCharacters
                 Local $iReturn   = _doDeleteCharacters( $aFileList )
                 If $iReturn     == -1 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxOnlyNumbers' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxOnlyNumbers' ) )
                 ElseIf $iReturn == -2 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForAmount' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForAmount' ) )
                 ElseIf $iReturn == -3 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForPositionOne' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNumberForPositionOne' ) )
                 Else
                     _showPreview()
                 EndIf
@@ -542,9 +565,9 @@ Func _previewFiles()
             Case $bSectionRegExReplace
                 Local $iReturn   = _doRegExReplace( $aFileList )
                 If $iReturn     == -1 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxAtLeastOneCharaterForRegExPattern' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxAtLeastOneCharaterForRegExPattern' ) )
                 ElseIf $iReturn == -2 Then
-                    _myMsgBox( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNotAllowedCharaters' ) )
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNotAllowedCharaters' ) )
                 Else
                     _showPreview()
                 EndIf

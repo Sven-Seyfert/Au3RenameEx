@@ -124,7 +124,8 @@ Global $cReplaceRegEx           = GUICtrlCreateInput( '', $aGui[$eWidth] * 0.255
 ; listview
 Global $hListView               = GUICtrlCreateListView( '', $aGui[$eWidth] * 0.36, $aGui[$eWidth] * 0.057, $aGui[$eWidth] * 0.61, $aGui[$eHeight] * 0.83, $aListView[$eStyle], $aListView[$eExStyle] )
                                   GUICtrlSetFont( $hListView, 10, 400, 0, 'Consolas' )
-                                  _GUICtrlListView_AddColumn( $hListView, $aListView[$eColumnText], $aGui[$eWidth] * 0.8 )
+                                  _GUICtrlListView_AddColumn( $hListView, $aListView[$eColumnOneText], $aGui[$eWidth] * 0.4 )
+                                  _GUICtrlListView_AddColumn( $hListView, $aListView[$eColumnTwoText], $aGui[$eWidth] * 0.8 )
 
 ; tooltip
 GUICtrlSetTip( $cBtnChooseFolder,            _getResxValue( 'BtnChooseFolder' ) )
