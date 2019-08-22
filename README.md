@@ -28,37 +28,53 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 
 - Simultaneously renaming of files in multiple folders are possible.
 
-- Numeration with several digit size
+- <details>
+    <summary>Numeration with several digit size</summary>
 
     ![numeration](screenshots/numeration.gif)
+</details>
 
-- Replace characters (with case sensitive option)
+- <details>
+    <summary>Replace characters (with case sensitive option)</summary>
 
     ![replaceCharacter](screenshots/replaceCharacter.gif)
+</details>
 
-- Paste characters to position
+- <details>
+    <summary>Paste characters to position</summary>
 
     ![pasteCharacter](screenshots/pasteCharacter.gif)
+</details>
 
-- Move character to position
+- <details>
+    <summary>Move character to position</summary>
 
     ![moveCharacter](screenshots/moveCharacter.gif)
+</details>
 
-- Delete characters
+- <details>
+    <summary>Delete characters</summary>
 
     ![deleteCharacter](screenshots/deleteCharacter.gif)
+</details>
 
-- Replace by RegEx pattern (most powerful)
+- <details>
+    <summary>Replace by RegEx pattern (most powerful)</summary>
 
     ![regexReplace](screenshots/regexReplace.gif)
+</details>
 
-- Undo and Redo your changes
+- <details>
+    <summary>Undo and Redo your changes</summary>
 
     ![undoRedo](screenshots/undoRedo.gif)
+</details>
 
-- Input exception handling prevents false renaming
+- <details>
+    <summary>Input exception handling prevents false renaming</summary>
 
     ![inputHandling](screenshots/inputHandling.gif)
+</details>
 
 ## Getting started
 
