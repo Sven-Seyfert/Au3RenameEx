@@ -22,59 +22,43 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 
 ## Features
 
-- Multilingualism is possible.
+1. Multilingualism is possible.
     - Already available languages are *en* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/gb.svg" alt="en" width="18px"/> and *de* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/de.svg" alt="de" width="18px"/>
     - Easy extendable through file `config\language.ini`
 
-- Simultaneously renaming of files in multiple folders are possible.
+2. Simultaneously renaming of files in multiple folders are possible.
 
-- <details>
-    <summary>Numeration with several digit size</summary>
+3. Numeration with several digit size
 
     ![numeration](screenshots/numeration.gif)
-</details>
 
-- <details>
-    <summary>Replace characters (with case sensitive option)</summary>
+4. Replace characters (with case sensitive option)
 
     ![replaceCharacter](screenshots/replaceCharacter.gif)
-</details>
 
-- <details>
-    <summary>Paste characters to position</summary>
+5. Paste characters to position
 
     ![pasteCharacter](screenshots/pasteCharacter.gif)
-</details>
 
-- <details>
-    <summary>Move character to position</summary>
+6. Move character to position
 
     ![moveCharacter](screenshots/moveCharacter.gif)
-</details>
 
-- <details>
-    <summary>Delete characters</summary>
+7. Delete characters
 
     ![deleteCharacter](screenshots/deleteCharacter.gif)
-</details>
 
-- <details>
-    <summary>Replace by RegEx pattern (most powerful)</summary>
+8. Replace by RegEx pattern (most powerful)
 
     ![regexReplace](screenshots/regexReplace.gif)
-</details>
 
-- <details>
-    <summary>Undo and Redo your changes</summary>
+9. Undo and Redo your changes
 
     ![undoRedo](screenshots/undoRedo.gif)
-</details>
 
-- <details>
-    <summary>Input exception handling prevents false renaming</summary>
+10. Input exception handling prevents false renaming
 
     ![inputHandling](screenshots/inputHandling.gif)
-</details>
 
 ## Getting started
 
