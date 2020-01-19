@@ -123,8 +123,8 @@ Func _myDragAndDropBoxGui( $sTitle )
 EndFunc
 
 Func _myMsgBoxGui( $sTitle, $sMessage, $sMode = 'Ok' )
-    Local $iWMsgBox        = 700
-    Local $iHMsgBox        = 200
+    Local $iWMsgBox        = $aGui[$eWidth] * 0.6
+    Local $iHMsgBox        = $aGui[$eHeight] * 0.4
     Local $iXMsgBox        = Default
     Local $iYMsgBox        = Default
     Local $iBorderSize     = 2
@@ -156,6 +156,12 @@ Func _myMsgBoxGui( $sTitle, $sMessage, $sMode = 'Ok' )
                              GUICtrlSetFont( $cLblNo, 11, 600 )
                              GUICtrlSetCursor( $cLblNo, 0 )
 
+    Local $cLblShowLog     = GUICtrlCreateLabel( _getResxValue( 'LblShowLog' ), $iWMsgBox - 50 - 85 - 115, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE )
+                             GUICtrlSetBkColor( $cLblShowLog, $aColor[$eTitleFont] )
+                             GUICtrlSetColor( $cLblShowLog, $aColor[$eSecondary] )
+                             GUICtrlSetFont( $cLblShowLog, 11, 600 )
+                             GUICtrlSetCursor( $cLblShowLog, 0 )
+
     Local $cLblOk          = GUICtrlCreateLabel( _getResxValue( 'LblOk' ), $iWMsgBox - 50 - 85, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE )
                              GUICtrlSetBkColor( $cLblOk, $aColor[$eTitleFont] )
                              GUICtrlSetColor( $cLblOk, $aColor[$eSecondary] )
@@ -174,8 +180,13 @@ Func _myMsgBoxGui( $sTitle, $sMessage, $sMode = 'Ok' )
     If $sMode == 'Ok' Then
         GUICtrlSetState( $cLblYes, $GUI_HIDE )
         GUICtrlSetState( $cLblNo, $GUI_HIDE )
+        GUICtrlSetState( $cLblShowLog, $GUI_HIDE )
     ElseIf $sMode == 'YesNo' Then
         GUICtrlSetState( $cLblOk, $GUI_HIDE )
+        GUICtrlSetState( $cLblShowLog, $GUI_HIDE )
+    ElseIf $sMode == 'ShowLog' Then
+        GUICtrlSetState( $cLblYes, $GUI_HIDE )
+        GUICtrlSetState( $cLblNo, $GUI_HIDE )
     EndIf
 
     GUICtrlSetCursor( $cBtnCloseMsgBox, 0 )
@@ -195,6 +206,10 @@ Func _myMsgBoxGui( $sTitle, $sMessage, $sMode = 'Ok' )
             Case $cLblNo
                 GUIDelete( $hSubGuiMsgBox )
                 Return False
+            Case $cLblShowLog
+                Run( 'notepad.exe "' & $aFile[$eLog] & '"' )
+                GUIDelete( $hSubGuiMsgBox )
+                Return True
             Case $cLblOk
                 GUIDelete( $hSubGuiMsgBox )
                 Return True

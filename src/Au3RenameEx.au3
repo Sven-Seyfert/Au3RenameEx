@@ -1,8 +1,8 @@
 ; compiler information for AutoIt
 #AutoIt3Wrapper_AU3Check_Stop_OnWarning=y
 #AutoIt3Wrapper_Icon=..\media\favicon.ico
-#AutoIt3Wrapper_Res_Description=Au3RenameEx (2019-08-21)
-#AutoIt3Wrapper_Res_Fileversion=0.13
+#AutoIt3Wrapper_Res_Description=Au3RenameEx (2020-01-19)
+#AutoIt3Wrapper_Res_Fileversion=0.14
 #AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_UseX64=y
 
@@ -17,6 +17,7 @@ If $aInst[0][0] > 1 Then Exit
 
 ; includes ---------------------------------------------------------------------
 #include-once
+#include <Date.au3>
 #include <EditConstants.au3>
 #include <File.au3>
 #include <GuiButton.au3>
@@ -37,6 +38,7 @@ If $aInst[0][0] > 1 Then Exit
 #include "Init.au3"
 #include "Gui.au3"
 #include "GuiFunctions.au3"
+#include "BasicFunctions.au3"
 #include "Functions.au3"
 #include "HotKeyFunctions.au3"
 
@@ -142,6 +144,16 @@ While 1
                 _enableRegExReplace()
                 _loadGuiIcon( $cBtnPreview,         'preview' )
                 _loadGuiIcon( $cBtnRdoRegExReplace, 'radioButtonChecked' )
+            EndIf
+
+        Case $cBtnRdoTimestamp
+            If $bIsBtnRdoTimestampEnabled Then
+                _uncheckAllRadioButtons()
+                _disableAllInputs()
+                _resetPreview()
+                _enableTimestamp()
+                _loadGuiIcon( $cBtnPreview,      'preview' )
+                _loadGuiIcon( $cBtnRdoTimestamp, 'radioButtonChecked' )
             EndIf
     EndSwitch
 WEnd

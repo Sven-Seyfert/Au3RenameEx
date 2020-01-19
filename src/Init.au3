@@ -12,6 +12,7 @@ Global $bIsBtnRedoEnabled
 Global $bIsBtnPreviewEnabled
 Global $bIsBtnResetEnabled
 Global $bIsBtnRenameEnabled
+
 Global $bIsBtnRdoNumerationEnabled
 Global $bIsBtnRdoSearchAndReplaceEnabled
 Global $bIsBtnCbxSearchAndReplaceEnabled
@@ -20,6 +21,7 @@ Global $bIsBtnRdoPasteCharactersEnabled
 Global $bIsBtnRdoMoveCharacterEnabled
 Global $bIsBtnRdoDeleteCharactersEnabled
 Global $bIsBtnRdoRegExReplaceEnabled
+Global $bIsBtnRdoTimestampEnabled
 
 Global $bSectionNumeration
 Global $bSectionSearchAndReplace
@@ -27,26 +29,4 @@ Global $bSectionPasteCharacters
 Global $bSectionMoveCharacter
 Global $bSectionDeleteCharacters
 Global $bSectionRegExReplace
-
-Func _setBooleansToFalse()
-    $bIsBtnUndoEnabled                = False
-    $bIsBtnRedoEnabled                = False
-    $bIsBtnPreviewEnabled             = False
-    $bIsBtnResetEnabled               = False
-    $bIsBtnRenameEnabled              = False
-    $bIsBtnRdoNumerationEnabled       = False
-    $bIsBtnRdoSearchAndReplaceEnabled = False
-    $bIsBtnCbxSearchAndReplaceEnabled = False
-    $bIsBtnCbxSearchAndReplaceSet     = False
-    $bIsBtnRdoPasteCharactersEnabled  = False
-    $bIsBtnRdoMoveCharacterEnabled    = False
-    $bIsBtnRdoDeleteCharactersEnabled = False
-    $bIsBtnRdoRegExReplaceEnabled     = False
-
-    $bSectionNumeration               = False
-    $bSectionSearchAndReplace         = False
-    $bSectionPasteCharacters          = False
-    $bSectionMoveCharacter            = False
-    $bSectionDeleteCharacters         = False
-    $bSectionRegExReplace             = False
-EndFunc
+Global $bSectionTimestamp

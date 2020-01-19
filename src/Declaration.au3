@@ -1,12 +1,17 @@
+Global $sDropText                  = @CRLF & _StringRepeat( ' ', 6 ) & ChrW( 0x2193 ) & @CRLF & _StringRepeat( ' ', 5 ) & ChrW( 0x203E ) & ChrW( 0x203E ) & ChrW( 0x203E )
+Global $sFolderList                = ''
+Global $sNoPropertyFoundMessage    = ''
 Global $sProgramTitle              = 'Au3RenameEx'
 Global $sSectionName               = 'SAVE'
+
 Global $iButtons                   = 32
-Global $iGutter                    = $iButtons * 0.66
-Global $vImageStyle                = 0x2000
-Global $sDropText                  = @CRLF & _StringRepeat( ' ', 6 ) & ChrW( 0x2193 ) & @CRLF & _StringRepeat( ' ', 5 ) & ChrW( 0x203E ) & ChrW( 0x203E ) & ChrW( 0x203E )
 Global $iControlId
+Global $iCounter                   = 1
+Global $iGutter                    = $iButtons * 0.66
+
+Global $vImageStyle                = 0x2000
+
 Global $aFileList, $aEdit
-Global $sFolderList
 
 Global $aGui[$iEnumVariables]
        $aGui[$eWidth]              = 1300
@@ -30,5 +35,13 @@ Global $aPath[$iEnumVariables]
        $aPath[$eImages]            = _PathFull( @ScriptDir & '..\..\images\' )
 
 Global $aFile[$iEnumVariables]
-       $aFile[$eConfig]            = @TempDir & '\' & $sProgramTitle & '\' & $sProgramTitle & '_Config.ini'
-       $aFile[$eSaveForUndo]       = @TempDir & '\' & $sProgramTitle & '\' & $sProgramTitle & '_SaveForUndo_.txt'
+       $aFile[$eConfig]            = @TempDir & '\' & $sProgramTitle & '\config.ini'
+       $aFile[$eSaveForUndo]       = @TempDir & '\' & $sProgramTitle & '\saveForUndo_.txt'
+       $aFile[$eLog]               = @TempDir & '\' & $sProgramTitle & '\log.txt'
+
+Global $aSave[$iEnumVariables]
+       $aSave[$eDay]               = ''
+       $aSave[$eMonth]             = ''
+       $aSave[$eYear]              = ''
+       $aSave[$eHour]              = ''
+       $aSave[$eMinute]            = ''

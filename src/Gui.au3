@@ -121,6 +121,17 @@ Global $cLblReplaceRegEx        = GUICtrlCreateLabel( _getResxValue( 'LblReplace
                                   GUICtrlSetColor( $cLblReplaceRegEx, $aColor[$eSecondary] )
 Global $cReplaceRegEx           = GUICtrlCreateInput( '', $aGui[$eWidth] * 0.255, $aGui[$eWidth] * 0.375, 100 )
 
+; timestamp section
+Global $cBtnRdoTimestamp        = GUICtrlCreateButton( '', $aGui[$eWidth] * 0.02, $aGui[$eWidth] * 0.41, $iButtons, $iButtons, $vImageStyle )
+Global $cLblTimestamp           = GUICtrlCreateLabel( _getResxValue( 'LblTimestamp' ), $aGui[$eWidth] * 0.045, $aGui[$eWidth] * 0.4165, 200 )
+                                  GUICtrlSetColor( $cLblTimestamp, $aColor[$eSecondary] )
+                                  GUICtrlSetFont( $cLblTimestamp, 11, 600 )
+
+Global $cLblChoice              = GUICtrlCreateLabel( _getResxValue( 'LblChoice' ), $aGui[$eWidth] * 0.045, $aGui[$eWidth] * 0.4375 )
+                                  GUICtrlSetColor( $cLblChoice, $aColor[$eSecondary] )
+Global $cProperty               = GUICtrlCreateCombo( '', $aGui[$eWidth] * 0.1, $aGui[$eWidth] * 0.435, 300 )
+                                  GUICtrlSetData( $cProperty, _getResxValue( 'LblChoiceData' ) )
+
 ; listview
 Global $hListView               = GUICtrlCreateListView( '', $aGui[$eWidth] * 0.36, $aGui[$eWidth] * 0.057, $aGui[$eWidth] * 0.61, $aGui[$eHeight] * 0.83, $aListView[$eStyle], $aListView[$eExStyle] )
                                   GUICtrlSetFont( $hListView, 10, 400, 0, 'Consolas' )
@@ -154,6 +165,7 @@ GUICtrlSetCursor( $cBtnRdoPasteCharacters,   0 )
 GUICtrlSetCursor( $cBtnRdoMoveCharacter,     0 )
 GUICtrlSetCursor( $cBtnRdoDeleteCharacters,  0 )
 GUICtrlSetCursor( $cBtnRdoRegExReplace,      0 )
+GUICtrlSetCursor( $cBtnRdoTimestamp,         0 )
 
 ; button image
 _loadGuiIcon( $cBtnChooseFolder,             'open' )
@@ -171,6 +183,7 @@ _loadGuiIcon( $cBtnRdoPasteCharacters,       'radioButtonUnchecked' )
 _loadGuiIcon( $cBtnRdoMoveCharacter,         'radioButtonUnchecked' )
 _loadGuiIcon( $cBtnRdoDeleteCharacters,      'radioButtonUnchecked' )
 _loadGuiIcon( $cBtnRdoRegExReplace,          'radioButtonUnchecked' )
+_loadGuiIcon( $cBtnRdoTimestamp,             'radioButtonUnchecked' )
 
 ; register hover action
 _onHoverRegister( $cBtnChooseFolder,         '_mouseover', '_mouseleave' )

@@ -9,27 +9,6 @@ Func _disposeAndExit()
     Exit
 EndFunc
 
-Func _getFileContent( $sFile )
-    Local $hFile        = FileOpen( $sFile, 256 )
-    Local $sFileContent = FileRead( $hFile )
-    FileClose( $hFile )
-    Return $sFileContent
-EndFunc
-
-Func _writeFile( $sFile, $sText )
-    Local $hFile = FileOpen( $sFile, 2 + 8 + 256 )
-    FileWrite( $hFile, $sText )
-    FileClose( $hFile )
-EndFunc
-
-Func _readIni( $sKey )
-    Return IniRead( $aFile[$eConfig], $sSectionName, $sKey, '' )
-EndFunc
-
-Func _writeIni( $sKey, $sValue )
-    IniWrite( $aFile[$eConfig], $sSectionName, $sKey, $sValue )
-EndFunc
-
 Func _createIniConfigFile()
     _writeFile( $aFile[$eConfig], '[' & $sSectionName & ']' )
 EndFunc
@@ -58,6 +37,8 @@ Func _uncheckAllRadioButtons()
     $bSectionMoveCharacter            = False
     $bSectionDeleteCharacters         = False
     $bSectionRegExReplace             = False
+    $bSectionTimestamp                = False
+
     $bIsBtnCbxSearchAndReplaceEnabled = False
 
     _loadGuiIcon( $cBtnRdoNumeration,       'radioButtonUnchecked' )
@@ -66,6 +47,8 @@ Func _uncheckAllRadioButtons()
     _loadGuiIcon( $cBtnRdoMoveCharacter,    'radioButtonUnchecked' )
     _loadGuiIcon( $cBtnRdoDeleteCharacters, 'radioButtonUnchecked' )
     _loadGuiIcon( $cBtnRdoRegExReplace,     'radioButtonUnchecked' )
+    _loadGuiIcon( $cBtnRdoTimestamp,        'radioButtonUnchecked' )
+
     _loadGuiIcon( $cBtnCbxSearchAndReplace, 'checkboxUnchecked', $iButtons / 1.6, $iButtons / 1.6 )
 EndFunc
 
@@ -82,6 +65,7 @@ Func _disableAllInputs()
     _disable( $cAtPosition )
     _disable( $cPattern )
     _disable( $cReplaceRegEx )
+    _disable( $cProperty )
 EndFunc
 
 Func _enableNumeration()
@@ -133,6 +117,39 @@ Func _enableRegExReplace()
     _enable( $cReplaceRegEx )
 EndFunc
 
+Func _enableTimestamp()
+    $bSectionTimestamp    = True
+    $bIsBtnPreviewEnabled = True
+
+    _enable( $cProperty )
+EndFunc
+
+Func _setBooleansToFalse()
+    $bIsBtnUndoEnabled                = False
+    $bIsBtnRedoEnabled                = False
+    $bIsBtnPreviewEnabled             = False
+    $bIsBtnResetEnabled               = False
+    $bIsBtnRenameEnabled              = False
+
+    $bIsBtnRdoNumerationEnabled       = False
+    $bIsBtnRdoSearchAndReplaceEnabled = False
+    $bIsBtnCbxSearchAndReplaceEnabled = False
+    $bIsBtnCbxSearchAndReplaceSet     = False
+    $bIsBtnRdoPasteCharactersEnabled  = False
+    $bIsBtnRdoMoveCharacterEnabled    = False
+    $bIsBtnRdoDeleteCharactersEnabled = False
+    $bIsBtnRdoRegExReplaceEnabled     = False
+    $bIsBtnRdoTimestampEnabled        = False
+
+    $bSectionNumeration               = False
+    $bSectionSearchAndReplace         = False
+    $bSectionPasteCharacters          = False
+    $bSectionMoveCharacter            = False
+    $bSectionDeleteCharacters         = False
+    $bSectionRegExReplace             = False
+    $bSectionTimestamp                = False
+EndFunc
+
 Func _defaultState()
     _uncheckAllRadioButtons()
     _disableAllInputs()
@@ -167,14 +184,6 @@ Func _saveFileList( $aList )
     Local $iUndoStep = _readIni( 'UndoStep' )
 
     _writeFile( _renameFilenameWithNumber( $iUndoStep ), $sList )
-EndFunc
-
-Func _getJustFileName( $sFilePath )
-    Return StringRegExpReplace( $sFilePath, '(.+?)\\', '', 0 )
-EndFunc
-
-Func _getJustPathOfFile( $sFilePath )
-    Return StringTrimRight( $sFilePath, StringLen( _getJustFileName( $sFilePath ) ) )
 EndFunc
 
 Func _fillListView( $aList )
@@ -249,20 +258,12 @@ Func _areInputsValidRegExReplace( $sPattern, $sReplaceRegEx )
     Return 0
 EndFunc
 
-Func _setZeroPrefix( $iNumber, $iDigits )
-    Switch $iDigits
-        Case 2
-            If StringLen( $iNumber ) == 1 Then Return '0'
-        Case 3
-            If StringLen( $iNumber ) == 1 Then Return '00'
-            If StringLen( $iNumber ) == 2 Then Return '0'
-        Case 4
-            If StringLen( $iNumber ) == 1 Then Return '000'
-            If StringLen( $iNumber ) == 2 Then Return '00'
-            If StringLen( $iNumber ) == 3 Then Return '0'
-    EndSwitch
+Func _isInputValidTimestamp( $sProperty )
+    If $sProperty == '' Then Return -1
+    Local $aProperty = _StringBetween( $sProperty, '"', '"' )
+    If Not IsArray( $aProperty ) Then Return -2
 
-    Return ''
+    Return 0
 EndFunc
 
 Func _existsSpecialCharacters( $sString )
@@ -439,6 +440,81 @@ Func _doRegExReplace( $aList )
     Return True
 EndFunc
 
+Func _doTimestamp( $aList )
+    Local $sProperty = _readInput( $cProperty )
+
+    Local $iReturn  = _isInputValidTimestamp( $sProperty )
+    If $iReturn    == -1 Then Return -1
+    If $iReturn    == -2 Then Return -2
+
+    Local $sPropertyKey = _StringBetween( $sProperty, '"', '"' )[0]
+
+    FileDelete( $aFile[$eLog] )
+    $sNoPropertyFoundMessage = ''
+
+    For $i = 0 To UBound( $aList ) - 1 Step 1
+        Local $sPropertyValue = _getFilePropertyValue( $aList[$i], $sPropertyKey )
+        Local $sPath          = _getJustPathOfFile( $aList[$i] )
+        Local $sFile          = _getJustFileName( $aList[$i] )
+        Local $sExtension     = '.' & _getJustFileExtension( $aList[$i] )
+
+        If $sPropertyValue <> '-' Then
+            $aList[$i] = $sPath & _buildTimestamp( $sPropertyKey, $sPropertyValue ) & $sExtension
+        Else
+            $sNoPropertyFoundMessage &= _getResxValue( 'NoPropertyFoundMessagePartOne' ) & ' "' & $sPropertyKey & '" ' & _getResxValue( 'NoPropertyFoundMessagePartTwo' ) & ' "' & $sPath & $sFile & '".' & @CRLF
+        EndIf
+    Next
+
+    If $sNoPropertyFoundMessage <> '' Then _writeFile( $aFile[$eLog], $sNoPropertyFoundMessage )
+
+    $aEdit = $aList
+    Return True
+EndFunc
+
+Func _buildTimestamp( $sKey, $sValue )
+    Switch $sKey
+        Case _getResxValue( 'PartialTimestampRecordingDate' )
+            Local $iDay    = StringMid( $sValue, 2, 2 )
+            Local $iMonth  = StringMid( $sValue, 6, 2 )
+            Local $iYear   = StringMid( $sValue, 10, 4 )
+            Local $iHour   = StringMid( $sValue, 17, 2 )
+            Local $iMinute = StringMid( $sValue, 20, 2 )
+        Case _getResxValue( 'PartialTimestampChangeDate' ), _getResxValue( 'PartialTimestampCreationDate' )
+            Local $iDay    = StringMid( $sValue, 1, 2 )
+            Local $iMonth  = StringMid( $sValue, 4, 2 )
+            Local $iYear   = StringMid( $sValue, 7, 4 )
+            Local $iHour   = StringMid( $sValue, 12, 2 )
+            Local $iMinute = StringMid( $sValue, 15, 2 )
+    EndSwitch
+
+    If  $iDay    == $aSave[$eDay]    And _
+        $iMonth  == $aSave[$eMonth]  And _
+        $iYear   == $aSave[$eYear]   And _
+        $iHour   == $aSave[$eHour]   And _
+        $iMinute == $aSave[$eMinute] Then
+        $iCounter += 1
+    Else
+        $iCounter = 1
+    EndIf
+
+    $aSave[$eDay]    = $iDay
+    $aSave[$eMonth]  = $iMonth
+    $aSave[$eYear]   = $iYear
+    $aSave[$eHour]   = $iHour
+    $aSave[$eMinute] = $iMinute
+
+    Local $sDay          = $iYear & '-' & $iMonth & '-' & $iDay & ' '
+    Local $sTime         = $iHour & "'" & $iMinute & "'" & _getCounter()
+    Local $sDayShortName = ' (' &_DateDayOfWeek( _DateToDayOfWeek( $iYear, $iMonth, $iDay ), 3 ) & ')'
+
+    Return $sDay & $sTime & $sDayShortName
+EndFunc
+
+Func _getCounter()
+    If StringLen( $iCounter ) == 1 Then Return '0' & $iCounter
+    If StringLen( $iCounter ) == 2 Then Return $iCounter
+EndFunc
+
 Func _openFolder()
     Local $aFolderList = _getChosenFolderPath()
     If $aFolderList <> False Then
@@ -461,6 +537,7 @@ Func _openFolder()
             $bIsBtnRdoMoveCharacterEnabled    = True
             $bIsBtnRdoDeleteCharactersEnabled = True
             $bIsBtnRdoRegExReplaceEnabled     = True
+            $bIsBtnRdoTimestampEnabled        = True
         EndIf
     EndIf
 EndFunc
@@ -570,6 +647,17 @@ Func _previewFiles()
                     _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNotAllowedCharaters' ) )
                 Else
                     _showPreview()
+                EndIf
+
+            Case $bSectionTimestamp
+                Local $iReturn   = _doTimestamp( $aFileList )
+                If $iReturn     == -1 Then
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxChooseAProperty' ) )
+                ElseIf $iReturn == -2 Then
+                    _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNoPropertyRecognition' ) )
+                Else
+                    _showPreview()
+                    If $sNoPropertyFoundMessage <> '' Then _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxNoPropertyFound' ), 'ShowLog' )
                 EndIf
         EndSelect
     EndIf
