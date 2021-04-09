@@ -2,6 +2,7 @@ Func _getFileContent( $sFile )
     Local $hFile        = FileOpen( $sFile, 256 )
     Local $sFileContent = FileRead( $hFile )
     FileClose( $hFile )
+
     Return $sFileContent
 EndFunc
 

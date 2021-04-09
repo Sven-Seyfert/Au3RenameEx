@@ -21,6 +21,7 @@ Func _getChosenFolderPath()
     If $sFolderList == '' Then
         _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), _getResxValue( 'MsgBoxWarningNoFolder' ) )
         _defaultState()
+
         Return False
     EndIf
 
@@ -171,7 +172,9 @@ Func _getFolderContentAsFileList( $sPath, $sFileExtensionFilter = '*' )
     If Not IsArray( $aList ) Then
         Local $sFolder  = StringRegExpReplace( $sPath, '.+\\', '' )
         Local $sMessage = StringTrimRight( _getResxValue( 'MsgBoxWarningNoFolderContent' ), 1 ) & ' "' & $sFolder & '".'
+
         _myMsgBoxGui( _getResxValue( 'MsgBoxWarning' ), $sMessage )
+
         Return False
     EndIf
 
@@ -356,6 +359,7 @@ Func _doSearchAndReplace( $aList )
     Next
 
     $aEdit = $aList
+
     Return True
 EndFunc
 
@@ -377,6 +381,7 @@ Func _doPasteCharacters( $aList )
     Next
 
     $aEdit = $aList
+
     Return True
 EndFunc
 
@@ -396,6 +401,7 @@ Func _doMoveCharacter( $aList )
     Next
 
     $aEdit = $aList
+
     Return True
 EndFunc
 
@@ -419,6 +425,7 @@ Func _doDeleteCharacters( $aList )
     Next
 
     $aEdit = $aList
+
     Return True
 EndFunc
 
@@ -437,6 +444,7 @@ Func _doRegExReplace( $aList )
     Next
 
     $aEdit = $aList
+
     Return True
 EndFunc
 
@@ -468,6 +476,7 @@ Func _doTimestamp( $aList )
     If $sNoPropertyFoundMessage <> '' Then _writeFile( $aFile[$eLog], $sNoPropertyFoundMessage )
 
     $aEdit = $aList
+
     Return True
 EndFunc
 
@@ -479,6 +488,7 @@ Func _buildTimestamp( $sKey, $sValue )
             Local $iYear   = StringMid( $sValue, 10, 4 )
             Local $iHour   = StringMid( $sValue, 17, 2 )
             Local $iMinute = StringMid( $sValue, 20, 2 )
+
         Case _getResxValue( 'PartialTimestampChangeDate' ), _getResxValue( 'PartialTimestampCreationDate' )
             Local $iDay    = StringMid( $sValue, 1, 2 )
             Local $iMonth  = StringMid( $sValue, 4, 2 )

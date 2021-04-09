@@ -1,6 +1,7 @@
 Func _isFocusOnGui( $hGuiOrTitle )
     Local $iState = WinGetState( $hGuiOrTitle )
     If $iState == 15 Then Return True
+
     Return False
 EndFunc
 
@@ -14,18 +15,25 @@ Func _mouseover( $iControlId )
     Switch $iControlId
         Case $cBtnChooseFolder
             _loadGuiIcon( $cBtnChooseFolder, 'open_hover' )
+
         Case $cBtnUndo
             If $bIsBtnUndoEnabled    Then _loadGuiIcon( $cBtnUndo,    'undo_hover' )
+
         Case $cBtnRedo
             If $bIsBtnRedoEnabled    Then _loadGuiIcon( $cBtnRedo,    'redo_hover' )
+
         Case $cBtnPreview
             If $bIsBtnPreviewEnabled Then _loadGuiIcon( $cBtnPreview, 'preview_hover' )
+
         Case $cBtnReset
             If $bIsBtnResetEnabled   Then _loadGuiIcon( $cBtnReset,   'reset_hover' )
+
         Case $cBtnRename
             If $bIsBtnRenameEnabled  Then _loadGuiIcon( $cBtnRename,  'save_hover' )
+
         Case $cBtnMinimize
             _loadGuiIcon( $cBtnMinimize, 'minimize_hover' )
+
         Case $cBtnClose
             _loadGuiIcon( $cBtnClose,    'close_hover' )
     EndSwitch
@@ -37,16 +45,22 @@ Func _mouseleave( $iControlId )
             _loadGuiIcon( $cBtnChooseFolder, 'open' )
         Case $cBtnUndo
             If $bIsBtnUndoEnabled    Then _loadGuiIcon( $cBtnUndo,    'undo' )
+
         Case $cBtnRedo
             If $bIsBtnRedoEnabled    Then _loadGuiIcon( $cBtnRedo,    'redo' )
+
         Case $cBtnPreview
             If $bIsBtnPreviewEnabled Then _loadGuiIcon( $cBtnPreview, 'preview' )
+
         Case $cBtnReset
             If $bIsBtnResetEnabled   Then _loadGuiIcon( $cBtnReset,   'reset' )
+
         Case $cBtnRename
             If $bIsBtnRenameEnabled  Then _loadGuiIcon( $cBtnRename,  'save' )
+
         Case $cBtnMinimize
             _loadGuiIcon( $cBtnMinimize, 'minimize' )
+
         Case $cBtnClose
             _loadGuiIcon( $cBtnClose,    'close' )
     EndSwitch
@@ -110,6 +124,7 @@ Func _myDragAndDropBoxGui( $sTitle )
             $sFolderList = $sEditBoxContent
             GUIDelete( $hSubGuiDragAndDrop )
             GUISetState( @SW_SHOW, $hMainGui )
+
             Return
         EndIf
 
@@ -117,6 +132,7 @@ Func _myDragAndDropBoxGui( $sTitle )
             Case -3, $cBtnCloseDragAndDropBox
                 GUIDelete( $hSubGuiDragAndDrop )
                 GUISetState( @SW_SHOW, $hMainGui )
+
                 Return
         EndSwitch
     WEnd
@@ -199,19 +215,28 @@ Func _myMsgBoxGui( $sTitle, $sMessage, $sMode = 'Ok' )
         Switch GUIGetMsg()
             Case -3, $cBtnCloseMsgBox
                 GUIDelete( $hSubGuiMsgBox )
+
                 Return False
+
             Case $cLblYes
                 GUIDelete( $hSubGuiMsgBox )
+
                 Return True
+
             Case $cLblNo
                 GUIDelete( $hSubGuiMsgBox )
+
                 Return False
+
             Case $cLblShowLog
                 Run( 'notepad.exe "' & $aFile[$eLog] & '"' )
                 GUIDelete( $hSubGuiMsgBox )
+
                 Return True
+
             Case $cLblOk
                 GUIDelete( $hSubGuiMsgBox )
+
                 Return True
         EndSwitch
     WEnd
