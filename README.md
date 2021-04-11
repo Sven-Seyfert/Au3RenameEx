@@ -1,7 +1,7 @@
 #####
 
 <p align="center">
-    <img src="http://sven-seyfert.de/media/logo_circle.png" width="80" />
+    <img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/media/favicon.ico" width="80" />
     <h2 align="center">Welcome to <code>Au3RenameEx</code>【ツ】</h2>
 </p>
 
@@ -13,7 +13,7 @@
 ![os](https://img.shields.io/badge/os-windows-yellow.svg?style=flat-square&logo=windows)
 ![editor](https://img.shields.io/badge/editor-VSCode-blueviolet.svg?style=flat-square&logo=visual-studio-code)
 
-[Description](#description) | [Features](#features) | [Getting started](#getting-started) | [Configuration](#configuration) | [Keyboard Shortcuts](#keyboard-shortcuts) | [Tested](#tested) | [Contributing](#contributing)
+[Description](#description) | [Features](#features) | [Getting started](#getting-started) | [Configuration](#configuration) | [Keyboard Shortcuts](#keyboard-shortcuts) | [Contributing](#contributing) | [License](#license) | [Acknowledgements](#acknowledgements)
 
 ## Description
 
@@ -28,50 +28,65 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 
 2. Simultaneously renaming of files in multiple folders are possible.
 
-3. Numeration with several digit size
+<details>
+<summary>3. Numeration with several digit size</summary>
+<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/numeration.gif" /></p>
+</details>
 
-    ![numeration](screenshots/numeration.gif)
+<details>
+<summary>4. Replace characters (with case sensitive option)</summary>
+<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/replaceCharacter.gif" /></p>
+</details>
 
-4. Replace characters (with case sensitive option)
+<details>
+<summary>5. Paste characters to position</summary>
+<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/pasteCharacter.gif" /></p>
+</details>
 
-    ![replaceCharacter](screenshots/replaceCharacter.gif)
+<details>
+<summary>6. Move character to position</summary>
+<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/moveCharacter.gif" /></p>
+</details>
 
-5. Paste characters to position
+<details>
+<summary>7. Delete characters</summary>
+<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/deleteCharacter.gif" /></p>
+</details>
 
-    ![pasteCharacter](screenshots/pasteCharacter.gif)
+<details>
+<summary>8. Replace by RegEx pattern (most powerful)</summary>
+<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/regexReplace.gif" /></p>
+</details>
 
-6. Move character to position
+<details>
+<summary>9. Timestamp as filename</summary>
+<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/timestampAsFilename.gif" /></p>
+</details>
 
-    ![moveCharacter](screenshots/moveCharacter.gif)
+<details>
+<summary>10. Undo and Redo your changes</summary>
+<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/undoRedo.gif" /></p>
+</details>
 
-7. Delete characters
-
-    ![deleteCharacter](screenshots/deleteCharacter.gif)
-
-8. Replace by RegEx pattern (most powerful)
-
-    ![regexReplace](screenshots/regexReplace.gif)
-
-9. Undo and Redo your changes
-
-    ![undoRedo](screenshots/undoRedo.gif)
-
-10. Input exception handling prevents false renaming
-
-    ![inputHandling](screenshots/inputHandling.gif)
+<details>
+<summary>11. Input exception handling prevents false renaming</summary>
+<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/inputHandling.gif" /></p>
+</details>
 
 ## Getting started
 
-#### Preconditions
+#### *Preconditions*
 
 Please ensure you have access to your default TEMP directory, because two files will be saved there.
 Adjustable in `src\Declaration.au3` file.
 
-#### Variant 1 - Run the EXE
+#### *Installation*
+
+**Variant 1 - Run the EXE**
 
 Starting the EXE `src\Au3RenameEx.exe` which is compiled with `#AutoIt3Wrapper_UseX64=y` and `#AutoIt3Wrapper_UseUpx=n` (the default expected system is x64).
 
-#### Variant 2 - Compile it on your own
+**Variant 2 - Compile it on your own**
 
 Open file `src\Au3RenameEx.au3`, adjust the *#AutoIt3Wrapper compiler information* if you want to (for example `#AutoIt3Wrapper_UseX64=y`) and run the program or compile the program.
 
@@ -93,21 +108,20 @@ Open file `src\Au3RenameEx.au3`, adjust the *#AutoIt3Wrapper compiler informatio
 | Reset preview | `Ctrl+R` |
 | Rename/Save   | `Ctrl+S` |
 
-## Tested
-
-> SUT (system under test)
-
-| Property       | Win 7       | Win 10          | Win 10 Tablet |
-| :------------- | :---------- | :-------------- | :------------ |
-| @AutoItExe     | autoit3.exe | autoit3_x64.exe | autoit3.exe   |
-| @AutoItVersion | 3.3.14.2    | 3.3.14.2        | 3.3.14.5      |
-| @CPUArch       | X64         | X64             | X64           |
-| @OSArch        | X64         | X64             | X86           |
-| @OSVersion     | WIN_7       | WIN_10          | Win_10        |
-
 ## Contributing
 
 Just look at [CONTRIBUTING](https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/docs/CONTRIBUTING.md), thank you!
+
+## License
+
+Distributed under the MIT License. See [LICENSE](https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/LICENSE.md) for more information.
+
+## Acknowledgements
+
+- Opportunity by [GitHub](https://github.com)
+- Badges by [Shields](https://shields.io)
+- Utilities components by
+  - [MrCreatoR](https://www.autoitscript.com/forum/files/file/179-guictrlonhover/) (UDF GuiCtrlOnHover); [LICENSE](https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/utilities/GuiCtrlOnHover.LICENSE.md)
 
 ##
 
