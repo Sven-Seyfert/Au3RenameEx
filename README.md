@@ -121,7 +121,7 @@ Distributed under the MIT License. See [LICENSE](https://github.com/Sven-Seyfert
 - Opportunity by [GitHub](https://github.com)
 - Badges by [Shields](https://shields.io)
 - Utilities components by
-  - [MrCreatoR](https://www.autoitscript.com/forum/files/file/179-guictrlonhover/) (UDF GuiCtrlOnHover); [LICENSE](https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/utilities/GuiCtrlOnHover.LICENSE.md)
+  - [MrCreatoR](https://www.autoitscript.com/forum/files/file/179-guictrlonhover/) (UDF GuiCtrlOnHover.au3); [LICENSE](https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/utilities/GuiCtrlOnHover.LICENSE.md)
 
 ##
 
