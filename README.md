@@ -1,7 +1,7 @@
 #####
 
 <p align="center">
-    <img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/media/favicon.ico" width="80" />
+    <img src="images/icon.png" width="80" />
     <h2 align="center">Welcome to <code>Au3RenameEx</code>【ツ】</h2>
 </p>
 
@@ -100,7 +100,7 @@ Open file `src\Au3RenameEx.au3`, adjust the *#AutoIt3Wrapper compiler informatio
 ## Keyboard shortcuts
 
 | Action        | Shortcut |
-| :------------ | :------- |
+| :---          | :---     |
 | Open Folder   | `Ctrl+O` |
 | Undo          | `Ctrl+Z` |
 | Redo          | `Ctrl+Y` |
