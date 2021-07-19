@@ -84,11 +84,13 @@ Adjustable in `src\Declaration.au3` file.
 
 **Variant 1 - Run the EXE**
 
-Starting the EXE `src\Au3RenameEx.exe` which is compiled with `#AutoIt3Wrapper_UseX64=y` and `#AutoIt3Wrapper_UseUpx=n` (the default expected system is x64).
+Starting the EXE `build\Au3RenameEx.exe` which is compiled with `#AutoIt3Wrapper_UseX64=y` and `#AutoIt3Wrapper_UseUpx=n` (the default expected system is x64).
 
 **Variant 2 - Compile it on your own**
 
-Open file `src\Au3RenameEx.au3`, adjust the *#AutoIt3Wrapper compiler information* if you want to (for example `#AutoIt3Wrapper_UseX64=y`) and run the program or compile the program.
+Open file `src\Au3RenameEx.au3`, adjust the *#AutoIt3Wrapper compiler information* if you want to.
+For example you could change `#AutoIt3Wrapper_UseUpx=y` from no (n) to yes (y), etc.
+Then, run or compile the program.
 
 ## Configuration
 
