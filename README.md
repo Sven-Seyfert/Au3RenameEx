@@ -92,6 +92,10 @@ Open file `src\Au3RenameEx.au3`, adjust the *#AutoIt3Wrapper compiler informatio
 For example you could change `#AutoIt3Wrapper_UseUpx=y` from no (n) to yes (y), etc.
 Then, run or compile the program.
 
+#### *Usage*
+
+See the animated GIFs in the "Features" section above.
+
 ## Configuration
 
 - You can adjust the language of the program by file `config\language.ini`. Just edit the key `ChosenLanguage = 'en'` to maybe 'de'.
