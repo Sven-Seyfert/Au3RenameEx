@@ -1,4 +1,3 @@
-Global $iEnumVariables = 21
 Global Enum _
     $eColumnOneText, _
     $eColumnTwoText, _
@@ -20,4 +19,5 @@ Global Enum _
     $eWidth, _
     $eXPosition, _
     $eYear, _
-    $eYPosition
+    $eYPosition, _
+    $iMaxEnumIndex

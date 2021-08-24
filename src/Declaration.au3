@@ -13,33 +13,33 @@ Global $vImageStyle                = 0x2000
 
 Global $aFileList, $aEdit
 
-Global $aGui[$iEnumVariables]
+Global $aGui[$iMaxEnumIndex]
        $aGui[$eWidth]              = 1300
        $aGui[$eHeight]             = 650
        $aGui[$eXPosition]          = Default
        $aGui[$eYPosition]          = Default
 
-Global $aColor[$iEnumVariables]
+Global $aColor[$iMaxEnumIndex]
        $aColor[$ePrimary]          = 0x282C34
        $aColor[$eSecondary]        = 0xC3C3C3
        $aColor[$eTitleBkg]         = 0x21252B
        $aColor[$eTitleFont]        = 0x35635B
 
-Global $aListView[$iEnumVariables]
+Global $aListView[$iMaxEnumIndex]
        $aListView[$eStyle]         = $LVS_SHOWSELALWAYS + $LVS_REPORT + $LVS_NOSORTHEADER
        $aListView[$eExStyle]       = $LVS_EX_GRIDLINES + $LVS_EX_FULLROWSELECT
        $aListView[$eColumnOneText] = _getResxValue( 'ListViewColumnOneText' )
        $aListView[$eColumnTwoText] = _getResxValue( 'ListViewColumnTwoText' )
 
-Global $aPath[$iEnumVariables]
+Global $aPath[$iMaxEnumIndex]
        $aPath[$eImages]            = _PathFull( @ScriptDir & '..\..\images\' )
 
-Global $aFile[$iEnumVariables]
+Global $aFile[$iMaxEnumIndex]
        $aFile[$eConfig]            = @TempDir & '\' & $sProgramTitle & '\config.ini'
        $aFile[$eSaveForUndo]       = @TempDir & '\' & $sProgramTitle & '\saveForUndo_.txt'
        $aFile[$eLog]               = @TempDir & '\' & $sProgramTitle & '\log.txt'
 
-Global $aSave[$iEnumVariables]
+Global $aSave[$iMaxEnumIndex]
        $aSave[$eDay]               = ''
        $aSave[$eMonth]             = ''
        $aSave[$eYear]              = ''
