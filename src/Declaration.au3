@@ -1,4 +1,4 @@
-Global $sDropText                  = @CRLF & _StringRepeat( ' ', 6 ) & ChrW( 0x2193 ) & @CRLF & _StringRepeat( ' ', 5 ) & ChrW( 0x203E ) & ChrW( 0x203E ) & ChrW( 0x203E )
+Global $sDropText                  = @CRLF & _StringRepeat(' ', 6) & ChrW(0x2193) & @CRLF & _StringRepeat(' ', 5) & ChrW(0x203E) & ChrW(0x203E) & ChrW(0x203E)
 Global $sFolderList                = ''
 Global $sNoPropertyFoundMessage    = ''
 Global $sProgramTitle              = 'Au3RenameEx'
@@ -28,11 +28,11 @@ Global $aColor[$iMaxEnumIndex]
 Global $aListView[$iMaxEnumIndex]
        $aListView[$eStyle]         = $LVS_SHOWSELALWAYS + $LVS_REPORT + $LVS_NOSORTHEADER
        $aListView[$eExStyle]       = $LVS_EX_GRIDLINES + $LVS_EX_FULLROWSELECT
-       $aListView[$eColumnOneText] = _getResxValue( 'ListViewColumnOneText' )
-       $aListView[$eColumnTwoText] = _getResxValue( 'ListViewColumnTwoText' )
+       $aListView[$eColumnOneText] = _getResxValue('ListViewColumnOneText')
+       $aListView[$eColumnTwoText] = _getResxValue('ListViewColumnTwoText')
 
 Global $aPath[$iMaxEnumIndex]
-       $aPath[$eImages]            = _PathFull( @ScriptDir & '..\..\images\' )
+       $aPath[$eImages]            = _PathFull(@ScriptDir & '..\..\images\')
 
 Global $aFile[$iMaxEnumIndex]
        $aFile[$eConfig]            = @TempDir & '\' & $sProgramTitle & '\config.ini'

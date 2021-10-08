@@ -2,16 +2,16 @@
 #AutoIt3Wrapper_AU3Check_Stop_OnWarning=y
 #AutoIt3Wrapper_Icon=..\media\favicon.ico
 #AutoIt3Wrapper_Outfile_x64=..\build\Au3RenameEx.exe
-#AutoIt3Wrapper_Res_Description=Au3RenameEx (2021-08-24)
-#AutoIt3Wrapper_Res_Fileversion=0.17.0
+#AutoIt3Wrapper_Res_Description=Au3RenameEx (2021-10-08)
+#AutoIt3Wrapper_Res_Fileversion=1.0.0
 #AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_UseX64=y
 
 
 
 ; opt and just singleton -------------------------------------------------------
-Opt( 'MustDeclareVars', 1 )
-Global $aInst = ProcessList( 'Au3RenameEx.exe' )
+Opt('MustDeclareVars', 1)
+Global $aInst = ProcessList('Au3RenameEx.exe')
 If $aInst[0][0] > 1 Then Exit
 
 
@@ -46,19 +46,19 @@ If $aInst[0][0] > 1 Then Exit
 
 
 ; processing -------------------------------------------------------------------
-If Not FileExists( $aFile[$eConfig] ) Then _createIniConfigFile()
-_writeIni( 'UndoStep', 0 )
+If Not FileExists($aFile[$eConfig]) Then _createIniConfigFile()
+_writeIni('UndoStep', 0)
 
 While 1
     Switch GUIGetMsg()
         Case -3, $cBtnClose
-            If _myMsgBoxGui( _getResxValue( 'MsgBoxQuestion' ), _getResxValue( 'MsgBoxQuestionCloseProgram' ), 'YesNo' ) Then _disposeAndExit()
+            If _myMsgBoxGui(_getResxValue('MsgBoxQuestion'), _getResxValue('MsgBoxQuestionCloseProgram'), 'YesNo') Then _disposeAndExit()
 
         Case $cBtnMinimize
-            WinSetState( $hMainGui, '', @SW_MINIMIZE )
+            WinSetState($hMainGui, '', @SW_MINIMIZE)
 
         Case $cBtnChooseFolder
-            _myDragAndDropBoxGui( _getResxValue( 'DragAndDropText' ) )
+            _myDragAndDropBoxGui(_getResxValue('DragAndDropText'))
             _openFolder()
 
         Case $cBtnUndo
@@ -82,8 +82,8 @@ While 1
                 _disableAllInputs()
                 _resetPreview()
                 _enableNumeration()
-                _loadGuiIcon( $cBtnPreview,       'preview' )
-                _loadGuiIcon( $cBtnRdoNumeration, 'radioButtonChecked' )
+                _loadGuiIcon($cBtnPreview,       'preview')
+                _loadGuiIcon($cBtnRdoNumeration, 'radioButtonChecked')
             EndIf
 
         Case $cBtnRdoSearchAndReplace
@@ -92,17 +92,17 @@ While 1
                 _disableAllInputs()
                 _resetPreview()
                 _enableSearchAndReplace()
-                _loadGuiIcon( $cBtnPreview,             'preview' )
-                _loadGuiIcon( $cBtnRdoSearchAndReplace, 'radioButtonChecked' )
+                _loadGuiIcon($cBtnPreview,             'preview')
+                _loadGuiIcon($cBtnRdoSearchAndReplace, 'radioButtonChecked')
             EndIf
 
         Case $cBtnCbxSearchAndReplace
             If $bIsBtnCbxSearchAndReplaceEnabled Then
                 If Not $bIsBtnCbxSearchAndReplaceSet Then
-                    _loadGuiIcon( $cBtnCbxSearchAndReplace, 'checkboxChecked', $iButtons / 1.6, $iButtons / 1.6 )
+                    _loadGuiIcon($cBtnCbxSearchAndReplace, 'checkboxChecked', $iButtons / 1.6, $iButtons / 1.6)
                     $bIsBtnCbxSearchAndReplaceSet = True
                 Else
-                    _loadGuiIcon( $cBtnCbxSearchAndReplace, 'checkboxUnchecked', $iButtons / 1.6, $iButtons / 1.6 )
+                    _loadGuiIcon($cBtnCbxSearchAndReplace, 'checkboxUnchecked', $iButtons / 1.6, $iButtons / 1.6)
                     $bIsBtnCbxSearchAndReplaceSet = False
                 EndIf
             EndIf
@@ -113,8 +113,8 @@ While 1
                 _disableAllInputs()
                 _resetPreview()
                 _enablePasteCharacters()
-                _loadGuiIcon( $cBtnPreview,            'preview' )
-                _loadGuiIcon( $cBtnRdoPasteCharacters, 'radioButtonChecked' )
+                _loadGuiIcon($cBtnPreview,            'preview')
+                _loadGuiIcon($cBtnRdoPasteCharacters, 'radioButtonChecked')
             EndIf
 
         Case $cBtnRdoMoveCharacter
@@ -123,8 +123,8 @@ While 1
                 _disableAllInputs()
                 _resetPreview()
                 _enableMoveCharacter()
-                _loadGuiIcon( $cBtnPreview,          'preview' )
-                _loadGuiIcon( $cBtnRdoMoveCharacter, 'radioButtonChecked' )
+                _loadGuiIcon($cBtnPreview,          'preview')
+                _loadGuiIcon($cBtnRdoMoveCharacter, 'radioButtonChecked')
             EndIf
 
         Case $cBtnRdoDeleteCharacters
@@ -133,8 +133,8 @@ While 1
                 _disableAllInputs()
                 _resetPreview()
                 _enableDeleteCharacters()
-                _loadGuiIcon( $cBtnPreview,             'preview' )
-                _loadGuiIcon( $cBtnRdoDeleteCharacters, 'radioButtonChecked' )
+                _loadGuiIcon($cBtnPreview,             'preview')
+                _loadGuiIcon($cBtnRdoDeleteCharacters, 'radioButtonChecked')
             EndIf
 
         Case $cBtnRdoRegExReplace
@@ -143,8 +143,8 @@ While 1
                 _disableAllInputs()
                 _resetPreview()
                 _enableRegExReplace()
-                _loadGuiIcon( $cBtnPreview,         'preview' )
-                _loadGuiIcon( $cBtnRdoRegExReplace, 'radioButtonChecked' )
+                _loadGuiIcon($cBtnPreview,         'preview')
+                _loadGuiIcon($cBtnRdoRegExReplace, 'radioButtonChecked')
             EndIf
 
         Case $cBtnRdoTimestamp
@@ -153,8 +153,8 @@ While 1
                 _disableAllInputs()
                 _resetPreview()
                 _enableTimestamp()
-                _loadGuiIcon( $cBtnPreview,      'preview' )
-                _loadGuiIcon( $cBtnRdoTimestamp, 'radioButtonChecked' )
+                _loadGuiIcon($cBtnPreview,      'preview')
+                _loadGuiIcon($cBtnRdoTimestamp, 'radioButtonChecked')
             EndIf
     EndSwitch
 WEnd

@@ -15,24 +15,24 @@ Global $s__GUICtrl_SOH_OnExitFunc              = ''
 Global Const $n__GUICtrl_SOH_WM_COMMAND        = 0x0111
 Global Const $n__GUICtrl_SOH_WM_LBUTTONDOWN    = 0x0201
 
-Execute( 'OnAutoItExitRegister( "__GUICtrl_SOH_Exit" )' )
+Execute('OnAutoItExitRegister("__GUICtrl_SOH_Exit")')
 
 
 
 ; Public Functions
-Func _onHoverRegister( $iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0 )
-    Local $hCtrlID = GUICtrlGetHandle( $iCtrlID )
-    If Not $hCtrlID Then Return SetError( 1, 0, 0 )
+Func _onHoverRegister($iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0)
+    Local $hCtrlID = GUICtrlGetHandle($iCtrlID)
+    If Not $hCtrlID Then Return SetError(1, 0, 0)
 
     If $p__GUICtrl_SOH_TimerProc = 0 Then
-        $p__GUICtrl_SOH_TimerProc = DllCallbackRegister( '__GUICtrl_SOH_CALLBACK', 'none', 'hwnd;int;uint_ptr;dword' )
-        $i__GUICtrl_SOH_TimerID   = DllCall( $s__GUICtrl_SOH_User32_Dll, 'int', 'SetTimer', _
-            'hwnd', 0, 'uint_ptr', Round( TimerInit() ), 'uint', 30, 'ptr', DllCallbackGetPtr( $p__GUICtrl_SOH_TimerProc ) )
+        $p__GUICtrl_SOH_TimerProc = DllCallbackRegister('__GUICtrl_SOH_CALLBACK', 'none', 'hwnd;int;uint_ptr;dword')
+        $i__GUICtrl_SOH_TimerID   = DllCall($s__GUICtrl_SOH_User32_Dll, 'int', 'SetTimer', _
+            'hwnd', 0, 'uint_ptr', Round(TimerInit()), 'uint', 30, 'ptr', DllCallbackGetPtr($p__GUICtrl_SOH_TimerProc))
 
-        GUIRegisterMsg( $n__GUICtrl_SOH_WM_COMMAND, '__GUICtrl_SOH_WM_COMMAND' )
-        GUIRegisterMsg( $n__GUICtrl_SOH_WM_LBUTTONDOWN, '__GUICtrl_SOH_WM_LBUTTONDOWN' )
+        GUIRegisterMsg($n__GUICtrl_SOH_WM_COMMAND, '__GUICtrl_SOH_WM_COMMAND')
+        GUIRegisterMsg($n__GUICtrl_SOH_WM_LBUTTONDOWN, '__GUICtrl_SOH_WM_LBUTTONDOWN')
 
-        If IsArray( $i__GUICtrl_SOH_TimerID ) Then $i__GUICtrl_SOH_TimerID = $i__GUICtrl_SOH_TimerID[0]
+        If IsArray($i__GUICtrl_SOH_TimerID) Then $i__GUICtrl_SOH_TimerID = $i__GUICtrl_SOH_TimerID[0]
     EndIf
 
     If $sHover_Func = '' And @NumParams <= 2 Then
@@ -92,8 +92,8 @@ Func _onHoverRegister( $iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPr
     Return 1
 EndFunc
 
-Func _GUICtrl_SetHoverOnBackWindow( $iSetBackWin )
-    $i__GUICtrl_SOH_HoverOnBackWin = Number( $iSetBackWin = 1 )
+Func _GUICtrl_SetHoverOnBackWindow($iSetBackWin)
+    $i__GUICtrl_SOH_HoverOnBackWin = Number($iSetBackWin = 1)
 EndFunc
 
 Func _GUICtrl_OnHoverReleaseResources()
@@ -103,26 +103,26 @@ EndFunc
 
 
 ; Backwards Compatibility Functions
-Func _GUICtrl_SetOnHover( $iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0 )
-    _onHoverRegister( $iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func )
+Func _GUICtrl_SetOnHover($iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0)
+    _onHoverRegister($iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func)
 EndFunc
 
-Func GUICtrl_SetOnHover( $iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0 )
-    _onHoverRegister( $iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func )
+Func GUICtrl_SetOnHover($iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0)
+    _onHoverRegister($iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func)
 EndFunc
 
-Func GUICtrlSetOnHover( $iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0 )
-    _onHoverRegister( $iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func )
+Func GUICtrlSetOnHover($iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0)
+    _onHoverRegister($iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func)
 EndFunc
 
-Func _GUICtrlSetOnHover( $iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0 )
-    _onHoverRegister( $iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func )
+Func _GUICtrlSetOnHover($iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0)
+    _onHoverRegister($iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func)
 EndFunc
 
 
 
 ; Internal Functions
-Func __GUICtrl_SOH_CALLBACK( $hWnd, $uiMsg, $idEvent, $dwTime )
+Func __GUICtrl_SOH_CALLBACK($hWnd, $uiMsg, $idEvent, $dwTime)
     $i__GUICtrl_SOH_CtrlsModified = 0
 
     If $a__GUICtrl_SOH_Ctrls[0][0] < 1 Then Return
@@ -132,16 +132,16 @@ Func __GUICtrl_SOH_CALLBACK( $hWnd, $uiMsg, $idEvent, $dwTime )
     Else
         Local $iControl_Hovered = GUIGetCursorInfo()
 
-        If Not IsArray( $iControl_Hovered ) Then Return
+        If Not IsArray($iControl_Hovered) Then Return
 
-        $iControl_Hovered = GUICtrlGetHandle( $iControl_Hovered[4] )
+        $iControl_Hovered = GUICtrlGetHandle($iControl_Hovered[4])
     EndIf
 
     Local $sCheck_LHE  = $a__GUICtrl_SOH_LastHoveredElements[1]
     Local $iCheck_LCEM = $h__GUICtrl_SOH_LastClickedElementMark
     Local $iCtrlID
 
-    If Not $iControl_Hovered Or ( $sCheck_LHE <> -1 And $iControl_Hovered <> $sCheck_LHE ) Then
+    If Not $iControl_Hovered Or ($sCheck_LHE <> -1 And $iControl_Hovered <> $sCheck_LHE) Then
         If $a__GUICtrl_SOH_LastHoveredElementsMark = -1 Then Return
 
         Local $a__Tmp_GUICtrl_SOH_LastHoveredElements[2] = [$a__GUICtrl_SOH_LastHoveredElements[0], $a__GUICtrl_SOH_LastHoveredElements[1]]
@@ -152,11 +152,11 @@ Func __GUICtrl_SOH_CALLBACK( $hWnd, $uiMsg, $idEvent, $dwTime )
         $h__GUICtrl_SOH_LastClickedElementMark  = -1
 
         If $a__Tmp_GUICtrl_SOH_LastHoveredElements[0] <> -1 Then
-            $iCtrlID = DllCall( $s__GUICtrl_SOH_User32_Dll, 'int', 'GetDlgCtrlID', 'hwnd', $a__Tmp_GUICtrl_SOH_LastHoveredElements[1] )
+            $iCtrlID = DllCall($s__GUICtrl_SOH_User32_Dll, 'int', 'GetDlgCtrlID', 'hwnd', $a__Tmp_GUICtrl_SOH_LastHoveredElements[1])
 
-            If IsArray( $iCtrlID ) Then $iCtrlID = $iCtrlID[0]
+            If IsArray($iCtrlID) Then $iCtrlID = $iCtrlID[0]
 
-            __GUICtrl_SOH_Call( $a__Tmp_GUICtrl_SOH_LastHoveredElements[0], $iCtrlID, 2, $iControl_Hovered )
+            __GUICtrl_SOH_Call($a__Tmp_GUICtrl_SOH_LastHoveredElements[0], $iCtrlID, 2, $iControl_Hovered)
         EndIf
     Else
         If $i__GUICtrl_SOH_CtrlsModified = 1 Then
@@ -164,37 +164,37 @@ Func __GUICtrl_SOH_CALLBACK( $hWnd, $uiMsg, $idEvent, $dwTime )
             Return
         EndIf
 
-        Local $iUbound = UBound( $a__GUICtrl_SOH_Ctrls ) - 1
+        Local $iUbound = UBound($a__GUICtrl_SOH_Ctrls) - 1
 
         For $i = 1 To $a__GUICtrl_SOH_Ctrls[0][0]
             If $i > $iUbound Then ExitLoop
 
             If $a__GUICtrl_SOH_Ctrls[$i][0] = $iControl_Hovered Then
-                $iCtrlID = DllCall( $s__GUICtrl_SOH_User32_Dll, 'int', 'GetDlgCtrlID', 'hwnd', $iControl_Hovered )
+                $iCtrlID = DllCall($s__GUICtrl_SOH_User32_Dll, 'int', 'GetDlgCtrlID', 'hwnd', $iControl_Hovered)
 
-                If IsArray( $iCtrlID ) Then $iCtrlID = $iCtrlID[0]
+                If IsArray($iCtrlID) Then $iCtrlID = $iCtrlID[0]
 
-                If ( $a__GUICtrl_SOH_Ctrls[$i][3] <> '' Or $a__GUICtrl_SOH_Ctrls[$i][4] <> '' ) And ( $iCheck_LCEM = -1 Or $iCheck_LCEM = $iControl_Hovered ) Then
+                If ($a__GUICtrl_SOH_Ctrls[$i][3] <> '' Or $a__GUICtrl_SOH_Ctrls[$i][4] <> '') And ($iCheck_LCEM = -1 Or $iCheck_LCEM = $iControl_Hovered) Then
                     Local $aCursorInfo = 0
-                    Local $hParent_Wnd = DllCall( $s__GUICtrl_SOH_User32_Dll, 'hwnd', 'GetParent', 'hwnd', $iControl_Hovered )
+                    Local $hParent_Wnd = DllCall($s__GUICtrl_SOH_User32_Dll, 'hwnd', 'GetParent', 'hwnd', $iControl_Hovered)
 
-                    If Not @error And IsArray( $hParent_Wnd ) Then
+                    If Not @error And IsArray($hParent_Wnd) Then
                         $hParent_Wnd = $hParent_Wnd[0]
-                        $aCursorInfo = GUIGetCursorInfo( $hParent_Wnd )
+                        $aCursorInfo = GUIGetCursorInfo($hParent_Wnd)
                     Else
                         $aCursorInfo = GUIGetCursorInfo()
                     EndIf
 
-                    If IsArray( $aCursorInfo ) Then
-                        If ( $i__GUICtrl_SOH_LastPrimaryDownCtrlID = $iControl_Hovered Or $i__GUICtrl_SOH_LastPrimaryDownCtrlID = 0 ) And WinActive( $hParent_Wnd ) And _
+                    If IsArray($aCursorInfo) Then
+                        If ($i__GUICtrl_SOH_LastPrimaryDownCtrlID = $iControl_Hovered Or $i__GUICtrl_SOH_LastPrimaryDownCtrlID = 0) And WinActive($hParent_Wnd) And _
                             $aCursorInfo[2] = 1 And $a__GUICtrl_SOH_Ctrls[$i][3] <> -1 And _
-                            ( ( $a__GUICtrl_SOH_Ctrls[$i][5] < 1 And $iCheck_LCEM <> $iControl_Hovered ) Or $a__GUICtrl_SOH_Ctrls[$i][5] > 0 ) Then
+                            (($a__GUICtrl_SOH_Ctrls[$i][5] < 1 And $iCheck_LCEM <> $iControl_Hovered) Or $a__GUICtrl_SOH_Ctrls[$i][5] > 0) Then
 
-                            __GUICtrl_SOH_Call( $a__GUICtrl_SOH_Ctrls[$i][3], $iCtrlID, 1 )
+                            __GUICtrl_SOH_Call($a__GUICtrl_SOH_Ctrls[$i][3], $iCtrlID, 1)
 
                             $h__GUICtrl_SOH_LastClickedElementMark = $iControl_Hovered
                         ElseIf $aCursorInfo[2] = 0 And $a__GUICtrl_SOH_Ctrls[$i][4] <> -1 And $iCheck_LCEM = $iControl_Hovered Then
-                            __GUICtrl_SOH_Call( $a__GUICtrl_SOH_Ctrls[$i][4], $iCtrlID, 2 )
+                            __GUICtrl_SOH_Call($a__GUICtrl_SOH_Ctrls[$i][4], $iCtrlID, 2)
 
                             $h__GUICtrl_SOH_LastClickedElementMark = -1
                         EndIf
@@ -214,7 +214,7 @@ Func __GUICtrl_SOH_CALLBACK( $hWnd, $uiMsg, $idEvent, $dwTime )
                     $a__GUICtrl_SOH_LastHoveredElements[1] = $iControl_Hovered
                 EndIf
 
-                __GUICtrl_SOH_Call( $a__GUICtrl_SOH_Ctrls[$i][1], $iCtrlID, 1, 0 )
+                __GUICtrl_SOH_Call($a__GUICtrl_SOH_Ctrls[$i][1], $iCtrlID, 1, 0)
 
                 If $i__GUICtrl_SOH_CtrlsModified = 1 Then ExitLoop
 
@@ -226,63 +226,63 @@ Func __GUICtrl_SOH_CALLBACK( $hWnd, $uiMsg, $idEvent, $dwTime )
     $i__GUICtrl_SOH_CtrlsModified = 0
 EndFunc
 
-Func __GUICtrl_SOH_WM_COMMAND( $hWndGUI, $MsgID, $WParam, $LParam )
+Func __GUICtrl_SOH_WM_COMMAND($hWndGUI, $MsgID, $WParam, $LParam)
     $i__GUICtrl_SOH_LastPrimaryDownCtrlID = $LParam
 
-    Local $iRet = Execute( 'CP_WM_COMMAND( $hWndGUI, $MsgID, $WParam, $LParam )' )
+    Local $iRet = Execute('CP_WM_COMMAND($hWndGUI, $MsgID, $WParam, $LParam)')
     If $iRet <> '' Then Return $iRet
 EndFunc
 
-Func __GUICtrl_SOH_WM_LBUTTONDOWN( $hWndGUI, $MsgID, $WParam, $LParam )
+Func __GUICtrl_SOH_WM_LBUTTONDOWN($hWndGUI, $MsgID, $WParam, $LParam)
     $i__GUICtrl_SOH_LastPrimaryDownCtrlID = 0
 EndFunc
 
 Func __GUICtrl_SOH_ControlGetHovered()
-    Local $iOld_Opt_MCM = Opt( 'MouseCoordMode', 1 )
-    Local $tPoint       = DllStructCreate( 'int X;int Y' )
+    Local $iOld_Opt_MCM = Opt('MouseCoordMode', 1)
+    Local $tPoint       = DllStructCreate('int X;int Y')
     Local $aMPos        = MouseGetPos()
 
-    DllStructSetData( $tPoint, 'x', $aMPos[0] )
-    DllStructSetData( $tPoint, 'y', $aMPos[1] )
+    DllStructSetData($tPoint, 'x', $aMPos[0])
+    DllStructSetData($tPoint, 'y', $aMPos[1])
 
-    Local $tPointCast = DllStructCreate( 'int64', DllStructGetPtr( $tPoint ) )
-    Local $aRet = DllCall( $s__GUICtrl_SOH_User32_Dll, 'hwnd', 'WindowFromPoint', 'int64', DllStructGetData( $tPointCast, 1 ) )
+    Local $tPointCast = DllStructCreate('int64', DllStructGetPtr($tPoint))
+    Local $aRet = DllCall($s__GUICtrl_SOH_User32_Dll, 'hwnd', 'WindowFromPoint', 'int64', DllStructGetData($tPointCast, 1))
 
-    Opt( 'MouseCoordMode', $iOld_Opt_MCM )
+    Opt('MouseCoordMode', $iOld_Opt_MCM)
 
-    If @error Or Not IsArray( $aRet ) Then Return SetError( @error, @extended, 0 )
+    If @error Or Not IsArray($aRet) Then Return SetError(@error, @extended, 0)
 
     Return $aRet[0]
 EndFunc
 
-Func __GUICtrl_SOH_Call( $sFunction, $sParam1 = '', $sParam2 = '', $sParam3 = '', $sParam4 = '', $sParam5 = '' )
-    Local $iRet = Call( $sFunction )
+Func __GUICtrl_SOH_Call($sFunction, $sParam1 = '', $sParam2 = '', $sParam3 = '', $sParam4 = '', $sParam5 = '')
+    Local $iRet = Call($sFunction)
     If @error <> 0xDEAD Then Return $iRet
 
-    $iRet = Call( $sFunction, $sParam1 )
+    $iRet = Call($sFunction, $sParam1)
     If @error <> 0xDEAD Then Return $iRet
 
-    $iRet = Call( $sFunction, $sParam1, $sParam2 )
+    $iRet = Call($sFunction, $sParam1, $sParam2)
     If @error <> 0xDEAD Then Return $iRet
 
-    $iRet = Call( $sFunction, $sParam1, $sParam2, $sParam3 )
+    $iRet = Call($sFunction, $sParam1, $sParam2, $sParam3)
     If @error <> 0xDEAD Then Return $iRet
 
-    $iRet = Call( $sFunction, $sParam1, $sParam2, $sParam3, $sParam4 )
+    $iRet = Call($sFunction, $sParam1, $sParam2, $sParam3, $sParam4)
     If @error <> 0xDEAD Then Return $iRet
 
-    $iRet = Call( $sFunction, $sParam1, $sParam2, $sParam3, $sParam4, $sParam5 )
+    $iRet = Call($sFunction, $sParam1, $sParam2, $sParam3, $sParam4, $sParam5)
     If @error <> 0xDEAD Then Return $iRet
 
-    Return SetError( 1, 0, 0 )
+    Return SetError(1, 0, 0)
 EndFunc
 
 Func __GUICtrl_SOH_ReleaseResources()
-    If $p__GUICtrl_SOH_TimerProc > 0 Then DllCallbackFree( $p__GUICtrl_SOH_TimerProc )
-    If $i__GUICtrl_SOH_TimerID   > 0 Then DllCall( $s__GUICtrl_SOH_User32_Dll, 'int', 'KillTimer', 'hwnd', 0, 'uint_ptr', $i__GUICtrl_SOH_TimerID )
+    If $p__GUICtrl_SOH_TimerProc > 0 Then DllCallbackFree($p__GUICtrl_SOH_TimerProc)
+    If $i__GUICtrl_SOH_TimerID   > 0 Then DllCall($s__GUICtrl_SOH_User32_Dll, 'int', 'KillTimer', 'hwnd', 0, 'uint_ptr', $i__GUICtrl_SOH_TimerID)
 
-    GUIRegisterMsg( $n__GUICtrl_SOH_WM_COMMAND, '' )
-    GUIRegisterMsg( $n__GUICtrl_SOH_WM_LBUTTONDOWN, '' )
+    GUIRegisterMsg($n__GUICtrl_SOH_WM_COMMAND, '')
+    GUIRegisterMsg($n__GUICtrl_SOH_WM_LBUTTONDOWN, '')
 
     $a__GUICtrl_SOH_Ctrls = 0
     Dim $a__GUICtrl_SOH_Ctrls[1][1]
@@ -292,6 +292,6 @@ Func __GUICtrl_SOH_ReleaseResources()
 EndFunc
 
 Func __GUICtrl_SOH_Exit()
-    If $s__GUICtrl_SOH_OnExitFunc <> '' Then Call( $s__GUICtrl_SOH_OnExitFunc )
+    If $s__GUICtrl_SOH_OnExitFunc <> '' Then Call($s__GUICtrl_SOH_OnExitFunc)
     __GUICtrl_SOH_ReleaseResources()
 EndFunc
