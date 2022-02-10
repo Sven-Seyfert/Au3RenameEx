@@ -13,7 +13,7 @@
 ![os](https://img.shields.io/badge/os-windows-yellow.svg?style=flat-square&logo=windows)
 ![editor](https://img.shields.io/badge/editor-VSCode-blueviolet.svg?style=flat-square&logo=visual-studio-code)
 
-[Description](#description) | [Features](#features) | [Getting started](#getting-started) | [Configuration](#configuration) | [Keyboard shortcuts](#keyboard-shortcuts) | [Contributing](#contributing) | [License](#license) | [Acknowledgements](#acknowledgements)
+[Description](#description) | [Features](#features) | [Getting started](#getting-started) | [Configuration](#configuration) | [FAQ](#faq) | [Contributing](#contributing) | [License](#license) | [Acknowledgements](#acknowledgements)
 
 ## Description
 
@@ -23,54 +23,59 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 ## Features
 
 1. Multilingualism is possible.
-    - Already available languages are *en* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/gb.svg" alt="en" width="18px"/> and *de* <img src="https://github.com/lipis/flag-icon-css/blob/master/flags/4x3/de.svg" alt="de" width="18px"/>
+    - Already available languages are *en* <img src="https://raw.githubusercontent.com/lipis/flag-icons/42f496a4cb18e3f1a41c973633b748125d61b820/flags/4x3/gb.svg" alt="en" width="18px"/> and *de* <img src="https://raw.githubusercontent.com/lipis/flag-icons/42f496a4cb18e3f1a41c973633b748125d61b820/flags/4x3/de.svg" alt="de" width="18px"/>
     - Easy extendable through file `config\language.ini`
 
 2. Simultaneously renaming of files in multiple folders are possible.
 
 <details>
-<summary>3. Numeration with several digit size</summary>
-<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/numeration.gif" /></p>
-</details>
+<summary>3. Various renaming options</summary><br>
 
-<details>
-<summary>4. Replace characters (with case sensitive option)</summary>
-<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/replaceCharacter.gif" /></p>
-</details>
+  <details>
+  <summary><i>Numeration with several digit size</i></summary>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/numeration.gif" /></p>
+  </details>
 
-<details>
-<summary>5. Paste characters to position</summary>
-<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/pasteCharacter.gif" /></p>
-</details>
+  <details>
+  <summary><i>Replace characters (with case sensitive option)</i></summary>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/replaceCharacter.gif" /></p>
+  </details>
 
-<details>
-<summary>6. Move character to position</summary>
-<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/moveCharacter.gif" /></p>
-</details>
+  <details>
+  <summary><i>Paste characters to position</i></summary>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/pasteCharacter.gif" /></p>
+  </details>
 
-<details>
-<summary>7. Delete characters</summary>
-<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/deleteCharacter.gif" /></p>
-</details>
+  <details>
+  <summary><i>Move character to position</i></summary>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/moveCharacter.gif" /></p>
+  </details>
 
-<details>
-<summary>8. Replace by RegEx pattern (most powerful)</summary>
-<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/regexReplace.gif" /></p>
-</details>
+  <details>
+  <summary><i>Delete characters</i></summary>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/deleteCharacter.gif" /></p>
+  </details>
 
-<details>
-<summary>9. Timestamp as filename</summary>
-<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/timestampAsFilename.gif" /></p>
-</details>
+  <details>
+  <summary><i>Replace by RegEx pattern (most powerful)</i></summary>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/regexReplace.gif" /></p>
+  </details>
 
-<details>
-<summary>10. Undo and Redo your changes</summary>
-<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/undoRedo.gif" /></p>
-</details>
+  <details>
+  <summary><i>Timestamp as filename</i></summary>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/timestampAsFilename.gif" /></p>
+  </details>
 
-<details>
-<summary>11. Input exception handling prevents false renaming</summary>
-<p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/inputHandling.gif" /></p>
+  <details>
+  <summary><i>Undo and Redo your changes</i></summary>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/undoRedo.gif" /></p>
+  </details>
+
+  <details>
+  <summary><i>Input exception handling prevents false renaming</i></summary>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/inputHandling.gif" /></p>
+  </details>
+
 </details>
 
 ## Getting started
@@ -95,14 +100,7 @@ Then, run or compile the program.
 
 See the animated GIFs in the "Features" section above.
 
-## Configuration
-
-- You can adjust the language of the program by file `config\language.ini`. Just edit the key `ChosenLanguage = 'en'` to maybe 'de'.
-- If you need an other language please add a new INI section in this file.
-    - For example spanish (español) section `[es]` with all the key-value structure.
-    - I appreciate when you share your language by pull request, thanks.
-
-## Keyboard shortcuts
+#### *Keyboard shortcuts*
 
 | Action        | Shortcut |
 | :---          | :---     |
@@ -112,6 +110,36 @@ See the animated GIFs in the "Features" section above.
 | Preview       | `Ctrl+P` |
 | Reset preview | `Ctrl+R` |
 | Rename/Save   | `Ctrl+S` |
+
+## Configuration
+
+- You can adjust the language of the program by file `config\language.ini`. Just edit the key `ChosenLanguage = 'en'` to maybe 'de'.
+- If you need an other language please add a new INI section in this file.
+    - For example spanish (español) section `[es]` with all the key-value structure.
+    - I appreciate when you share your language by pull request, thanks.
+
+## FAQ
+
+<details>
+<summary><i>Frequently Asked Questions</i></summary><br>
+
+  <details>
+  <summary><code>1. How to [...]</code></summary><p>
+
+  **Q:** Is there a frequently asked question already?<br>
+  **A:** No, not yet.
+
+  <br></p></details>
+
+  <details>
+  <summary><code>2. How to [...]</code></summary><p>
+
+  **Q:** [...]?<br>
+  **A:** [...].
+
+  <br></p></details>
+
+</details>
 
 ## Contributing
 
