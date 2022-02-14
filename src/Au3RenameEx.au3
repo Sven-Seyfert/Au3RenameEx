@@ -1,8 +1,8 @@
 #pragma compile(CompanyName, © SOLVE SMART)
-#pragma compile(FileVersion, 1.3.0)
+#pragma compile(FileVersion, 1.4.0)
 #pragma compile(LegalCopyright, © Sven Seyfert)
 #pragma compile(ProductName, Au3RenameEx)
-#pragma compile(ProductVersion, 1.3.0 - 2022-02-10)
+#pragma compile(ProductVersion, 1.4.0 - 2022-02-14)
 
 #AutoIt3Wrapper_AU3Check_Stop_OnWarning=y
 #AutoIt3Wrapper_Icon=..\media\favicon.ico
@@ -49,115 +49,115 @@ If $aInst[0][0] > 1 Then Exit
 
 
 ; processing -------------------------------------------------------------------
-If Not FileExists($aFile[$eConfig]) Then _createIniConfigFile()
-_writeIni('UndoStep', 0)
+If Not FileExists($aFile[$eConfig]) Then _CreateIniConfigFile()
+_WriteIni('UndoStep', 0)
 
-While 1
+While True
     Switch GUIGetMsg()
         Case -3, $cBtnClose
-            If _myMsgBoxGui(_getResxValue('MsgBoxQuestion'), _getResxValue('MsgBoxQuestionCloseProgram'), 'YesNo') Then _disposeAndExit()
+            If _MyMsgBoxGui(_GetResxValue('MsgBoxQuestion'), _GetResxValue('MsgBoxQuestionCloseProgram'), 'YesNo') Then _DisposeAndExit()
 
         Case $cBtnMinimize
             WinSetState($hMainGui, '', @SW_MINIMIZE)
 
         Case $cBtnChooseFolder
-            _myDragAndDropBoxGui(_getResxValue('DragAndDropText'))
-            _openFolder()
+            _MyDragAndDropBoxGui(_GetResxValue('DragAndDropText'))
+            _OpenFolder()
 
         Case $cBtnUndo
-            _undoRenameFiles()
+            _UndoRenameFiles()
 
         Case $cBtnRedo
-            _redoRenameFiles()
+            _RedoRenameFiles()
 
         Case $cBtnPreview
-            _previewFiles()
+            _PreviewFiles()
 
         Case $cBtnReset
-            _resetPreview()
+            _ResetPreview()
 
         Case $cBtnRename
-            _renameFiles()
+            _RenameFiles()
 
         Case $cBtnRdoNumeration
             If $bIsBtnRdoNumerationEnabled Then
-                _uncheckAllRadioButtons()
-                _disableAllInputs()
-                _resetPreview()
-                _enableNumeration()
-                _loadGuiIcon($cBtnPreview,       'preview')
-                _loadGuiIcon($cBtnRdoNumeration, 'radioButtonChecked')
+                _UncheckAllRadioButtons()
+                _DisableAllInputs()
+                _ResetPreview()
+                _EnableNumeration()
+                _LoadGuiIcon($cBtnPreview,       'preview')
+                _LoadGuiIcon($cBtnRdoNumeration, 'radioButtonChecked')
             EndIf
 
         Case $cBtnRdoSearchAndReplace
             If $bIsBtnRdoSearchAndReplaceEnabled Then
-                _uncheckAllRadioButtons()
-                _disableAllInputs()
-                _resetPreview()
-                _enableSearchAndReplace()
-                _loadGuiIcon($cBtnPreview,             'preview')
-                _loadGuiIcon($cBtnRdoSearchAndReplace, 'radioButtonChecked')
+                _UncheckAllRadioButtons()
+                _DisableAllInputs()
+                _ResetPreview()
+                _EnableSearchAndReplace()
+                _LoadGuiIcon($cBtnPreview,             'preview')
+                _LoadGuiIcon($cBtnRdoSearchAndReplace, 'radioButtonChecked')
             EndIf
 
         Case $cBtnCbxSearchAndReplace
             If $bIsBtnCbxSearchAndReplaceEnabled Then
                 If Not $bIsBtnCbxSearchAndReplaceSet Then
-                    _loadGuiIcon($cBtnCbxSearchAndReplace, 'checkboxChecked', $iButtons / 1.6, $iButtons / 1.6)
+                    _LoadGuiIcon($cBtnCbxSearchAndReplace, 'checkboxChecked', $iButtons / 1.6, $iButtons / 1.6)
                     $bIsBtnCbxSearchAndReplaceSet = True
                 Else
-                    _loadGuiIcon($cBtnCbxSearchAndReplace, 'checkboxUnchecked', $iButtons / 1.6, $iButtons / 1.6)
+                    _LoadGuiIcon($cBtnCbxSearchAndReplace, 'checkboxUnchecked', $iButtons / 1.6, $iButtons / 1.6)
                     $bIsBtnCbxSearchAndReplaceSet = False
                 EndIf
             EndIf
 
         Case $cBtnRdoPasteCharacters
             If $bIsBtnRdoPasteCharactersEnabled Then
-                _uncheckAllRadioButtons()
-                _disableAllInputs()
-                _resetPreview()
-                _enablePasteCharacters()
-                _loadGuiIcon($cBtnPreview,            'preview')
-                _loadGuiIcon($cBtnRdoPasteCharacters, 'radioButtonChecked')
+                _UncheckAllRadioButtons()
+                _DisableAllInputs()
+                _ResetPreview()
+                _EnablePasteCharacters()
+                _LoadGuiIcon($cBtnPreview,            'preview')
+                _LoadGuiIcon($cBtnRdoPasteCharacters, 'radioButtonChecked')
             EndIf
 
         Case $cBtnRdoMoveCharacter
             If $bIsBtnRdoMoveCharacterEnabled Then
-                _uncheckAllRadioButtons()
-                _disableAllInputs()
-                _resetPreview()
-                _enableMoveCharacter()
-                _loadGuiIcon($cBtnPreview,          'preview')
-                _loadGuiIcon($cBtnRdoMoveCharacter, 'radioButtonChecked')
+                _UncheckAllRadioButtons()
+                _DisableAllInputs()
+                _ResetPreview()
+                _EnableMoveCharacter()
+                _LoadGuiIcon($cBtnPreview,          'preview')
+                _LoadGuiIcon($cBtnRdoMoveCharacter, 'radioButtonChecked')
             EndIf
 
         Case $cBtnRdoDeleteCharacters
             If $bIsBtnRdoDeleteCharactersEnabled Then
-                _uncheckAllRadioButtons()
-                _disableAllInputs()
-                _resetPreview()
-                _enableDeleteCharacters()
-                _loadGuiIcon($cBtnPreview,             'preview')
-                _loadGuiIcon($cBtnRdoDeleteCharacters, 'radioButtonChecked')
+                _UncheckAllRadioButtons()
+                _DisableAllInputs()
+                _ResetPreview()
+                _EnableDeleteCharacters()
+                _LoadGuiIcon($cBtnPreview,             'preview')
+                _LoadGuiIcon($cBtnRdoDeleteCharacters, 'radioButtonChecked')
             EndIf
 
         Case $cBtnRdoRegExReplace
             If $bIsBtnRdoRegExReplaceEnabled Then
-                _uncheckAllRadioButtons()
-                _disableAllInputs()
-                _resetPreview()
-                _enableRegExReplace()
-                _loadGuiIcon($cBtnPreview,         'preview')
-                _loadGuiIcon($cBtnRdoRegExReplace, 'radioButtonChecked')
+                _UncheckAllRadioButtons()
+                _DisableAllInputs()
+                _ResetPreview()
+                _EnableRegExReplace()
+                _LoadGuiIcon($cBtnPreview,         'preview')
+                _LoadGuiIcon($cBtnRdoRegExReplace, 'radioButtonChecked')
             EndIf
 
         Case $cBtnRdoTimestamp
             If $bIsBtnRdoTimestampEnabled Then
-                _uncheckAllRadioButtons()
-                _disableAllInputs()
-                _resetPreview()
-                _enableTimestamp()
-                _loadGuiIcon($cBtnPreview,      'preview')
-                _loadGuiIcon($cBtnRdoTimestamp, 'radioButtonChecked')
+                _UncheckAllRadioButtons()
+                _DisableAllInputs()
+                _ResetPreview()
+                _EnableTimestamp()
+                _LoadGuiIcon($cBtnPreview,      'preview')
+                _LoadGuiIcon($cBtnRdoTimestamp, 'radioButtonChecked')
             EndIf
     EndSwitch
 WEnd

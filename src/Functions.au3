@@ -1,26 +1,26 @@
-Func _disposeAndExit()
-    OnAutoItExitUnRegister('_disposeAndExit')
+Func _DisposeAndExit()
+    OnAutoItExitUnRegister('_DisposeAndExit')
 
     For $i = 0 To 50 Step 1
-        FileDelete(_renameFilenameWithNumber($i))
+        FileDelete(_RenameFilenameWithNumber($i))
     Next
 
     GUIDelete($hMainGui)
     Exit
 EndFunc
 
-Func _createIniConfigFile()
-    _writeFile($aFile[$eConfig], '[' & $sSectionName & ']')
+Func _CreateIniConfigFile()
+    _WriteFile($aFile[$eConfig], '[' & $sSectionName & ']')
 EndFunc
 
-Func _renameFilenameWithNumber($iNumber)
+Func _RenameFilenameWithNumber($iNumber)
     Return StringReplace($aFile[$eSaveForUndo], '_.txt', '_' & $iNumber & '.txt')
 EndFunc
 
-Func _getChosenFolderPath()
+Func _GetChosenFolderPath()
     If $sFolderList == '' Then
-        _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxWarningNoFolder'))
-        _defaultState()
+        _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxWarningNoFolder'))
+        _DefaultState()
 
         Return False
     EndIf
@@ -31,7 +31,7 @@ Func _getChosenFolderPath()
     Return $aFolderList
 EndFunc
 
-Func _uncheckAllRadioButtons()
+Func _UncheckAllRadioButtons()
     $bSectionNumeration               = False
     $bSectionSearchAndReplace         = False
     $bSectionPasteCharacters          = False
@@ -42,90 +42,90 @@ Func _uncheckAllRadioButtons()
 
     $bIsBtnCbxSearchAndReplaceEnabled = False
 
-    _loadGuiIcon($cBtnRdoNumeration,       'radioButtonUnchecked')
-    _loadGuiIcon($cBtnRdoSearchAndReplace, 'radioButtonUnchecked')
-    _loadGuiIcon($cBtnRdoPasteCharacters,  'radioButtonUnchecked')
-    _loadGuiIcon($cBtnRdoMoveCharacter,    'radioButtonUnchecked')
-    _loadGuiIcon($cBtnRdoDeleteCharacters, 'radioButtonUnchecked')
-    _loadGuiIcon($cBtnRdoRegExReplace,     'radioButtonUnchecked')
-    _loadGuiIcon($cBtnRdoTimestamp,        'radioButtonUnchecked')
+    _LoadGuiIcon($cBtnRdoNumeration,       'radioButtonUnchecked')
+    _LoadGuiIcon($cBtnRdoSearchAndReplace, 'radioButtonUnchecked')
+    _LoadGuiIcon($cBtnRdoPasteCharacters,  'radioButtonUnchecked')
+    _LoadGuiIcon($cBtnRdoMoveCharacter,    'radioButtonUnchecked')
+    _LoadGuiIcon($cBtnRdoDeleteCharacters, 'radioButtonUnchecked')
+    _LoadGuiIcon($cBtnRdoRegExReplace,     'radioButtonUnchecked')
+    _LoadGuiIcon($cBtnRdoTimestamp,        'radioButtonUnchecked')
 
-    _loadGuiIcon($cBtnCbxSearchAndReplace, 'checkboxUnchecked', $iButtons / 1.6, $iButtons / 1.6)
+    _LoadGuiIcon($cBtnCbxSearchAndReplace, 'checkboxUnchecked', $iButtons / 1.6, $iButtons / 1.6)
 EndFunc
 
-Func _disableAllInputs()
-    _disable($cNumerationStart)
-    _disable($cNumerationDigits)
-    _disable($cSearch)
-    _disable($cReplace)
-    _disable($cText)
-    _disable($cPosition)
-    _disable($cFromPos)
-    _disable($cToPos)
-    _disable($cAmount)
-    _disable($cAtPosition)
-    _disable($cPattern)
-    _disable($cReplaceRegEx)
-    _disable($cProperty)
+Func _DisableAllInputs()
+    _Disable($cNumerationStart)
+    _Disable($cNumerationDigits)
+    _Disable($cSearch)
+    _Disable($cReplace)
+    _Disable($cText)
+    _Disable($cPosition)
+    _Disable($cFromPos)
+    _Disable($cToPos)
+    _Disable($cAmount)
+    _Disable($cAtPosition)
+    _Disable($cPattern)
+    _Disable($cReplaceRegEx)
+    _Disable($cProperty)
 EndFunc
 
-Func _enableNumeration()
+Func _EnableNumeration()
     $bSectionNumeration   = True
     $bIsBtnPreviewEnabled = True
 
-    _enable($cNumerationStart)
-    _enable($cNumerationDigits)
+    _Enable($cNumerationStart)
+    _Enable($cNumerationDigits)
 EndFunc
 
-Func _enableSearchAndReplace()
+Func _EnableSearchAndReplace()
     $bSectionSearchAndReplace         = True
     $bIsBtnPreviewEnabled             = True
     $bIsBtnCbxSearchAndReplaceEnabled = True
 
-    _enable($cSearch)
-    _enable($cReplace)
+    _Enable($cSearch)
+    _Enable($cReplace)
 EndFunc
 
-Func _enablePasteCharacters()
+Func _EnablePasteCharacters()
     $bSectionPasteCharacters = True
     $bIsBtnPreviewEnabled    = True
 
-    _enable($cText)
-    _enable($cPosition)
+    _Enable($cText)
+    _Enable($cPosition)
 EndFunc
 
-Func _enableMoveCharacter()
+Func _EnableMoveCharacter()
     $bSectionMoveCharacter = True
     $bIsBtnPreviewEnabled  = True
 
-    _enable($cFromPos)
-    _enable($cToPos)
+    _Enable($cFromPos)
+    _Enable($cToPos)
 EndFunc
 
-Func _enableDeleteCharacters()
+Func _EnableDeleteCharacters()
     $bSectionDeleteCharacters = True
     $bIsBtnPreviewEnabled     = True
 
-    _enable($cAmount)
-    _enable($cAtPosition)
+    _Enable($cAmount)
+    _Enable($cAtPosition)
 EndFunc
 
-Func _enableRegExReplace()
+Func _EnableRegExReplace()
     $bSectionRegExReplace = True
     $bIsBtnPreviewEnabled = True
 
-    _enable($cPattern)
-    _enable($cReplaceRegEx)
+    _Enable($cPattern)
+    _Enable($cReplaceRegEx)
 EndFunc
 
-Func _enableTimestamp()
+Func _EnableTimestamp()
     $bSectionTimestamp    = True
     $bIsBtnPreviewEnabled = True
 
-    _enable($cProperty)
+    _Enable($cProperty)
 EndFunc
 
-Func _setBooleansToFalse()
+Func _SetBooleansToFalse()
     $bIsBtnUndoEnabled                = False
     $bIsBtnRedoEnabled                = False
     $bIsBtnPreviewEnabled             = False
@@ -151,29 +151,29 @@ Func _setBooleansToFalse()
     $bSectionTimestamp                = False
 EndFunc
 
-Func _defaultState()
-    _uncheckAllRadioButtons()
-    _disableAllInputs()
+Func _DefaultState()
+    _UncheckAllRadioButtons()
+    _DisableAllInputs()
 
     _GUICtrlListView_DeleteAllItems($hListView)
     _GUICtrlListView_SetColumn($hListView, 0, $aListView[$eColumnOneText])
 
-    _setBooleansToFalse()
+    _SetBooleansToFalse()
 
-    _loadGuiIcon($cBtnUndo,    'undo_disable')
-    _loadGuiIcon($cBtnRedo,    'redo_disable')
-    _loadGuiIcon($cBtnPreview, 'preview_disable')
-    _loadGuiIcon($cBtnReset,   'reset_disable')
-    _loadGuiIcon($cBtnRename,  'save_disable')
+    _LoadGuiIcon($cBtnUndo,    'undo_disable')
+    _LoadGuiIcon($cBtnRedo,    'redo_disable')
+    _LoadGuiIcon($cBtnPreview, 'preview_disable')
+    _LoadGuiIcon($cBtnReset,   'reset_disable')
+    _LoadGuiIcon($cBtnRename,  'save_disable')
 EndFunc
 
-Func _getFolderContentAsFileList($sPath, $sFileExtensionFilter = '*')
+Func _GetFolderContentAsFileList($sPath, $sFileExtensionFilter = '*')
     Local $aList = _FileListToArray(StringReplace($sPath, @CR, ''), $sFileExtensionFilter, 1, True)
     If Not IsArray($aList) Then
         Local $sFolder  = StringRegExpReplace($sPath, '.+\\', '')
-        Local $sMessage = StringTrimRight(_getResxValue('MsgBoxWarningNoFolderContent'), 1) & ' "' & $sFolder & '".'
+        Local $sMessage = StringTrimRight(_GetResxValue('MsgBoxWarningNoFolderContent'), 1) & ' "' & $sFolder & '".'
 
-        _myMsgBoxGui(_getResxValue('MsgBoxWarning'), $sMessage)
+        _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), $sMessage)
 
         Return False
     EndIf
@@ -182,22 +182,22 @@ Func _getFolderContentAsFileList($sPath, $sFileExtensionFilter = '*')
     Return $aList
 EndFunc
 
-Func _saveFileList($aList)
+Func _SaveFileList($aList)
     Local $sList     = _ArrayToString($aList, @CRLF)
-    Local $iUndoStep = _readIni('UndoStep')
+    Local $iUndoStep = _ReadIni('UndoStep')
 
-    _writeFile(_renameFilenameWithNumber($iUndoStep), $sList)
+    _WriteFile(_RenameFilenameWithNumber($iUndoStep), $sList)
 EndFunc
 
-Func _fillListView($aList)
+Func _FillListView($aList)
     _GUICtrlListView_DeleteAllItems($hListView)
     For $i = 0 To UBound($aList) - 1 Step 1
-        _GUICtrlListView_AddItem($hListView, _getJustFileName($aList[$i]))
-        _GUICtrlListView_AddSubItem($hListView, $i, _getJustPathOfFile($aList[$i]), 1)
+        _GUICtrlListView_AddItem($hListView, _GetJustFileName($aList[$i]))
+        _GUICtrlListView_AddSubItem($hListView, $i, _GetJustPathOfFile($aList[$i]), 1)
     Next
 EndFunc
 
-Func _areInputsValidNumeration($iStart, $iDigits)
+Func _AreInputsValidNumeration($iStart, $iDigits)
     If Not StringRegExp($iStart,  '^\d{1,}$', 0) Then Return -1
     If Not StringRegExp($iDigits, '^\d{1,}$', 0) Then Return -1
 
@@ -210,17 +210,17 @@ Func _areInputsValidNumeration($iStart, $iDigits)
     Return 0
 EndFunc
 
-Func _areInputsValidSearchAndReplace($sSearch, $sReplace)
+Func _AreInputsValidSearchAndReplace($sSearch, $sReplace)
     If $sSearch == '' Then Return -1
-    If _existsSpecialCharacters($sReplace) Then Return -2
+    If _ExistsSpecialCharacters($sReplace) Then Return -2
 
     Return 0
 EndFunc
 
-Func _areInputsValidPasteCharacters($sText, $iPosition)
+Func _AreInputsValidPasteCharacters($sText, $iPosition)
     If Not StringRegExp($iPosition,  '^\d{1,}$', 0) Then Return -1
 
-    If _existsSpecialCharacters($sText) Then Return -2
+    If _ExistsSpecialCharacters($sText) Then Return -2
 
     If $iPosition < 0   Then Return -3
     If $iPosition > 500 Then Return -3
@@ -228,7 +228,7 @@ Func _areInputsValidPasteCharacters($sText, $iPosition)
     Return 0
 EndFunc
 
-Func _areInputsValidMoveCharacter($iFromPos, $iToPos)
+Func _AreInputsValidMoveCharacter($iFromPos, $iToPos)
     If Not StringRegExp($iFromPos,  '^\d{1,}$', 0) Then Return -1
     If Not StringRegExp($iToPos,  '^\d{1,}$', 0)   Then Return -1
 
@@ -241,7 +241,7 @@ Func _areInputsValidMoveCharacter($iFromPos, $iToPos)
     Return 0
 EndFunc
 
-Func _areInputsValidDeleteCharacters($iAmount, $iAtPosition)
+Func _AreInputsValidDeleteCharacters($iAmount, $iAtPosition)
     If Not StringRegExp($iAmount,  '^\d{1,}$', 0) Then Return -1
     If Not StringRegExp($iAtPosition,  '^\d{1,}$', 0)   Then Return -1
 
@@ -254,14 +254,14 @@ Func _areInputsValidDeleteCharacters($iAmount, $iAtPosition)
     Return 0
 EndFunc
 
-Func _areInputsValidRegExReplace($sPattern, $sReplaceRegEx)
+Func _AreInputsValidRegExReplace($sPattern, $sReplaceRegEx)
     If $sPattern == '' Then Return -1
-    If _existsSpecialCharacters($sReplaceRegEx) Then Return -2
+    If _ExistsSpecialCharacters($sReplaceRegEx) Then Return -2
 
     Return 0
 EndFunc
 
-Func _isInputValidTimestamp($sProperty)
+Func _IsInputValidTimestamp($sProperty)
     If $sProperty == '' Then Return -1
     Local $aProperty = _StringBetween($sProperty, '"', '"')
     If Not IsArray($aProperty) Then Return -2
@@ -269,7 +269,7 @@ Func _isInputValidTimestamp($sProperty)
     Return 0
 EndFunc
 
-Func _existsSpecialCharacters($sString)
+Func _ExistsSpecialCharacters($sString)
     If StringInStr($sString, '\') <> 0 Then Return True
     If StringInStr($sString, '/') <> 0 Then Return True
     If StringInStr($sString, ':') <> 0 Then Return True
@@ -282,7 +282,7 @@ Func _existsSpecialCharacters($sString)
     Return False
 EndFunc
 
-Func _moveCharInString($sString, $iFrom, $iTo)
+Func _MoveCharInString($sString, $iFrom, $iTo)
     Local $sCharsOfString  = StringMid($sString, $iFrom, 1)
     Local $iLengthOfString = StringLen($sString)
     Local $sNewString      = StringLeft($sString, $iFrom - 1) & StringRight($sString, $iLengthOfString - $iFrom)
@@ -290,21 +290,21 @@ Func _moveCharInString($sString, $iFrom, $iTo)
     Return StringLeft($sNewString, $iTo - 1) & $sCharsOfString & StringRight($sNewString, $iLengthOfString - $iTo)
 EndFunc
 
-Func _loadFromFileContent($iNumber)
-    _writeIni('UndoStep', $iNumber)
+Func _LoadFromFileContent($iNumber)
+    _WriteIni('UndoStep', $iNumber)
 
-    Local $sList = _getFileContent(_renameFilenameWithNumber($iNumber))
+    Local $sList = _GetFileContent(_RenameFilenameWithNumber($iNumber))
     Local $aList = StringSplit($sList, @CRLF, 1)
 
     _ArrayDelete($aList, 0)
 
-    _saveFileList($aList)
-    _fillListView($aList)
+    _SaveFileList($aList)
+    _FillListView($aList)
 
     Return $aList
 EndFunc
 
-Func _renameFilesPhysically($aOldList, $aNewList)
+Func _RenameFilesPhysically($aOldList, $aNewList)
     For $i = 0 To UBound($aOldList) - 1 Step 1
         Local $sFromFile = $aOldList[$i]
         Local $sToFile   = $aNewList[$i]
@@ -314,46 +314,46 @@ Func _renameFilesPhysically($aOldList, $aNewList)
     $aFileList = $aNewList
 EndFunc
 
-Func _showPreview()
-    _fillListView($aEdit)
+Func _ShowPreview()
+    _FillListView($aEdit)
 
     $bIsBtnResetEnabled  = True
     $bIsBtnRenameEnabled = True
 
-    _loadGuiIcon($cBtnReset,  'reset')
-    _loadGuiIcon($cBtnRename, 'save')
+    _LoadGuiIcon($cBtnReset,  'reset')
+    _LoadGuiIcon($cBtnRename, 'save')
 EndFunc
 
-Func _doNumeration($aList)
-    Local $iStart  = _readInput($cNumerationStart)
-    Local $iDigits = _readInput($cNumerationDigits)
+Func _DoNumeration($aList)
+    Local $iStart  = _ReadInput($cNumerationStart)
+    Local $iDigits = _ReadInput($cNumerationDigits)
 
-    Local $iReturn = _areInputsValidNumeration($iStart, $iDigits)
+    Local $iReturn = _AreInputsValidNumeration($iStart, $iDigits)
     If $iReturn   == -1 Then Return -1
     If $iReturn   == -2 Then Return -2
     If $iReturn   == -3 Then Return -3
 
     For $i = 0 To UBound($aList) - 1 Step 1
-        Local $sPath = _getJustPathOfFile($aList[$i])
-        Local $sFile = _getJustFileName($aList[$i])
-        $aList[$i]   = $sPath & _setZeroPrefix($iStart + $i, $iDigits) & $iStart + $i & ' ' & $sFile
+        Local $sPath = _GetJustPathOfFile($aList[$i])
+        Local $sFile = _GetJustFileName($aList[$i])
+        $aList[$i]   = $sPath & _SetZeroPrefix($iStart + $i, $iDigits) & $iStart + $i & ' ' & $sFile
     Next
 
     $aEdit = $aList
     Return True
 EndFunc
 
-Func _doSearchAndReplace($aList)
-    Local $sSearch  = _readInput($cSearch)
-    Local $sReplace = _readInput($cReplace)
+Func _DoSearchAndReplace($aList)
+    Local $sSearch  = _ReadInput($cSearch)
+    Local $sReplace = _ReadInput($cReplace)
 
-    Local $iReturn  = _areInputsValidSearchAndReplace($sSearch, $sReplace)
+    Local $iReturn  = _AreInputsValidSearchAndReplace($sSearch, $sReplace)
     If $iReturn    == -1 Then Return -1
     If $iReturn    == -2 Then Return -2
 
     For $i = 0 To UBound($aList) - 1 Step 1
-        Local $sPath = _getJustPathOfFile($aList[$i])
-        Local $sFile = _getJustFileName($aList[$i])
+        Local $sPath = _GetJustPathOfFile($aList[$i])
+        Local $sFile = _GetJustFileName($aList[$i])
         If Not $bIsBtnCbxSearchAndReplaceSet Then $aList[$i] = $sPath & StringReplace($sFile, $sSearch, $sReplace)
         If $bIsBtnCbxSearchAndReplaceSet     Then $aList[$i] = $sPath & StringReplace($sFile, $sSearch, $sReplace, 0, 1)
     Next
@@ -363,18 +363,18 @@ Func _doSearchAndReplace($aList)
     Return True
 EndFunc
 
-Func _doPasteCharacters($aList)
-    Local $sText     = _readInput($cText)
-    Local $iPosition = _readInput($cPosition)
+Func _DoPasteCharacters($aList)
+    Local $sText     = _ReadInput($cText)
+    Local $iPosition = _ReadInput($cPosition)
 
-    Local $iReturn   = _areInputsValidPasteCharacters($sText, $iPosition)
+    Local $iReturn   = _AreInputsValidPasteCharacters($sText, $iPosition)
     If $iReturn     == -1 Then Return -1
     If $iReturn     == -2 Then Return -2
     If $iReturn     == -3 Then Return -3
 
     For $i = 0 To UBound($aList) - 1 Step 1
-        Local $sPath   = _getJustPathOfFile($aList[$i])
-        Local $sFile   = _getJustFileName($aList[$i])
+        Local $sPath   = _GetJustPathOfFile($aList[$i])
+        Local $sFile   = _GetJustFileName($aList[$i])
         Local $sPrefix = StringMid($sFile, 1, $iPosition)
         Local $sSuffix = StringTrimLeft($sFile, $iPosition)
         $aList[$i] = $sPath & $sPrefix & $sText & $sSuffix
@@ -385,19 +385,19 @@ Func _doPasteCharacters($aList)
     Return True
 EndFunc
 
-Func _doMoveCharacter($aList)
-    Local $iFromPos = _readInput($cFromPos)
-    Local $iToPos   = _readInput($cToPos)
+Func _DoMoveCharacter($aList)
+    Local $iFromPos = _ReadInput($cFromPos)
+    Local $iToPos   = _ReadInput($cToPos)
 
-    Local $iReturn  = _areInputsValidMoveCharacter($iFromPos, $iToPos)
+    Local $iReturn  = _AreInputsValidMoveCharacter($iFromPos, $iToPos)
     If $iReturn    == -1 Then Return -1
     If $iReturn    == -2 Then Return -2
     If $iReturn    == -3 Then Return -3
 
     For $i = 0 To UBound($aList) - 1 Step 1
-        Local $sPath = _getJustPathOfFile($aList[$i])
-        Local $sFile = _getJustFileName($aList[$i])
-        $aList[$i]   = $sPath & _moveCharInString($sFile, $iFromPos, $iToPos)
+        Local $sPath = _GetJustPathOfFile($aList[$i])
+        Local $sFile = _GetJustFileName($aList[$i])
+        $aList[$i]   = $sPath & _MoveCharInString($sFile, $iFromPos, $iToPos)
     Next
 
     $aEdit = $aList
@@ -405,18 +405,18 @@ Func _doMoveCharacter($aList)
     Return True
 EndFunc
 
-Func _doDeleteCharacters($aList)
-    Local $iAmount     = _readInput($cAmount)
-    Local $iAtPosition = _readInput($cAtPosition)
+Func _DoDeleteCharacters($aList)
+    Local $iAmount     = _ReadInput($cAmount)
+    Local $iAtPosition = _ReadInput($cAtPosition)
 
-    Local $iReturn     = _areInputsValidDeleteCharacters($iAmount, $iAtPosition)
+    Local $iReturn     = _AreInputsValidDeleteCharacters($iAmount, $iAtPosition)
     If $iReturn       == -1 Then Return -1
     If $iReturn       == -2 Then Return -2
     If $iReturn       == -3 Then Return -3
 
     For $i = 0 To UBound($aList) - 1 Step 1
-        Local $sPath          = _getJustPathOfFile($aList[$i])
-        Local $sFile          = _getJustFileName($aList[$i])
+        Local $sPath          = _GetJustPathOfFile($aList[$i])
+        Local $sFile          = _GetJustFileName($aList[$i])
         Local $aCharacterList = StringSplit($sFile, '', 0)
         For $j = 1 To $iAmount Step 1
             _ArrayDelete($aCharacterList, $iAtPosition)
@@ -429,17 +429,17 @@ Func _doDeleteCharacters($aList)
     Return True
 EndFunc
 
-Func _doRegExReplace($aList)
-    Local $sPattern      = _readInput($cPattern)
-    Local $sReplaceRegEx = _readInput($cReplaceRegEx)
+Func _DoRegExReplace($aList)
+    Local $sPattern      = _ReadInput($cPattern)
+    Local $sReplaceRegEx = _ReadInput($cReplaceRegEx)
 
-    Local $iReturn       = _areInputsValidRegExReplace($sPattern, $sReplaceRegEx)
+    Local $iReturn       = _AreInputsValidRegExReplace($sPattern, $sReplaceRegEx)
     If $iReturn         == -1 Then Return -1
     If $iReturn         == -2 Then Return -2
 
     For $i = 0 To UBound($aList) - 1 Step 1
-        Local $sPath = _getJustPathOfFile($aList[$i])
-        Local $sFile = _getJustFileName($aList[$i])
+        Local $sPath = _GetJustPathOfFile($aList[$i])
+        Local $sFile = _GetJustFileName($aList[$i])
         $aList[$i]   = $sPath & StringRegExpReplace($sFile, $sPattern, $sReplaceRegEx)
     Next
 
@@ -448,10 +448,10 @@ Func _doRegExReplace($aList)
     Return True
 EndFunc
 
-Func _doTimestamp($aList)
-    Local $sProperty = _readInput($cProperty)
+Func _DoTimestamp($aList)
+    Local $sProperty = _ReadInput($cProperty)
 
-    Local $iReturn  = _isInputValidTimestamp($sProperty)
+    Local $iReturn  = _IsInputValidTimestamp($sProperty)
     If $iReturn    == -1 Then Return -1
     If $iReturn    == -2 Then Return -2
 
@@ -461,35 +461,35 @@ Func _doTimestamp($aList)
     $sNoPropertyFoundMessage = ''
 
     For $i = 0 To UBound($aList) - 1 Step 1
-        Local $sPropertyValue = _getFilePropertyValue($aList[$i], $sPropertyKey)
-        Local $sPath          = _getJustPathOfFile($aList[$i])
-        Local $sFile          = _getJustFileName($aList[$i])
-        Local $sExtension     = '.' & _getJustFileExtension($aList[$i])
+        Local $sPropertyValue = _GetFilePropertyValue($aList[$i], $sPropertyKey)
+        Local $sPath          = _GetJustPathOfFile($aList[$i])
+        Local $sFile          = _GetJustFileName($aList[$i])
+        Local $sExtension     = '.' & _GetJustFileExtension($aList[$i])
 
         If $sPropertyValue <> '-' Then
-            $aList[$i] = $sPath & _buildTimestamp($sPropertyKey, $sPropertyValue) & $sExtension
+            $aList[$i] = $sPath & _BuildTimestamp($sPropertyKey, $sPropertyValue) & $sExtension
         Else
-            $sNoPropertyFoundMessage &= _getResxValue('NoPropertyFoundMessagePartOne') & ' "' & $sPropertyKey & '" ' & _getResxValue('NoPropertyFoundMessagePartTwo') & ' "' & $sPath & $sFile & '".' & @CRLF
+            $sNoPropertyFoundMessage &= _GetResxValue('NoPropertyFoundMessagePartOne') & ' "' & $sPropertyKey & '" ' & _GetResxValue('NoPropertyFoundMessagePartTwo') & ' "' & $sPath & $sFile & '".' & @CRLF
         EndIf
     Next
 
-    If $sNoPropertyFoundMessage <> '' Then _writeFile($aFile[$eLog], $sNoPropertyFoundMessage)
+    If $sNoPropertyFoundMessage <> '' Then _WriteFile($aFile[$eLog], $sNoPropertyFoundMessage)
 
     $aEdit = $aList
 
     Return True
 EndFunc
 
-Func _buildTimestamp($sKey, $sValue)
+Func _BuildTimestamp($sKey, $sValue)
     Switch $sKey
-        Case _getResxValue('PartialTimestampRecordingDate')
+        Case _GetResxValue('PartialTimestampRecordingDate')
             Local $iDay    = StringMid($sValue, 2, 2)
             Local $iMonth  = StringMid($sValue, 6, 2)
             Local $iYear   = StringMid($sValue, 10, 4)
             Local $iHour   = StringMid($sValue, 17, 2)
             Local $iMinute = StringMid($sValue, 20, 2)
 
-        Case _getResxValue('PartialTimestampChangeDate'), _getResxValue('PartialTimestampCreationDate')
+        Case _GetResxValue('PartialTimestampChangeDate'), _GetResxValue('PartialTimestampCreationDate')
             Local $iDay    = StringMid($sValue, 1, 2)
             Local $iMonth  = StringMid($sValue, 4, 2)
             Local $iYear   = StringMid($sValue, 7, 4)
@@ -514,32 +514,32 @@ Func _buildTimestamp($sKey, $sValue)
     $aSave[$eMinute] = $iMinute
 
     Local $sDay          = $iYear & '-' & $iMonth & '-' & $iDay & ' '
-    Local $sTime         = $iHour & "'" & $iMinute & "'" & _getCounter()
+    Local $sTime         = $iHour & "'" & $iMinute & "'" & _GetCounter()
     Local $sDayShortName = ' (' &_DateDayOfWeek(_DateToDayOfWeek($iYear, $iMonth, $iDay), 3) & ')'
 
     Return $sDay & $sTime & $sDayShortName
 EndFunc
 
-Func _getCounter()
+Func _GetCounter()
     If StringLen($iCounter) == 1 Then Return '0' & $iCounter
     If StringLen($iCounter) == 2 Then Return $iCounter
 EndFunc
 
-Func _openFolder()
-    Local $aFolderList = _getChosenFolderPath()
+Func _OpenFolder()
+    Local $aFolderList = _GetChosenFolderPath()
     If $aFolderList <> False Then
         For $i = 1 To $aFolderList[0] Step 1
             If $i == 1 Then
-                $aFileList = _getFolderContentAsFileList($aFolderList[$i])
+                $aFileList = _GetFolderContentAsFileList($aFolderList[$i])
             Else
-                Local $aList = _getFolderContentAsFileList($aFolderList[$i])
+                Local $aList = _GetFolderContentAsFileList($aFolderList[$i])
                 _ArrayConcatenate($aFileList, $aList)
             EndIf
         Next
 
         If $aFileList <> False Then
-            _saveFileList($aFileList)
-            _fillListView($aFileList)
+            _SaveFileList($aFileList)
+            _FillListView($aFileList)
 
             $bIsBtnRdoNumerationEnabled       = True
             $bIsBtnRdoSearchAndReplaceEnabled = True
@@ -552,148 +552,148 @@ Func _openFolder()
     EndIf
 EndFunc
 
-Func _undoRenameFiles()
+Func _UndoRenameFiles()
     If $bIsBtnUndoEnabled Then
-        Local $iUndoStep = _readIni('UndoStep') - 1
+        Local $iUndoStep = _ReadIni('UndoStep') - 1
         If $iUndoStep > -1 Then
-            Local $aOldFileList = _loadFromFileContent($iUndoStep)
-            _renameFilesPhysically($aFileList, $aOldFileList)
+            Local $aOldFileList = _LoadFromFileContent($iUndoStep)
+            _RenameFilesPhysically($aFileList, $aOldFileList)
         EndIf
 
         If $iUndoStep - 1 < 0 Then
             $bIsBtnUndoEnabled = False
-            _loadGuiIcon($cBtnUndo, 'undo_disable')
+            _LoadGuiIcon($cBtnUndo, 'undo_disable')
         EndIf
 
         $bIsBtnRedoEnabled = True
-        _loadGuiIcon($cBtnRedo, 'redo')
+        _LoadGuiIcon($cBtnRedo, 'redo')
     EndIf
 EndFunc
 
-Func _redoRenameFiles()
+Func _RedoRenameFiles()
     If $bIsBtnRedoEnabled Then
-        Local $iUndoStep    = _readIni('UndoStep') + 1
-        Local $aNewFileList = _loadFromFileContent($iUndoStep)
+        Local $iUndoStep    = _ReadIni('UndoStep') + 1
+        Local $aNewFileList = _LoadFromFileContent($iUndoStep)
 
-        _renameFilesPhysically($aFileList, $aNewFileList)
+        _RenameFilesPhysically($aFileList, $aNewFileList)
 
-        Local $sFileContent    = _getFileContent(_renameFilenameWithNumber($iUndoStep + 1))
+        Local $sFileContent    = _GetFileContent(_RenameFilenameWithNumber($iUndoStep + 1))
         If $sFileContent      == '' Then
             $bIsBtnRedoEnabled = False
-            _loadGuiIcon($cBtnRedo, 'redo_disable')
+            _LoadGuiIcon($cBtnRedo, 'redo_disable')
         EndIf
 
         $bIsBtnUndoEnabled = True
-        _loadGuiIcon($cBtnUndo, 'undo')
+        _LoadGuiIcon($cBtnUndo, 'undo')
     EndIf
 EndFunc
 
-Func _previewFiles()
+Func _PreviewFiles()
     If $bIsBtnPreviewEnabled Then
         Select
             Case $bSectionNumeration
-                Local $iReturn   = _doNumeration($aFileList)
+                Local $iReturn   = _DoNumeration($aFileList)
                 If $iReturn     == -1 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxOnlyNumbers'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxOnlyNumbers'))
                 ElseIf $iReturn == -2 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxNumberForStart'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxNumberForStart'))
                 ElseIf $iReturn == -3 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxNumberForDigits'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxNumberForDigits'))
                 Else
-                    _showPreview()
+                    _ShowPreview()
                 EndIf
 
             Case $bSectionSearchAndReplace
-                Local $iReturn   = _doSearchAndReplace($aFileList)
+                Local $iReturn   = _DoSearchAndReplace($aFileList)
                 If $iReturn     == -1 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxAtLeastOneCharaterForSearch'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxAtLeastOneCharaterForSearch'))
                 ElseIf $iReturn == -2 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxNotAllowedCharaters'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxNotAllowedCharaters'))
                 Else
-                    _showPreview()
+                    _ShowPreview()
                 EndIf
 
             Case $bSectionPasteCharacters
-                Local $iReturn   = _doPasteCharacters($aFileList)
+                Local $iReturn   = _DoPasteCharacters($aFileList)
                 If $iReturn     == -1 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxOnlyNumbersForPosition'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxOnlyNumbersForPosition'))
                 ElseIf $iReturn == -2 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxNotAllowedCharatersText'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxNotAllowedCharatersText'))
                 ElseIf $iReturn == -3 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxNumberForPosition'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxNumberForPosition'))
                 Else
-                    _showPreview()
+                    _ShowPreview()
                 EndIf
 
             Case $bSectionMoveCharacter
-                Local $iReturn   = _doMoveCharacter($aFileList)
+                Local $iReturn   = _DoMoveCharacter($aFileList)
                 If $iReturn     == -1 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxOnlyNumbers'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxOnlyNumbers'))
                 ElseIf $iReturn == -2 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxNumberToPosition'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxNumberToPosition'))
                 ElseIf $iReturn == -3 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxNumberFromPosition'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxNumberFromPosition'))
                 Else
-                    _showPreview()
+                    _ShowPreview()
                 EndIf
 
             Case $bSectionDeleteCharacters
-                Local $iReturn   = _doDeleteCharacters($aFileList)
+                Local $iReturn   = _DoDeleteCharacters($aFileList)
                 If $iReturn     == -1 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxOnlyNumbers'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxOnlyNumbers'))
                 ElseIf $iReturn == -2 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxNumberForAmount'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxNumberForAmount'))
                 ElseIf $iReturn == -3 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxNumberForPositionOne'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxNumberForPositionOne'))
                 Else
-                    _showPreview()
+                    _ShowPreview()
                 EndIf
 
             Case $bSectionRegExReplace
-                Local $iReturn   = _doRegExReplace($aFileList)
+                Local $iReturn   = _DoRegExReplace($aFileList)
                 If $iReturn     == -1 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxAtLeastOneCharaterForRegExPattern'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxAtLeastOneCharaterForRegExPattern'))
                 ElseIf $iReturn == -2 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxNotAllowedCharaters'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxNotAllowedCharaters'))
                 Else
-                    _showPreview()
+                    _ShowPreview()
                 EndIf
 
             Case $bSectionTimestamp
-                Local $iReturn   = _doTimestamp($aFileList)
+                Local $iReturn   = _DoTimestamp($aFileList)
                 If $iReturn     == -1 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxChooseAProperty'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxChooseAProperty'))
                 ElseIf $iReturn == -2 Then
-                    _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxNoPropertyRecognition'))
+                    _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxNoPropertyRecognition'))
                 Else
-                    _showPreview()
-                    If $sNoPropertyFoundMessage <> '' Then _myMsgBoxGui(_getResxValue('MsgBoxWarning'), _getResxValue('MsgBoxNoPropertyFound'), 'ShowLog')
+                    _ShowPreview()
+                    If $sNoPropertyFoundMessage <> '' Then _MyMsgBoxGui(_GetResxValue('MsgBoxWarning'), _GetResxValue('MsgBoxNoPropertyFound'), 'ShowLog')
                 EndIf
         EndSelect
     EndIf
 EndFunc
 
-Func _resetPreview()
+Func _ResetPreview()
     If $bIsBtnResetEnabled Then
-        _fillListView($aFileList)
+        _FillListView($aFileList)
 
         $bIsBtnResetEnabled  = False
         $bIsBtnRenameEnabled = False
 
-        _loadGuiIcon($cBtnReset,  'reset_disable')
-        _loadGuiIcon($cBtnRename, 'save_disable')
+        _LoadGuiIcon($cBtnReset,  'reset_disable')
+        _LoadGuiIcon($cBtnRename, 'save_disable')
     EndIf
 EndFunc
 
-Func _renameFiles()
+Func _RenameFiles()
     If $bIsBtnRenameEnabled Then
-        _previewFiles()
+        _PreviewFiles()
 
-        _writeIni('UndoStep', _readIni('UndoStep') + 1)
-        _saveFileList($aEdit)
-        _fillListView($aEdit)
+        _WriteIni('UndoStep', _ReadIni('UndoStep') + 1)
+        _SaveFileList($aEdit)
+        _FillListView($aEdit)
 
-        _renameFilesPhysically($aFileList, $aEdit)
+        _RenameFilesPhysically($aFileList, $aEdit)
         $aFileList = $aEdit
 
         $bIsBtnUndoEnabled   = True
@@ -701,9 +701,9 @@ Func _renameFiles()
         $bIsBtnResetEnabled  = False
         $bIsBtnRenameEnabled = False
 
-        _loadGuiIcon($cBtnUndo,   'undo')
-        _loadGuiIcon($cBtnRedo,   'redo_disable')
-        _loadGuiIcon($cBtnReset,  'reset_disable')
-        _loadGuiIcon($cBtnRename, 'save_disable')
+        _LoadGuiIcon($cBtnUndo,   'undo')
+        _LoadGuiIcon($cBtnRedo,   'redo_disable')
+        _LoadGuiIcon($cBtnReset,  'reset_disable')
+        _LoadGuiIcon($cBtnRename, 'save_disable')
     EndIf
 EndFunc

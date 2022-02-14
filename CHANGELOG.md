@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Go to [legend](#legend---types-of-changes) for further information about the types of changes.
 
+## [1.4.0] - 2022-02-14
+
+### Changed
+
+- All function names renamed to start with capital letter.
+- Version bump.
+
 ## [1.3.0] - 2022-02-10
 
 ### Added
@@ -16,7 +23,7 @@ Go to [legend](#legend---types-of-changes) for further information about the typ
 - Links to the project badges/icons.
 - FAQ section to README.md file.
 
-### Changed:
+### Changed
 
 - Move "Keyboard shortcuts" section into "Getting started" section (as sub section after "Usage").
 - Version bump.
@@ -64,6 +71,7 @@ Go to [legend](#legend---types-of-changes) for further information about the typ
 - Stable state of Au3RenameEx.
 - Program currently done and acceptable.
 
+[1.4.0]: https://github.com/Sven-Seyfert/Au3RenameEx/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/Sven-Seyfert/Au3RenameEx/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/Sven-Seyfert/Au3RenameEx/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/Sven-Seyfert/Au3RenameEx/compare/v1.0.0...v1.1.0

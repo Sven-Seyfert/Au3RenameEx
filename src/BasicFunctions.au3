@@ -1,4 +1,4 @@
-Func _getFileContent($sFile)
+Func _GetFileContent($sFile)
     Local $hFile        = FileOpen($sFile, 256)
     Local $sFileContent = FileRead($hFile)
     FileClose($hFile)
@@ -6,33 +6,33 @@ Func _getFileContent($sFile)
     Return $sFileContent
 EndFunc
 
-Func _writeFile($sFile, $sText)
+Func _WriteFile($sFile, $sText)
     Local $hFile = FileOpen($sFile, 2 + 8 + 256)
     FileWrite($hFile, $sText)
     FileClose($hFile)
 EndFunc
 
-Func _readIni($sKey)
+Func _ReadIni($sKey)
     Return IniRead($aFile[$eConfig], $sSectionName, $sKey, '')
 EndFunc
 
-Func _writeIni($sKey, $sValue)
+Func _WriteIni($sKey, $sValue)
     IniWrite($aFile[$eConfig], $sSectionName, $sKey, $sValue)
 EndFunc
 
-Func _getJustFileName($sFilePath)
+Func _GetJustFileName($sFilePath)
     Return StringRegExpReplace($sFilePath, '(.+?)\\', '', 0)
 EndFunc
 
-Func _getJustPathOfFile($sFilePath)
-    Return StringTrimRight($sFilePath, StringLen(_getJustFileName($sFilePath)))
+Func _GetJustPathOfFile($sFilePath)
+    Return StringTrimRight($sFilePath, StringLen(_GetJustFileName($sFilePath)))
 EndFunc
 
-Func _getJustFileExtension($sFileName)
+Func _GetJustFileExtension($sFileName)
     Return StringReverse(_StringBetween(StringReverse($sFileName), '', '.')[0])
 EndFunc
 
-Func _setZeroPrefix($iNumber, $iDigits)
+Func _SetZeroPrefix($iNumber, $iDigits)
     Switch $iDigits
         Case 2
             If StringLen($iNumber) == 1 Then Return '0'
@@ -48,10 +48,10 @@ Func _setZeroPrefix($iNumber, $iDigits)
     Return ''
 EndFunc
 
-Func _getFilePropertyValue($sFile, $sPropertyKey)
+Func _GetFilePropertyValue($sFile, $sPropertyKey)
     Local $oShellApp      = ObjCreate('Shell.Application')
-    Local $oFolder        = $oShellApp.NameSpace(_getJustPathOfFile($sFile))
-    Local $oFileName      = $oFolder.Parsename(_getJustFileName($sFile))
+    Local $oFolder        = $oShellApp.NameSpace(_GetJustPathOfFile($sFile))
+    Local $oFileName      = $oFolder.Parsename(_GetJustFileName($sFile))
     Local $sPropertyValue = ''
 
     For $i = 0 To 400 Step 1

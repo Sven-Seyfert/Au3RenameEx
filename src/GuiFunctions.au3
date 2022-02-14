@@ -1,84 +1,84 @@
-Func _isFocusOnGui($hGuiOrTitle)
+Func _IsFocusOnGui($hGuiOrTitle)
     Local $iState = WinGetState($hGuiOrTitle)
     If $iState == 15 Then Return True
 
     Return False
 EndFunc
 
-Func _loadGuiIcon($cBtn, $sBitmapName, $iWidth = $iButtons, $iHeight = $iButtons)
+Func _LoadGuiIcon($cBtn, $sBitmapName, $iWidth = $iButtons, $iHeight = $iButtons)
     Local $hImg = _GUIImageList_Create($iWidth, $iHeight, 5, 3)
     _GUIImageList_AddBitmap($hImg, $aPath[$eImages] & $sBitmapName & '.bmp')
     _GUICtrlButton_SetImageList($cBtn, $hImg, 4)
 EndFunc
 
-Func _mouseover($iControlId)
+Func _Mouseover($iControlId)
     Switch $iControlId
         Case $cBtnChooseFolder
-            _loadGuiIcon($cBtnChooseFolder, 'open_hover')
+            _LoadGuiIcon($cBtnChooseFolder, 'open_hover')
 
         Case $cBtnUndo
-            If $bIsBtnUndoEnabled    Then _loadGuiIcon($cBtnUndo,    'undo_hover')
+            If $bIsBtnUndoEnabled    Then _LoadGuiIcon($cBtnUndo,    'undo_hover')
 
         Case $cBtnRedo
-            If $bIsBtnRedoEnabled    Then _loadGuiIcon($cBtnRedo,    'redo_hover')
+            If $bIsBtnRedoEnabled    Then _LoadGuiIcon($cBtnRedo,    'redo_hover')
 
         Case $cBtnPreview
-            If $bIsBtnPreviewEnabled Then _loadGuiIcon($cBtnPreview, 'preview_hover')
+            If $bIsBtnPreviewEnabled Then _LoadGuiIcon($cBtnPreview, 'preview_hover')
 
         Case $cBtnReset
-            If $bIsBtnResetEnabled   Then _loadGuiIcon($cBtnReset,   'reset_hover')
+            If $bIsBtnResetEnabled   Then _LoadGuiIcon($cBtnReset,   'reset_hover')
 
         Case $cBtnRename
-            If $bIsBtnRenameEnabled  Then _loadGuiIcon($cBtnRename,  'save_hover')
+            If $bIsBtnRenameEnabled  Then _LoadGuiIcon($cBtnRename,  'save_hover')
 
         Case $cBtnMinimize
-            _loadGuiIcon($cBtnMinimize, 'minimize_hover')
+            _LoadGuiIcon($cBtnMinimize, 'minimize_hover')
 
         Case $cBtnClose
-            _loadGuiIcon($cBtnClose,    'close_hover')
+            _LoadGuiIcon($cBtnClose,    'close_hover')
     EndSwitch
 EndFunc
 
-Func _mouseleave($iControlId)
+Func _Mouseleave($iControlId)
     Switch $iControlId
         Case $cBtnChooseFolder
-            _loadGuiIcon($cBtnChooseFolder, 'open')
+            _LoadGuiIcon($cBtnChooseFolder, 'open')
         Case $cBtnUndo
-            If $bIsBtnUndoEnabled    Then _loadGuiIcon($cBtnUndo,    'undo')
+            If $bIsBtnUndoEnabled    Then _LoadGuiIcon($cBtnUndo,    'undo')
 
         Case $cBtnRedo
-            If $bIsBtnRedoEnabled    Then _loadGuiIcon($cBtnRedo,    'redo')
+            If $bIsBtnRedoEnabled    Then _LoadGuiIcon($cBtnRedo,    'redo')
 
         Case $cBtnPreview
-            If $bIsBtnPreviewEnabled Then _loadGuiIcon($cBtnPreview, 'preview')
+            If $bIsBtnPreviewEnabled Then _LoadGuiIcon($cBtnPreview, 'preview')
 
         Case $cBtnReset
-            If $bIsBtnResetEnabled   Then _loadGuiIcon($cBtnReset,   'reset')
+            If $bIsBtnResetEnabled   Then _LoadGuiIcon($cBtnReset,   'reset')
 
         Case $cBtnRename
-            If $bIsBtnRenameEnabled  Then _loadGuiIcon($cBtnRename,  'save')
+            If $bIsBtnRenameEnabled  Then _LoadGuiIcon($cBtnRename,  'save')
 
         Case $cBtnMinimize
-            _loadGuiIcon($cBtnMinimize, 'minimize')
+            _LoadGuiIcon($cBtnMinimize, 'minimize')
 
         Case $cBtnClose
-            _loadGuiIcon($cBtnClose,    'close')
+            _LoadGuiIcon($cBtnClose,    'close')
     EndSwitch
 EndFunc
 
-Func _readInput($iControlId)
+Func _ReadInput($iControlId)
     Return GUICtrlRead($iControlId)
 EndFunc
 
-Func _disable($iControlId)
+Func _Disable($iControlId)
     GUICtrlSetState($iControlId, $GUI_DISABLE)
 EndFunc
 
-Func _enable($iControlId)
+Func _Enable($iControlId)
     GUICtrlSetState($iControlId, $GUI_ENABLE)
 EndFunc
 
-Func _myDragAndDropBoxGui($sTitle)
+Func _MyDragAndDropBoxGui($sTitle)
     Local $iWDragAndDropBox        = 300
     Local $iHDragAndDropBox        = 200
     Local $iXDragAndDropBox        = Default
@@ -112,13 +112,13 @@ Func _myDragAndDropBoxGui($sTitle)
                                      GUICtrlSetBkColor(-1, $vBorderColor)
 
     GUICtrlSetCursor($cBtnCloseDragAndDropBox, 0)
-    _loadGuiIcon($cBtnCloseDragAndDropBox, 'close_dialog')
+    _LoadGuiIcon($cBtnCloseDragAndDropBox, 'close_dialog')
 
     GUISetState(@SW_HIDE, $hMainGui)
     GUISetState(@SW_SHOW, $hSubGuiDragAndDrop)
     WinSetOnTop($hSubGuiDragAndDrop, '', 1)
 
-    While 1
+    While True
         Local $sEditBoxContent = StringReplace(GUICtrlRead($cEditBox), $sDropText, '')
         If $sEditBoxContent <> '' Then
             $sFolderList = $sEditBoxContent
@@ -138,7 +138,7 @@ Func _myDragAndDropBoxGui($sTitle)
     WEnd
 EndFunc
 
-Func _myMsgBoxGui($sTitle, $sMessage, $sMode = 'Ok')
+Func _MyMsgBoxGui($sTitle, $sMessage, $sMode = 'Ok')
     Local $iWMsgBox        = $aGui[$eWidth] * 0.6
     Local $iHMsgBox        = $aGui[$eHeight] * 0.4
     Local $iXMsgBox        = Default
@@ -160,25 +160,25 @@ Func _myMsgBoxGui($sTitle, $sMessage, $sMode = 'Ok')
                              GUICtrlSetColor($cLblMessage, $aColor[$eSecondary])
                              GUICtrlSetFont($cLblMessage, 11, 600)
 
-    Local $cLblYes         = GUICtrlCreateLabel(_getResxValue('LblYes'), $iWMsgBox - 50 - 85 - 115, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE)
+    Local $cLblYes         = GUICtrlCreateLabel(_GetResxValue('LblYes'), $iWMsgBox - 50 - 85 - 115, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE)
                              GUICtrlSetBkColor($cLblYes, $aColor[$eTitleFont])
                              GUICtrlSetColor($cLblYes, $aColor[$eSecondary])
                              GUICtrlSetFont($cLblYes, 11, 600)
                              GUICtrlSetCursor($cLblYes, 0)
 
-    Local $cLblNo          = GUICtrlCreateLabel(_getResxValue('LblNo'), $iWMsgBox - 50 - 85, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE)
+    Local $cLblNo          = GUICtrlCreateLabel(_GetResxValue('LblNo'), $iWMsgBox - 50 - 85, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE)
                              GUICtrlSetBkColor($cLblNo, $aColor[$eTitleFont])
                              GUICtrlSetColor($cLblNo, $aColor[$eSecondary])
                              GUICtrlSetFont($cLblNo, 11, 600)
                              GUICtrlSetCursor($cLblNo, 0)
 
-    Local $cLblShowLog     = GUICtrlCreateLabel(_getResxValue('LblShowLog'), $iWMsgBox - 50 - 85 - 115, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE)
+    Local $cLblShowLog     = GUICtrlCreateLabel(_GetResxValue('LblShowLog'), $iWMsgBox - 50 - 85 - 115, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE)
                              GUICtrlSetBkColor($cLblShowLog, $aColor[$eTitleFont])
                              GUICtrlSetColor($cLblShowLog, $aColor[$eSecondary])
                              GUICtrlSetFont($cLblShowLog, 11, 600)
                              GUICtrlSetCursor($cLblShowLog, 0)
 
-    Local $cLblOk          = GUICtrlCreateLabel(_getResxValue('LblOk'), $iWMsgBox - 50 - 85, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE)
+    Local $cLblOk          = GUICtrlCreateLabel(_GetResxValue('LblOk'), $iWMsgBox - 50 - 85, $iHMsgBox - 50, 100, 32, $SS_CENTER + $SS_CENTERIMAGE)
                              GUICtrlSetBkColor($cLblOk, $aColor[$eTitleFont])
                              GUICtrlSetColor($cLblOk, $aColor[$eSecondary])
                              GUICtrlSetFont($cLblOk, 11, 600)
@@ -206,12 +206,12 @@ Func _myMsgBoxGui($sTitle, $sMessage, $sMode = 'Ok')
     EndIf
 
     GUICtrlSetCursor($cBtnCloseMsgBox, 0)
-    _loadGuiIcon($cBtnCloseMsgBox, 'close_dialog')
+    _LoadGuiIcon($cBtnCloseMsgBox, 'close_dialog')
 
     GUISetState(@SW_SHOW, $hSubGuiMsgBox)
     WinSetOnTop($hSubGuiMsgBox, '', 1)
 
-    While 1
+    While True
         Switch GUIGetMsg()
             Case -3, $cBtnCloseMsgBox
                 GUIDelete($hSubGuiMsgBox)

@@ -1,23 +1,23 @@
-Func _openFolderHotKey()
-    If _isFocusOnGui($hMainGui) Then _openFolder()
+Func _OpenFolderHotKey()
+    If _IsFocusOnGui($hMainGui) Then _OpenFolder()
 EndFunc
 
-Func _undoRenameFilesHotKey()
-    If _isFocusOnGui($hMainGui) Then _undoRenameFiles()
+Func _UndoRenameFilesHotKey()
+    If _IsFocusOnGui($hMainGui) Then _UndoRenameFiles()
 EndFunc
 
-Func _redoRenameFilesHotKey()
-    If _isFocusOnGui($hMainGui) Then _redoRenameFiles()
+Func _RedoRenameFilesHotKey()
+    If _IsFocusOnGui($hMainGui) Then _RedoRenameFiles()
 EndFunc
 
-Func _previewFilesHotKey()
-    If _isFocusOnGui($hMainGui) Then _previewFiles()
+Func _PreviewFilesHotKey()
+    If _IsFocusOnGui($hMainGui) Then _PreviewFiles()
 EndFunc
 
-Func _resetPreviewHotKey()
-    If _isFocusOnGui($hMainGui) Then _resetPreview()
+Func _ResetPreviewHotKey()
+    If _IsFocusOnGui($hMainGui) Then _ResetPreview()
 EndFunc
 
-Func _renameFilesHotKey()
-    If _isFocusOnGui($hMainGui) Then _renameFiles()
+Func _RenameFilesHotKey()
+    If _IsFocusOnGui($hMainGui) Then _RenameFiles()
 EndFunc

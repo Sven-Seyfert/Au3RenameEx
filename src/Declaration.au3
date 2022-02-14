@@ -28,8 +28,8 @@ Global $aColor[$iMaxEnumIndex]
 Global $aListView[$iMaxEnumIndex]
        $aListView[$eStyle]         = $LVS_SHOWSELALWAYS + $LVS_REPORT + $LVS_NOSORTHEADER
        $aListView[$eExStyle]       = $LVS_EX_GRIDLINES + $LVS_EX_FULLROWSELECT
-       $aListView[$eColumnOneText] = _getResxValue('ListViewColumnOneText')
-       $aListView[$eColumnTwoText] = _getResxValue('ListViewColumnTwoText')
+       $aListView[$eColumnOneText] = _GetResxValue('ListViewColumnOneText')
+       $aListView[$eColumnTwoText] = _GetResxValue('ListViewColumnTwoText')
 
 Global $aPath[$iMaxEnumIndex]
        $aPath[$eImages]            = _PathFull(@ScriptDir & '..\..\images\')

@@ -1,11 +1,11 @@
-OnAutoItExitRegister('_disposeAndExit')
+OnAutoItExitRegister('_DisposeAndExit')
 
-HotKeySet('^o', '_openFolderHotKey')
-HotKeySet('^z', '_undoRenameFilesHotKey')
-HotKeySet('^y', '_redoRenameFilesHotKey')
-HotKeySet('^p', '_previewFilesHotKey')
-HotKeySet('^r', '_resetPreviewHotKey')
-HotKeySet('^s', '_renameFilesHotKey')
+HotKeySet('^o', '_OpenFolderHotKey')
+HotKeySet('^z', '_UndoRenameFilesHotKey')
+HotKeySet('^y', '_RedoRenameFilesHotKey')
+HotKeySet('^p', '_PreviewFilesHotKey')
+HotKeySet('^r', '_ResetPreviewHotKey')
+HotKeySet('^s', '_RenameFilesHotKey')
 
 Global $bIsBtnUndoEnabled
 Global $bIsBtnRedoEnabled
