@@ -32,7 +32,7 @@ Global $aListView[$iMaxEnumIndex]
        $aListView[$eColumnTwoText] = _GetResxValue('ListViewColumnTwoText')
 
 Global $aPath[$iMaxEnumIndex]
-       $aPath[$eImages]            = _PathFull(@ScriptDir & '..\..\images\')
+       $aPath[$eImages]            = _PathFull(@ScriptDir & '..\..\media\images\')
 
 Global $aFile[$iMaxEnumIndex]
        $aFile[$eConfig]            = @TempDir & '\' & $sProgramTitle & '\config.ini'

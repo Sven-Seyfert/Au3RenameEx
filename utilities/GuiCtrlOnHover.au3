@@ -20,7 +20,7 @@ Execute('OnAutoItExitRegister("__GUICtrl_SOH_Exit")')
 
 
 ; Public Functions
-Func _onHoverRegister($iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0)
+Func _OnHoverRegister($iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0)
     Local $hCtrlID = GUICtrlGetHandle($iCtrlID)
     If Not $hCtrlID Then Return SetError(1, 0, 0)
 
@@ -104,19 +104,19 @@ EndFunc
 
 ; Backwards Compatibility Functions
 Func _GUICtrl_SetOnHover($iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0)
-    _onHoverRegister($iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func)
+    _OnHoverRegister($iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func)
 EndFunc
 
 Func GUICtrl_SetOnHover($iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0)
-    _onHoverRegister($iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func)
+    _OnHoverRegister($iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func)
 EndFunc
 
 Func GUICtrlSetOnHover($iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0)
-    _onHoverRegister($iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func)
+    _OnHoverRegister($iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func)
 EndFunc
 
 Func _GUICtrlSetOnHover($iCtrlID, $sHover_Func = '', $sLeaveHover_Func = -1, $sPrimaryDownFunc = -1, $sPrimaryUpFunc = -1, $iKeepCall_PrDn_Func = 1, $iKeepCall_Hover_Func = 0)
-    _onHoverRegister($iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func)
+    _OnHoverRegister($iCtrlID, $sHover_Func, $sLeaveHover_Func, $sPrimaryDownFunc, $sPrimaryUpFunc, $iKeepCall_PrDn_Func, $iKeepCall_Hover_Func)
 EndFunc
 
 

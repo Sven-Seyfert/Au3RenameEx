@@ -1,7 +1,7 @@
 #####
 
 <p align="center">
-    <img src="images/icon.png" width="80" />
+    <img src="media/images/icon.png" width="80" />
     <h2 align="center">Welcome to <code>Au3RenameEx</code>【ツ】</h2>
 </p>
 
@@ -33,47 +33,47 @@ Common use cases are music files, audio books, ebooks or other types of collecti
 
   <details>
   <summary><i>Numeration with several digit size</i></summary>
-  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/numeration.gif" /></p>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/media/screenshots/numeration.gif" /></p>
   </details>
 
   <details>
   <summary><i>Replace characters (with case sensitive option)</i></summary>
-  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/replaceCharacter.gif" /></p>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/media/screenshots/replaceCharacter.gif" /></p>
   </details>
 
   <details>
   <summary><i>Paste characters to position</i></summary>
-  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/pasteCharacter.gif" /></p>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/media/screenshots/pasteCharacter.gif" /></p>
   </details>
 
   <details>
   <summary><i>Move character to position</i></summary>
-  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/moveCharacter.gif" /></p>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/media/screenshots/moveCharacter.gif" /></p>
   </details>
 
   <details>
   <summary><i>Delete characters</i></summary>
-  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/deleteCharacter.gif" /></p>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/media/screenshots/deleteCharacter.gif" /></p>
   </details>
 
   <details>
   <summary><i>Replace by RegEx pattern (most powerful)</i></summary>
-  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/regexReplace.gif" /></p>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/media/screenshots/regexReplace.gif" /></p>
   </details>
 
   <details>
   <summary><i>Timestamp as filename</i></summary>
-  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/timestampAsFilename.gif" /></p>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/media/screenshots/timestampAsFilename.gif" /></p>
   </details>
 
   <details>
   <summary><i>Undo and Redo your changes</i></summary>
-  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/undoRedo.gif" /></p>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/media/screenshots/undoRedo.gif" /></p>
   </details>
 
   <details>
   <summary><i>Input exception handling prevents false renaming</i></summary>
-  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/screenshots/inputHandling.gif" /></p>
+  <p><br><img src="https://github.com/Sven-Seyfert/Au3RenameEx/blob/master/media/screenshots/inputHandling.gif" /></p>
   </details>
 
 </details>
@@ -87,13 +87,13 @@ Adjustable in `src\Declaration.au3` file.
 
 #### *Installation*
 
-**Variant 1 - Run the EXE**
+Variant 1 - Run the EXE:
 
 Starting the EXE `build\Au3RenameEx.exe` which is compiled with `#AutoIt3Wrapper_UseX64=y` and `#AutoIt3Wrapper_UseUpx=n` (the default expected system is x64).
 
-**Variant 2 - Compile it on your own**
+Variant 2 - Compile it on your own:
 
-Open file `src\Au3RenameEx.au3`, adjust the *#AutoIt3Wrapper compiler information* if you want to. For example you could change `#AutoIt3Wrapper_UseUpx=n` from no (n) to yes (y), etc.
+Open file `src\Main.au3`, adjust the *#AutoIt3Wrapper compiler information* if you want to. For example you could change `#AutoIt3Wrapper_UseUpx=n` from no (n) to yes (y), etc.
 Then, run or compile the program.
 
 #### *Usage*
